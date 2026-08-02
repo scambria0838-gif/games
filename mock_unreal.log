@@ -1,0 +1,176 @@
+======================================================================
+ SuperNinja MOCK UNREAL - Headless test harness
+======================================================================
+ Cloud server : http://localhost:8791
+ Bridge port  : 8765
+ Skills       : 23 mock skills implemented
+ Polling      : every 1.0s
+======================================================================
+
+[02:08:37] Worker started, polling http://localhost:8791/poll every 1.0s
+[02:08:37] Mock bridge listening on http://127.0.0.1:8765
+[02:08:40] --> [cmd-1779070120489] skill=spawn_actor args={"shape": "Cube"}
+[02:08:40] <-- [cmd-1779070120489] status=success (0ms)
+[02:08:52] --> [cmd-1779070132103] skill=echo args={"message": "hello"}
+[02:08:52] <-- [cmd-1779070132103] status=success (0ms)
+[02:08:53] --> [cmd-1779070132708] skill=spawn_actor args={"shape": "Cube", "location": [0, 0, 0]}
+[02:08:53] <-- [cmd-1779070132708] status=success (0ms)
+[02:08:54] --> [cmd-1779070133915] skill=spawn_actor args={"shape": "Sphere", "location": [500, 300, 100]}
+[02:08:54] <-- [cmd-1779070133915] status=success (0ms)
+[02:08:55] --> [cmd-1779070134821] skill=spawn_actor args={"shape": "PoliceStation", "mesh_path": "/Game/Architecture/SM_PoliceStation", "
+[02:08:55] <-- [cmd-1779070134821] status=success (0ms)
+[02:08:56] --> [cmd-1779070136028] skill=list_actors args={}
+[02:08:56] <-- [cmd-1779070136028] status=success (0ms)
+[02:08:57] --> [cmd-1779070136933] skill=move_actor args={"name": "PoliceStation_HQ", "location": [1000, 0, 0]}
+[02:08:57] <-- [cmd-1779070136933] status=success (0ms)
+[02:08:58] --> [cmd-1779070138141] skill=light_scene args={"preset": "cinematic"}
+[02:08:58] <-- [cmd-1779070138141] status=success (0ms)
+[02:08:59] --> [cmd-1779070139047] skill=scatter_props args={"count": 15, "radius": 800}
+[02:08:59] <-- [cmd-1779070139047] status=success (0ms)
+[02:09:01] --> [cmd-1779070140254] skill=add_foliage args={"count": 30, "radius": 1500}
+[02:09:01] <-- [cmd-1779070140254] status=success (0ms)
+[02:09:02] --> [cmd-1779070141160] skill=screenshot args={}
+[02:09:02] <-- [cmd-1779070141160] status=success (0ms)
+[02:09:02] --> [cmd-1779070142065] skill=run_python_snippet args={"code": "result = len(SCENE.actors); print(f'Total actors: {result}')"}
+[02:09:02] <-- [cmd-1779070142065] status=success (0ms)
+[02:09:03] --> [cmd-1779070142367] skill=find_actors args={"pattern": "Cube"}
+[02:09:03] <-- [cmd-1779070142367] status=success (0ms)
+[02:09:04] --> [cmd-1779070143273] skill=cleanup_duplicates args={"dry_run": true}
+[02:09:04] <-- [cmd-1779070143273] status=success (0ms)
+[02:09:05] --> [cmd-1779070144480] skill=delete_actor args={"name": "PoliceStation_HQ"}
+[02:09:05] <-- [cmd-1779070144480] status=success (0ms)
+[02:09:06] --> [cmd-1779070145386] skill=screenshot args={}
+[02:09:06] <-- [cmd-1779070145386] status=success (0ms)
+[02:09:16] --> [cmd-1779070155926] skill=spawn_actor args={"shape": "Cube", "location": [0, 0, 0]}
+[02:09:16] <-- [cmd-1779070155926] status=success (0ms)
+[02:09:16] --> [cmd-1779070155927] skill=spawn_actor args={"shape": "Cube", "location": [50, 0, 0]}
+[02:09:16] <-- [cmd-1779070155927] status=success (0ms)
+[02:09:16] --> [cmd-1779070155927] skill=spawn_actor args={"shape": "Cube", "location": [100, 0, 0]}
+[02:09:16] <-- [cmd-1779070155927] status=success (0ms)
+[02:09:16] --> [cmd-1779070155928] skill=spawn_actor args={"shape": "Cube", "location": [150, 0, 0]}
+[02:09:16] <-- [cmd-1779070155928] status=success (0ms)
+[02:09:16] --> [cmd-1779070155928] skill=spawn_actor args={"shape": "Cube", "location": [200, 0, 0]}
+[02:09:16] <-- [cmd-1779070155928] status=success (0ms)
+[02:09:16] --> [cmd-1779070155929] skill=spawn_actor args={"shape": "Cube", "location": [250, 0, 0]}
+[02:09:16] <-- [cmd-1779070155929] status=success (0ms)
+[02:09:16] --> [cmd-1779070155929] skill=spawn_actor args={"shape": "Cube", "location": [300, 0, 0]}
+[02:09:16] <-- [cmd-1779070155929] status=success (0ms)
+[02:09:16] --> [cmd-1779070155930] skill=spawn_actor args={"shape": "Cube", "location": [350, 0, 0]}
+[02:09:16] <-- [cmd-1779070155930] status=success (0ms)
+[02:09:16] --> [cmd-1779070155930] skill=spawn_actor args={"shape": "Cube", "location": [400, 0, 0]}
+[02:09:16] <-- [cmd-1779070155930] status=success (0ms)
+[02:09:16] --> [cmd-1779070155931] skill=spawn_actor args={"shape": "Cube", "location": [450, 0, 0]}
+[02:09:16] <-- [cmd-1779070155931] status=success (0ms)
+[02:09:16] --> [cmd-1779070155931] skill=spawn_actor args={"shape": "Cube", "location": [500, 0, 0]}
+[02:09:16] <-- [cmd-1779070155931] status=success (0ms)
+[02:09:16] --> [cmd-1779070155932] skill=spawn_actor args={"shape": "Cube", "location": [550, 0, 0]}
+[02:09:16] <-- [cmd-1779070155932] status=success (0ms)
+[02:09:17] --> [cmd-1779070155932] skill=spawn_actor args={"shape": "Cube", "location": [600, 0, 0]}
+[02:09:17] <-- [cmd-1779070155932] status=success (0ms)
+[02:09:17] --> [cmd-1779070155933] skill=spawn_actor args={"shape": "Cube", "location": [650, 0, 0]}
+[02:09:17] <-- [cmd-1779070155933] status=success (0ms)
+[02:09:17] --> [cmd-1779070155933] skill=spawn_actor args={"shape": "Cube", "location": [700, 0, 0]}
+[02:09:17] <-- [cmd-1779070155933] status=success (0ms)
+[02:09:17] --> [cmd-1779070155934] skill=spawn_actor args={"shape": "Cube", "location": [750, 0, 0]}
+[02:09:17] <-- [cmd-1779070155934] status=success (0ms)
+[02:09:17] --> [cmd-1779070155934] skill=spawn_actor args={"shape": "Cube", "location": [800, 0, 0]}
+[02:09:17] <-- [cmd-1779070155934] status=success (0ms)
+[02:09:17] --> [cmd-1779070155935] skill=spawn_actor args={"shape": "Cube", "location": [850, 0, 0]}
+[02:09:17] <-- [cmd-1779070155935] status=success (0ms)
+[02:09:17] --> [cmd-1779070155935] skill=spawn_actor args={"shape": "Cube", "location": [900, 0, 0]}
+[02:09:17] <-- [cmd-1779070155935] status=success (0ms)
+[02:09:17] --> [cmd-1779070155936] skill=spawn_actor args={"shape": "Cube", "location": [950, 0, 0]}
+[02:09:17] <-- [cmd-1779070155936] status=success (0ms)
+[02:09:17] --> [cmd-1779070155936] skill=spawn_actor args={"shape": "Cube", "location": [1000, 0, 0]}
+[02:09:17] <-- [cmd-1779070155936] status=success (0ms)
+[02:09:17] --> [cmd-1779070155937] skill=spawn_actor args={"shape": "Cube", "location": [1050, 0, 0]}
+[02:09:17] <-- [cmd-1779070155937] status=success (0ms)
+[02:09:17] --> [cmd-1779070155937] skill=spawn_actor args={"shape": "Cube", "location": [1100, 0, 0]}
+[02:09:17] <-- [cmd-1779070155937] status=success (0ms)
+[02:09:17] --> [cmd-1779070155938] skill=spawn_actor args={"shape": "Cube", "location": [1150, 0, 0]}
+[02:09:17] <-- [cmd-1779070155938] status=success (0ms)
+[02:09:17] --> [cmd-1779070155938] skill=spawn_actor args={"shape": "Cube", "location": [1200, 0, 0]}
+[02:09:17] <-- [cmd-1779070155938] status=success (0ms)
+[02:09:17] --> [cmd-1779070155939] skill=spawn_actor args={"shape": "Cube", "location": [1250, 0, 0]}
+[02:09:17] <-- [cmd-1779070155939] status=success (0ms)
+[02:09:17] --> [cmd-1779070155939] skill=spawn_actor args={"shape": "Cube", "location": [1300, 0, 0]}
+[02:09:17] <-- [cmd-1779070155939] status=success (0ms)
+[02:09:17] --> [cmd-1779070155940] skill=spawn_actor args={"shape": "Cube", "location": [1350, 0, 0]}
+[02:09:17] <-- [cmd-1779070155940] status=success (0ms)
+[02:09:17] --> [cmd-1779070155940] skill=spawn_actor args={"shape": "Cube", "location": [1400, 0, 0]}
+[02:09:17] <-- [cmd-1779070155940] status=success (0ms)
+[02:09:17] --> [cmd-1779070155941] skill=spawn_actor args={"shape": "Cube", "location": [1450, 0, 0]}
+[02:09:17] <-- [cmd-1779070155941] status=success (0ms)
+[02:09:17] --> [cmd-1779070155941] skill=spawn_actor args={"shape": "Cube", "location": [1500, 0, 0]}
+[02:09:17] <-- [cmd-1779070155941] status=success (0ms)
+[02:09:18] --> [cmd-1779070155941] skill=spawn_actor args={"shape": "Cube", "location": [1550, 0, 0]}
+[02:09:18] <-- [cmd-1779070155941] status=success (0ms)
+[02:09:18] --> [cmd-1779070155942] skill=spawn_actor args={"shape": "Cube", "location": [1600, 0, 0]}
+[02:09:18] <-- [cmd-1779070155942] status=success (0ms)
+[02:09:18] --> [cmd-1779070155942] skill=spawn_actor args={"shape": "Cube", "location": [1650, 0, 0]}
+[02:09:18] <-- [cmd-1779070155942] status=success (0ms)
+[02:09:18] --> [cmd-1779070155943] skill=spawn_actor args={"shape": "Cube", "location": [1700, 0, 0]}
+[02:09:18] <-- [cmd-1779070155943] status=success (0ms)
+[02:09:18] --> [cmd-1779070155943] skill=spawn_actor args={"shape": "Cube", "location": [1750, 0, 0]}
+[02:09:18] <-- [cmd-1779070155943] status=success (0ms)
+[02:09:18] --> [cmd-1779070155944] skill=spawn_actor args={"shape": "Cube", "location": [1800, 0, 0]}
+[02:09:18] <-- [cmd-1779070155944] status=success (0ms)
+[02:09:18] --> [cmd-1779070155944] skill=spawn_actor args={"shape": "Cube", "location": [1850, 0, 0]}
+[02:09:18] <-- [cmd-1779070155944] status=success (0ms)
+[02:09:18] --> [cmd-1779070155945] skill=spawn_actor args={"shape": "Cube", "location": [1900, 0, 0]}
+[02:09:18] <-- [cmd-1779070155945] status=success (0ms)
+[02:09:18] --> [cmd-1779070155946] skill=spawn_actor args={"shape": "Cube", "location": [1950, 0, 0]}
+[02:09:18] <-- [cmd-1779070155946] status=success (0ms)
+[02:09:18] --> [cmd-1779070155946] skill=spawn_actor args={"shape": "Cube", "location": [2000, 0, 0]}
+[02:09:18] <-- [cmd-1779070155946] status=success (0ms)
+[02:09:18] --> [cmd-1779070155947] skill=spawn_actor args={"shape": "Cube", "location": [2050, 0, 0]}
+[02:09:18] <-- [cmd-1779070155947] status=success (0ms)
+[02:09:18] --> [cmd-1779070155947] skill=spawn_actor args={"shape": "Cube", "location": [2100, 0, 0]}
+[02:09:18] <-- [cmd-1779070155947] status=success (0ms)
+[02:09:18] --> [cmd-1779070155948] skill=spawn_actor args={"shape": "Cube", "location": [2150, 0, 0]}
+[02:09:18] <-- [cmd-1779070155948] status=success (0ms)
+[02:09:18] --> [cmd-1779070155949] skill=spawn_actor args={"shape": "Cube", "location": [2200, 0, 0]}
+[02:09:18] <-- [cmd-1779070155949] status=success (0ms)
+[02:09:18] --> [cmd-1779070155949] skill=spawn_actor args={"shape": "Cube", "location": [2250, 0, 0]}
+[02:09:18] <-- [cmd-1779070155949] status=success (0ms)
+[02:09:18] --> [cmd-1779070155950] skill=spawn_actor args={"shape": "Cube", "location": [2300, 0, 0]}
+[02:09:18] <-- [cmd-1779070155950] status=success (0ms)
+[02:09:18] --> [cmd-1779070155950] skill=spawn_actor args={"shape": "Cube", "location": [2350, 0, 0]}
+[02:09:18] <-- [cmd-1779070155950] status=success (0ms)
+[02:09:18] --> [cmd-1779070155951] skill=spawn_actor args={"shape": "Cube", "location": [2400, 0, 0]}
+[02:09:18] <-- [cmd-1779070155951] status=success (0ms)
+[02:09:18] --> [cmd-1779070155951] skill=spawn_actor args={"shape": "Cube", "location": [2450, 0, 0]}
+[02:09:18] <-- [cmd-1779070155951] status=success (0ms)
+[02:09:37] Heartbeat - actors=100 processed=66
+[02:10:37] Heartbeat - actors=100 processed=66
+[02:11:37] Heartbeat - actors=100 processed=66
+[02:12:37] Heartbeat - actors=100 processed=66
+[02:13:37] Heartbeat - actors=100 processed=66
+[02:14:37] Heartbeat - actors=100 processed=66
+[02:15:37] Heartbeat - actors=100 processed=66
+[02:16:37] Heartbeat - actors=100 processed=66
+[02:17:37] Heartbeat - actors=100 processed=66
+[02:18:37] Heartbeat - actors=100 processed=66
+[02:19:37] Heartbeat - actors=100 processed=66
+[02:20:37] Heartbeat - actors=100 processed=66
+[02:21:37] Heartbeat - actors=100 processed=66
+[02:22:37] Heartbeat - actors=100 processed=66
+[02:23:37] Heartbeat - actors=100 processed=66
+[02:24:37] Heartbeat - actors=100 processed=66
+[02:25:37] Heartbeat - actors=100 processed=66
+[02:26:37] Heartbeat - actors=100 processed=66
+[02:27:37] Heartbeat - actors=100 processed=66
+[02:28:37] Heartbeat - actors=100 processed=66
+[02:29:37] Heartbeat - actors=100 processed=66
+[02:30:37] Heartbeat - actors=100 processed=66
+[02:31:37] Heartbeat - actors=100 processed=66
+[02:32:37] Heartbeat - actors=100 processed=66
+[02:33:37] Heartbeat - actors=100 processed=66
+[02:34:37] Heartbeat - actors=100 processed=66
+[02:35:37] Heartbeat - actors=100 processed=66
+[02:36:37] Heartbeat - actors=100 processed=66
+[02:37:37] Heartbeat - actors=100 processed=66
+[02:38:37] Heartbeat - actors=100 processed=66
+[02:39:37] Heartbeat - actors=100 processed=66
+[02:40:37] Heartbeat - actors=100 processed=66
+[02:41:37] Heartbeat - actors=100 processed=66
