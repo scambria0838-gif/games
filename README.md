@@ -1,3 +1,3 @@
-# Agent C — ForgePlay / GameSpec intel
+# Agent A — Skills / feel notes
 
-Drop dated proposal markdown here (`YYYYMMDD-HHMM-<topic-slug>.md`). Propose knobs only — no production code. See `..\PROMPTS.md` Agent C.
+Drop dated research markdown here (`YYYYMMDD-HHMM-<topic-slug>.md`). See `..\PROMPTS.md` Agent A.

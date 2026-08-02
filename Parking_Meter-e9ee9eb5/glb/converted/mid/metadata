@@ -1,0 +1,194 @@
+{
+	"assetNamespace": "fab",
+	"listing":
+	{
+		"averageRating": 0,
+		"createdAt": "",
+		"description": "<p><strong>Texel density:</strong> 5718 px/m</p><p><strong>Physical size:</strong> 0.19m x 0.2m x 1.5m</p><p><strong>Mesh type:</strong> Closed mesh</p><p><strong>Maps:</strong> Specular Diffuse Bump Cavity Basecolor AO Metalness Roughness Normal Displacement</p> <p><span>Create high-quality 3D experiences and worlds with Quixel Megascans. Browse thousands of photorealistic assets and environments, including materials, 3D assets, plants, decals, and more available </span><a target=\"_blank\" href=\"https://www.fab.com/sellers/Quixel\" rel=\"noopener noreferrer nofollow\"><span><u>here</u></span></a><span> on Fab.</span></p><p></p><p><span>For any questions or support regarding Quixel content, please get in touch </span><a target=\"_blank\" href=\"https://support.fab.com/s/?ProductOrigin=1PC\" rel=\"noopener noreferrer nofollow\"><span><u>here</u></span></a><span>.</span></p>",
+		"isAiForbidden": true,
+		"isAiGenerated": false,
+		"lastUpdatedAt": "",
+		"listingType": "3d-model",
+		"media": "https://media.fab.com/image_previews/gallery_images/96dc8825-12d9-44df-913d-9edf8a01d7f1/847b9e92-fc77-410a-ad17-dbdf6e49d1d7.jpeg",
+		"publishedAt": "2024-10-22T11:50:05.936170Z",
+		"reviewCount": 0,
+		"thumbnail": "https://media.fab.com/image_previews/gallery_images/ffd1223a-6783-4767-be8c-f6d37c76fd11/a9099eaf-5b63-4503-a15e-ef83b7f26f69.jpeg",
+		"title": "Parking Meter",
+		"uid": "e9ee9eb5-a7ce-42cc-bb11-171c09a619f6",
+		"updatedAt": "",
+		"user":
+		{
+			"coverImageUrl": "https://cdn1.epicgames.com/fab/seller/o-cbf5bbfdb340d6a839b5520cb31328/cover/67dbdb8f.jpg",
+			"profileImageUrl": "https://cdn1.epicgames.com/fab/seller/o-cbf5bbfdb340d6a839b5520cb31328/profile/39e5dabd.png",
+			"sellerName": "Quixel Megascans",
+			"uid": "45ea3429-f62c-4f17-aa15-5bb9dfcd0079"
+		},
+		"tags": [
+			{
+				"name": "Car",
+				"slug": "car",
+				"uid": "1b19907d-7199-4bea-888b-434c45591ad6"
+			},
+			{
+				"name": "Modern",
+				"slug": "modern",
+				"uid": "4a008392-1a66-40e5-8ba9-ffb361b25ef5"
+			},
+			{
+				"name": "Downtown",
+				"slug": "downtown",
+				"uid": "4d11dc1d-5b97-4b22-842c-56d688622c4d"
+			},
+			{
+				"name": "Metal",
+				"slug": "metal",
+				"uid": "55165238-19a2-4184-85f1-e8650bd2a38d"
+			},
+			{
+				"name": "Paint",
+				"slug": "paint",
+				"uid": "88299db6-d6a9-4c34-8963-1eb7b0068d27"
+			},
+			{
+				"name": "Painted",
+				"slug": "painted",
+				"uid": "90c21351-ff24-4615-add4-17feab3e8211"
+			},
+			{
+				"name": "Road",
+				"slug": "road",
+				"uid": "988f4797-e875-45c0-91b2-61a8f40d65a0"
+			},
+			{
+				"name": "Exterior",
+				"slug": "exterior",
+				"uid": "98cde8e0-56a5-4019-8889-2b409949fdb9"
+			},
+			{
+				"name": "Screen",
+				"slug": "screen",
+				"uid": "c66e6681-dba6-449b-af2e-9b6df2af8ecc"
+			},
+			{
+				"name": "Parking",
+				"slug": "parking",
+				"uid": "ca1ba0e5-cd03-4743-a4ea-66733367cc6c"
+			},
+			{
+				"name": "Metallic",
+				"slug": "metallic",
+				"uid": "d5b82134-c49f-443e-8b37-7847c2bd3605"
+			},
+			{
+				"name": "Meter",
+				"slug": "meter",
+				"uid": "dbe07104-874f-489e-9176-9e1bacbfb0be"
+			},
+			{
+				"name": "Frame",
+				"slug": "frame",
+				"uid": "e5fc5baa-283f-4092-9e8f-34bc253afe0c"
+			},
+			{
+				"name": "Roadside",
+				"slug": "roadside",
+				"uid": "f3a368d8-c17d-4fdf-92d9-ffeb14a5acdf"
+			},
+			{
+				"name": "City",
+				"slug": "city",
+				"uid": "f57a177e-d2a9-4a6c-96e2-818ae6681e77"
+			}
+		],
+		"category":
+		{
+			"name": "Tools, Objects & Decor",
+			"path": "objects-decor",
+			"slug": "objects-decor",
+			"uid": "d22d8b61-3aa8-4558-a6d1-c2a18543e0fd"
+		},
+		"assetFormats": [
+			{
+				"assetFormatType":
+				{
+					"name": "FBX",
+					"groupName": "3D Exchange Formats",
+					"code": "fbx",
+					"icon": "cube",
+					"extensions": [
+						"fbx"
+					]
+				}
+			},
+			{
+				"assetFormatType":
+				{
+					"name": "Converted Files",
+					"groupName": "",
+					"code": "converted-files",
+					"icon": "cube",
+					"extensions": [
+						"gltf",
+						"glb",
+						"usdz"
+					]
+				}
+			},
+			{
+				"assetFormatType":
+				{
+					"name": "ZBrush",
+					"groupName": "3D DCC Formats",
+					"code": "z-brush",
+					"icon": "zbrush",
+					"extensions": [
+						"zbp",
+						"ztl"
+					]
+				}
+			},
+			{
+				"assetFormatType":
+				{
+					"name": "Additional files",
+					"groupName": "Other Formats",
+					"code": "additional-files",
+					"icon": "file",
+					"extensions": [
+						"zip"
+					]
+				}
+			},
+			{
+				"assetFormatType":
+				{
+					"name": "GLTF",
+					"groupName": "3D Exchange Formats",
+					"code": "gltf",
+					"icon": "cube",
+					"extensions": [
+						"gltf"
+					]
+				}
+			}
+		],
+		"_PluginMetas":
+		{
+			"apiDataVersion": "0.0.1",
+			"entitlementUid": "fff3d086-f5ff-4acf-9f3b-6c3e0c14f17c",
+			"cacheSize": 0,
+			"downloaded": []
+		}
+	},
+	"target": "diskExport",
+	"quality": "mid",
+	"format": "glb",
+	"fileId": "b9d5d148-809b-4a06-b95f-928671538d3f",
+	"platformIncluded": "",
+	"distributionPointBaseUrls": [],
+	"distributionMethod": "",
+	"entitlementUid": "fff3d086-f5ff-4acf-9f3b-6c3e0c14f17c",
+	"invertedNormal": false,
+	"isConverted": true,
+	"isQuixel": true
+}
