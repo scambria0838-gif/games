@@ -1,0 +1,1808 @@
+tcp              LISTEN            0                 511                                      [::1]:18789                               [::]:*               users:(("openclaw-gatewa",pid=2429,fd=22))                          
+root@iZt4n4i9cbmylfxdyvuy6gZ:/# cat /root/.openclaw/openclaw.json
+{
+  "gateway": {
+    "auth": {
+      "mode": "token",
+      "token": "e99baabfb3765b17e54e58598a3eb1136077a269c4b5e769"
+    },
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.4.14",
+    "lastTouchedAt": "2026-07-15T10:55:42.000Z"
+  },
+  "commands": {},
+  "agents": {
+    "defaults": {
+      "heartbeat": {
+        "every": "60m"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "thinkingDefault": "high",
+      "memorySearch": {
+        "remote": {
+          "baseUrl": "https://agent-gw.kimi.com/coding/v1",
+          "apiKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+          "headers": {
+            "User-Agent": "Kimi Claw Plugin",
+            "X-Msh-Device-Name": "openclaw-kimi-embedding"
+          }
+        },
+        "enabled": true,
+        "provider": "openai",
+        "model": "bge_m3_embed"
+      },
+      "model": {
+        "primary": "kimi-coding/k2p6"
+      },
+      "models": {
+        "kimi-coding/k2p6": {
+          "alias": "kimi-k2p6"
+        }
+      }
+    }
+  },
+  "skills": {
+    "load": {
+      "extraDirs": [
+        "/root/.openclaw/kimi-skills"
+      ]
+    }
+  },
+  "plugins": {
+    "entries": {
+      "feishu": {
+        "enabled": false
+      },
+      "openclaw-lark": {
+        "enabled": true
+      },
+      "dingtalk-connector": {
+        "enabled": true
+      },
+      "weibo-openclaw-plugin": {
+        "enabled": true
+      },
+      "wecom-openclaw-plugin": {
+        "enabled": true
+      },
+      "openclaw-weixin": {
+        "enabled": true
+      },
+      "openclaw-qqbot": {
+        "enabled": true
+      },
+      "kimi-claw": {
+        "enabled": true,
+        "config": {
+          "bridge": {
+            "url": "wss://www.kimi.com/api-claw/bots/agent-ws",
+            "kimiapiHost": "https://www.kimi.com/api-claw",
+            "promptTimeoutMs": 300000,
+            "bot_type": "remote",
+            "token": "km_b_prod_HuNRb1NueeErmOmlmNoGfFyL2dXfbpAx",
+            "kimiFileDownloadDir": "./openclaw/kimi/downloads",
+            "mode": "acp",
+            "forwardThinking": true,
+            "forwardToolCalls": true,
+            "kimiCodeAPIKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+            "kimiPluginAPIKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+            "kimiCodeBaseURL": "https://agent-gw.kimi.com/coding"
+          },
+          "log": {
+            "enabled": true,
+            "verbose": false
+          },
+          "gateway": {
+            "url": "ws://127.0.0.1:18789",
+            "agentId": "main"
+          },
+          "retry": {
+            "baseMs": 1000,
+            "maxMs": 600000,
+            "maxAttempts": 0
+          },
+          "defaultModel": {
+            "enabled": true,
+            "provider": "kimi-coding",
+            "modelId": "k2p6",
+            "apiKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+            "baseUrl": "https://agent-gw.kimi.com/coding"
+          }
+        }
+      },
+      "kimi-search": {
+        "enabled": true,
+        "config": {
+          "search": {
+            "baseUrl": "https://agent-gw.kimi.com/coding/v1/search"
+          },
+          "fetch": {
+            "baseUrl": "https://agent-gw.kimi.com/coding/v1/fetch"
+          }
+        }
+      },
+      "browser": {
+        "enabled": true
+      },
+      "kimi": {
+        "enabled": true
+      }
+    },
+    "installs": {
+      "openclaw-lark": {
+        "source": "archive",
+        "sourcePath": "/tmp/openclaw-lark-YBYIfi/larksuite-openclaw-lark-2026.4.9.tgz",
+        "installPath": "/root/.openclaw/extensions/openclaw-lark",
+        "version": "2026.4.9",
+        "installedAt": "2026-06-08T12:47:28.681Z"
+      },
+      "dingtalk-connector": {
+        "source": "npm",
+        "spec": "@dingtalk-real-ai/dingtalk-connector@0.8.13",
+        "installPath": "/root/.openclaw/extensions/dingtalk-connector",
+        "version": "0.8.13",
+        "resolvedName": "@dingtalk-real-ai/dingtalk-connector",
+        "resolvedVersion": "0.8.13",
+        "resolvedSpec": "@dingtalk-real-ai/dingtalk-connector@0.8.13",
+        "integrity": "sha512-vq4ooab1LMdqCZ43GCO824R3v1EqrDNq3lrvybU99nyxY8RbAkz75Cm3mla/1Hz/jRXi3cicX96gxjuj44ldSQ==",
+        "shasum": "86cd1aa3bcc6022358e34ea1553c9584b6bbcf21",
+        "resolvedAt": "2026-06-08T12:47:55.481Z",
+        "installedAt": "2026-06-08T12:48:07.623Z"
+      },
+      "weibo-openclaw-plugin": {
+        "source": "npm",
+        "spec": "@wecode-ai/weibo-openclaw-plugin@2.2.3",
+        "installPath": "/root/.openclaw/extensions/weibo-openclaw-plugin",
+        "version": "2.2.3",
+        "resolvedName": "@wecode-ai/weibo-openclaw-plugin",
+        "resolvedVersion": "2.2.3",
+        "resolvedSpec": "@wecode-ai/weibo-openclaw-plugin@2.2.3",
+        "integrity": "sha512-5wG5/2RkTifL5KXgryFBDbui9BB0qMBq48hzge+qfCAy+mX+DXWNeSQkHfXvISmOnyPHcZnvDXD5jR470pNfgg==",
+        "shasum": "20eae5366cf999f929e17ba0e8492d3a936fff64",
+        "resolvedAt": "2026-06-08T12:48:37.965Z",
+        "installedAt": "2026-06-08T12:49:48.027Z"
+      },
+      "wecom-openclaw-plugin": {
+        "source": "npm",
+        "spec": "@wecom/wecom-openclaw-plugin@2026.4.23",
+        "installPath": "/root/.openclaw/extensions/wecom-openclaw-plugin",
+        "version": "2026.4.23",
+        "resolvedName": "@wecom/wecom-openclaw-plugin",
+        "resolvedVersion": "2026.4.23",
+        "resolvedSpec": "@wecom/wecom-openclaw-plugin@2026.4.23",
+        "integrity": "sha512-bnzfdIEEu1/LFvcdyjaTkyxt27w6c7dqhkPezU62OWaqmcdFsUGR3T55USK/O9pIKsNcnL1Tnu1pqKYCWHFgWQ==",
+        "shasum": "34f76a1dc3e416ea7664f31b2f0d0239b1fd0939",
+        "resolvedAt": "2026-06-08T12:50:07.317Z",
+        "installedAt": "2026-06-08T12:50:18.429Z"
+      },
+      "openclaw-weixin": {
+        "source": "npm",
+        "spec": "@tencent-weixin/openclaw-weixin@2.1.10",
+        "installPath": "/root/.openclaw/extensions/openclaw-weixin",
+        "version": "2.1.10",
+        "resolvedName": "@tencent-weixin/openclaw-weixin",
+        "resolvedVersion": "2.1.10",
+        "resolvedSpec": "@tencent-weixin/openclaw-weixin@2.1.10",
+        "integrity": "sha512-cEG6Iw5g2qqlA+8/TcmV+E8aFUEX0ruxF0+a5LgVy5wv56/qP07KoapfRa7YTRPzhRW5UDaz6zsZQArt/4ZNnA==",
+        "shasum": "3e4fa19e5997567a6f8e0bacef8ec96d46cc432c",
+        "resolvedAt": "2026-06-08T12:50:42.934Z",
+        "installedAt": "2026-06-08T12:51:11.107Z"
+      },
+      "openclaw-qqbot": {
+        "source": "npm",
+        "spec": "@tencent-connect/openclaw-qqbot@1.7.1",
+        "installPath": "/root/.openclaw/extensions/openclaw-qqbot",
+        "version": "1.7.1",
+        "resolvedName": "@tencent-connect/openclaw-qqbot",
+        "resolvedVersion": "1.7.1",
+        "resolvedSpec": "@tencent-connect/openclaw-qqbot@1.7.1",
+        "integrity": "sha512-h7rQFxsDpfBIQG8eGkQixSdSQB05eqF9waCWo8bKI/5K+v53dh+jiJr8va1pqVIpCTYPXFw0VaVNfOtlnjE/DQ==",
+        "shasum": "e1dc206b2b59b11c977c55df87c4eeff936c45e4",
+        "resolvedAt": "2026-06-08T12:51:46.367Z",
+        "installedAt": "2026-06-08T12:52:06.190Z"
+      },
+      "kimi-claw": {
+        "source": "path",
+        "sourcePath": "/tmp/tmp.5JYwtUqutH/staged_main",
+        "installPath": "/root/.openclaw/extensions/kimi-claw",
+        "version": "0.27.1",
+        "installedAt": "2026-06-08T12:54:10.139Z"
+      },
+      "kimi-search": {
+        "source": "path",
+        "sourcePath": "/tmp/tmp.5JYwtUqutH/staged_search",
+        "installPath": "/root/.openclaw/extensions/kimi-search",
+        "version": "0.1.15",
+        "installedAt": "2026-06-08T12:55:39.523Z"
+      }
+    },
+    "allow": [
+      "openclaw-lark",
+      "memory-core",
+      "dingtalk-connector",
+      "weibo-openclaw-plugin",
+      "wecom-openclaw-plugin",
+      "openclaw-weixin",
+      "openclaw-qqbot",
+      "kimi-claw",
+      "kimi-search",
+      "browser",
+      "feishu",
+      "telegram",
+      "discord",
+      "slack",
+      "whatsapp",
+      "signal",
+      "line",
+      "googlechat",
+      "msteams",
+      "mattermost",
+      "matrix",
+      "nextcloud-talk",
+      "synology-chat",
+      "irc",
+      "imessage",
+      "bluebubbles",
+      "zalo",
+      "zalouser",
+      "kimi"
+    ],
+    "load": {
+      "paths": []
+    }
+  },
+  "channels": {},
+  "secrets": {
+    "providers": {
+      "lark-secrets": {
+        "source": "file",
+        "path": "~/.openclaw/credentials/lark.secrets.json"
+      }
+    }
+  },
+  "tools": {
+    "alsoAllow": [
+      "feishu_bitable_app",
+      "feishu_bitable_app_table",
+      "feishu_bitable_app_table_field",
+      "feishu_bitable_app_table_record",
+      "feishu_bitable_app_table_view",
+      "feishu_calendar_calendar",
+      "feishu_calendar_event",
+      "feishu_calendar_event_attendee",
+      "feishu_calendar_freebusy",
+      "feishu_chat",
+      "feishu_chat_members",
+      "feishu_create_doc",
+      "feishu_doc_comments",
+      "feishu_doc_media",
+      "feishu_drive_file",
+      "feishu_fetch_doc",
+      "feishu_get_user",
+      "feishu_im_bot_image",
+      "feishu_im_user_fetch_resource",
+      "feishu_im_user_get_messages",
+      "feishu_im_user_get_thread_messages",
+      "feishu_im_user_message",
+      "feishu_im_user_search_messages",
+      "feishu_oauth",
+      "feishu_oauth_batch_auth",
+      "feishu_search_doc_wiki",
+      "feishu_search_user",
+      "feishu_sheet",
+      "feishu_task_comment",
+      "feishu_task_subtask",
+      "feishu_task_task",
+      "feishu_task_agent",
+      "feishu_task_attachment",
+      "feishu_task_tasklist",
+      "feishu_update_doc",
+      "feishu_wiki_space",
+      "feishu_wiki_space_node"
+    ],
+    "profile": "full"
+  },
+  "browser": {
+    "defaultProfile": "openclaw",
+    "headless": true,
+    "noSandbox": true,
+    "executablePath": "/usr/bin/google-chrome"
+  },
+  "logging": {
+    "file": "/root/.openclaw/logs/openclaw.log"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "memory-stm-refresh": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "session": {
+    "dmScope": "main"
+  },
+  "env": {
+    "KIMI_API_KEY": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+    "KIMI_PLUGIN_API_KEY": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo"
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "kimi-coding": {
+        "baseUrl": "https://agent-gw.kimi.com/coding",
+        "apiKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+        "api": "anthropic-messages",
+        "headers": {
+          "User-Agent": "Kimi Claw Plugin",
+          "X-Kimi-Claw-ID": "19f65682-d1e2-827d-8000-00002e0e6de6"
+        },
+        "models": [
+          {
+            "id": "k2p6",
+            "name": "k2p6",
+            "input": [
+              "text",
+              "image"
+            ],
+            "reasoning": true,
+            "headers": {
+              "User-Agent": "Kimi Claw Plugin",
+              "X-Kimi-Claw-ID": "19f65682-d1e2-827d-8000-00002e0e6de6"
+            },
+            "contextWindow": 131072,
+            "maxTokens": 32768
+          }root@iZt4n4i9cbmylfxdyvuy6gZ:/# cat /root/.openclaw/openclaw.json
+cat /root/.openclaw/credentials/lark.secrets.json
+{
+  "gateway": {
+    "auth": {
+      "mode": "token",
+      "token": "e99baabfb3765b17e54e58598a3eb1136077a269c4b5e769"
+    },
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.4.14",
+    "lastTouchedAt": "2026-07-15T10:55:42.000Z"
+  },
+  "commands": {},
+  "agents": {
+    "defaults": {
+      "heartbeat": {
+        "every": "60m"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "thinkingDefault": "high",
+      "memorySearch": {
+        "remote": {
+          "baseUrl": "https://agent-gw.kimi.com/coding/v1",
+          "apiKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+          "headers": {
+            "User-Agent": "Kimi Claw Plugin",
+            "X-Msh-Device-Name": "openclaw-kimi-embedding"
+          }
+        },
+        "enabled": true,
+        "provider": "openai",
+        "model": "bge_m3_embed"
+      },
+      "model": {
+        "primary": "kimi-coding/k2p6"
+      },
+      "models": {
+        "kimi-coding/k2p6": {
+          "alias": "kimi-k2p6"
+        }
+      }
+    }
+  },
+  "skills": {
+    "load": {
+      "extraDirs": [
+        "/root/.openclaw/kimi-skills"
+      ]
+    }
+  },
+  "plugins": {
+    "entries": {
+      "feishu": {
+        "enabled": false
+      },
+      "openclaw-lark": {
+        "enabled": true
+      },
+      "dingtalk-connector": {
+        "enabled": true
+      },
+      "weibo-openclaw-plugin": {
+        "enabled": true
+      },
+      "wecom-openclaw-plugin": {
+        "enabled": true
+      },
+      "openclaw-weixin": {
+        "enabled": true
+      },
+      "openclaw-qqbot": {
+        "enabled": true
+      },
+      "kimi-claw": {
+        "enabled": true,
+        "config": {
+          "bridge": {
+            "url": "wss://www.kimi.com/api-claw/bots/agent-ws",
+            "kimiapiHost": "https://www.kimi.com/api-claw",
+            "promptTimeoutMs": 300000,
+            "bot_type": "remote",
+            "token": "km_b_prod_HuNRb1NueeErmOmlmNoGfFyL2dXfbpAx",
+            "kimiFileDownloadDir": "./openclaw/kimi/downloads",
+            "mode": "acp",
+            "forwardThinking": true,
+            "forwardToolCalls": true,
+            "kimiCodeAPIKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+            "kimiPluginAPIKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+            "kimiCodeBaseURL": "https://agent-gw.kimi.com/coding"
+          },
+          "log": {
+            "enabled": true,
+            "verbose": false
+          },
+          "gateway": {
+            "url": "ws://127.0.0.1:18789",
+            "agentId": "main"
+          },
+          "retry": {
+            "baseMs": 1000,
+            "maxMs": 600000,
+            "maxAttempts": 0
+          },
+          "defaultModel": {
+            "enabled": true,
+            "provider": "kimi-coding",
+            "modelId": "k2p6",
+            "apiKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+            "baseUrl": "https://agent-gw.kimi.com/coding"
+          }
+        }
+      },
+      "kimi-search": {
+        "enabled": true,
+        "config": {
+          "search": {
+            "baseUrl": "https://agent-gw.kimi.com/coding/v1/search"
+          },
+          "fetch": {
+            "baseUrl": "https://agent-gw.kimi.com/coding/v1/fetch"
+          }
+        }
+      },
+      "browser": {
+        "enabled": true
+      },
+      "kimi": {
+        "enabled": true
+      }
+    },
+    "installs": {
+      "openclaw-lark": {
+        "source": "archive",
+        "sourcePath": "/tmp/openclaw-lark-YBYIfi/larksuite-openclaw-lark-2026.4.9.tgz",
+        "installPath": "/root/.openclaw/extensions/openclaw-lark",
+        "version": "2026.4.9",
+        "installedAt": "2026-06-08T12:47:28.681Z"
+      },
+      "dingtalk-connector": {
+        "source": "npm",
+        "spec": "@dingtalk-real-ai/dingtalk-connector@0.8.13",
+        "installPath": "/root/.openclaw/extensions/dingtalk-connector",
+        "version": "0.8.13",
+        "resolvedName": "@dingtalk-real-ai/dingtalk-connector",
+        "resolvedVersion": "0.8.13",
+        "resolvedSpec": "@dingtalk-real-ai/dingtalk-connector@0.8.13",
+        "integrity": "sha512-vq4ooab1LMdqCZ43GCO824R3v1EqrDNq3lrvybU99nyxY8RbAkz75Cm3mla/1Hz/jRXi3cicX96gxjuj44ldSQ==",
+        "shasum": "86cd1aa3bcc6022358e34ea1553c9584b6bbcf21",
+        "resolvedAt": "2026-06-08T12:47:55.481Z",
+        "installedAt": "2026-06-08T12:48:07.623Z"
+      },
+      "weibo-openclaw-plugin": {
+        "source": "npm",
+        "spec": "@wecode-ai/weibo-openclaw-plugin@2.2.3",
+        "installPath": "/root/.openclaw/extensions/weibo-openclaw-plugin",
+        "version": "2.2.3",
+        "resolvedName": "@wecode-ai/weibo-openclaw-plugin",
+        "resolvedVersion": "2.2.3",
+        "resolvedSpec": "@wecode-ai/weibo-openclaw-plugin@2.2.3",
+        "integrity": "sha512-5wG5/2RkTifL5KXgryFBDbui9BB0qMBq48hzge+qfCAy+mX+DXWNeSQkHfXvISmOnyPHcZnvDXD5jR470pNfgg==",
+        "shasum": "20eae5366cf999f929e17ba0e8492d3a936fff64",
+        "resolvedAt": "2026-06-08T12:48:37.965Z",
+        "installedAt": "2026-06-08T12:49:48.027Z"
+      },
+      "wecom-openclaw-plugin": {
+        "source": "npm",
+        "spec": "@wecom/wecom-openclaw-plugin@2026.4.23",
+        "installPath": "/root/.openclaw/extensions/wecom-openclaw-plugin",
+        "version": "2026.4.23",
+        "resolvedName": "@wecom/wecom-openclaw-plugin",
+        "resolvedVersion": "2026.4.23",
+        "resolvedSpec": "@wecom/wecom-openclaw-plugin@2026.4.23",
+        "integrity": "sha512-bnzfdIEEu1/LFvcdyjaTkyxt27w6c7dqhkPezU62OWaqmcdFsUGR3T55USK/O9pIKsNcnL1Tnu1pqKYCWHFgWQ==",
+        "shasum": "34f76a1dc3e416ea7664f31b2f0d0239b1fd0939",
+        "resolvedAt": "2026-06-08T12:50:07.317Z",
+        "installedAt": "2026-06-08T12:50:18.429Z"
+      },
+      "openclaw-weixin": {
+        "source": "npm",
+        "spec": "@tencent-weixin/openclaw-weixin@2.1.10",
+        "installPath": "/root/.openclaw/extensions/openclaw-weixin",
+        "version": "2.1.10",
+        "resolvedName": "@tencent-weixin/openclaw-weixin",
+        "resolvedVersion": "2.1.10",
+        "resolvedSpec": "@tencent-weixin/openclaw-weixin@2.1.10",
+        "integrity": "sha512-cEG6Iw5g2qqlA+8/TcmV+E8aFUEX0ruxF0+a5LgVy5wv56/qP07KoapfRa7YTRPzhRW5UDaz6zsZQArt/4ZNnA==",
+        "shasum": "3e4fa19e5997567a6f8e0bacef8ec96d46cc432c",
+        "resolvedAt": "2026-06-08T12:50:42.934Z",
+        "installedAt": "2026-06-08T12:51:11.107Z"
+      },
+      "openclaw-qqbot": {
+        "source": "npm",
+        "spec": "@tencent-connect/openclaw-qqbot@1.7.1",
+        "installPath": "/root/.openclaw/extensions/openclaw-qqbot",
+        "version": "1.7.1",
+        "resolvedName": "@tencent-connect/openclaw-qqbot",
+        "resolvedVersion": "1.7.1",
+        "resolvedSpec": "@tencent-connect/openclaw-qqbot@1.7.1",
+        "integrity": "sha512-h7rQFxsDpfBIQG8eGkQixSdSQB05eqF9waCWo8bKI/5K+v53dh+jiJr8va1pqVIpCTYPXFw0VaVNfOtlnjE/DQ==",
+        "shasum": "e1dc206b2b59b11c977c55df87c4eeff936c45e4",
+        "resolvedAt": "2026-06-08T12:51:46.367Z",
+        "installedAt": "2026-06-08T12:52:06.190Z"
+      },
+      "kimi-claw": {
+        "source": "path",
+        "sourcePath": "/tmp/tmp.5JYwtUqutH/staged_main",
+        "installPath": "/root/.openclaw/extensions/kimi-claw",
+        "version": "0.27.1",
+        "installedAt": "2026-06-08T12:54:10.139Z"
+      },
+      "kimi-search": {
+        "source": "path",
+        "sourcePath": "/tmp/tmp.5JYwtUqutH/staged_search",
+        "installPath": "/root/.openclaw/extensions/kimi-search",
+        "version": "0.1.15",
+        "installedAt": "2026-06-08T12:55:39.523Z"
+      }
+    },
+    "allow": [
+      "openclaw-lark",
+      "memory-core",
+      "dingtalk-connector",
+      "weibo-openclaw-plugin",
+      "wecom-openclaw-plugin",
+      "openclaw-weixin",
+      "openclaw-qqbot",
+      "kimi-claw",
+      "kimi-search",
+      "browser",
+      "feishu",
+      "telegram",
+      "discord",
+      "slack",
+      "whatsapp",
+      "signal",
+      "line",
+      "googlechat",
+      "msteams",
+      "mattermost",
+      "matrix",
+      "nextcloud-talk",
+      "synology-chat",
+      "irc",
+      "imessage",
+      "bluebubbles",
+      "zalo",
+      "zalouser",
+      "kimi"
+    ],
+    "load": {
+      "paths": []
+    }
+  },
+  "channels": {},
+  "secrets": {
+    "providers": {
+      "lark-secrets": {
+        "source": "file",
+        "path": "~/.openclaw/credentials/lark.secrets.json"
+      }
+    }
+  },
+  "tools": {
+    "alsoAllow": [
+      "feishu_bitable_app",
+      "feishu_bitable_app_table",
+      "feishu_bitable_app_table_field",
+      "feishu_bitable_app_table_record",
+      "feishu_bitable_app_table_view",
+      "feishu_calendar_calendar",
+      "feishu_calendar_event",
+      "feishu_calendar_event_attendee",
+      "feishu_calendar_freebusy",
+      "feishu_chat",
+      "feishu_chat_members",
+      "feishu_create_doc",
+      "feishu_doc_comments",
+      "feishu_doc_media",
+      "feishu_drive_file",
+      "feishu_fetch_doc",
+      "feishu_get_user",
+      "feishu_im_bot_image",
+      "feishu_im_user_fetch_resource",
+      "feishu_im_user_get_messages",
+      "feishu_im_user_get_thread_messages",
+      "feishu_im_user_message",
+      "feishu_im_user_search_messages",
+      "feishu_oauth",
+      "feishu_oauth_batch_auth",
+      "feishu_search_doc_wiki",
+      "feishu_search_user",
+      "feishu_sheet",
+      "feishu_task_comment",
+      "feishu_task_subtask",
+      "feishu_task_task",
+      "feishu_task_agent",
+      "feishu_task_attachment",
+      "feishu_task_tasklist",
+      "feishu_update_doc",
+      "feishu_wiki_space",
+      "feishu_wiki_space_node"
+    ],
+    "profile": "full"
+  },
+  "browser": {
+    "defaultProfile": "openclaw",
+    "headless": true,
+    "noSandbox": true,
+    "executablePath": "/usr/bin/google-chrome"
+  },
+  "logging": {
+    "file": "/root/.openclaw/logs/openclaw.log"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "memory-stm-refresh": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "session": {
+    "dmScope": "main"
+  },
+  "env": {
+    "KIMI_API_KEY": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+    "KIMI_PLUGIN_API_KEY": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo"
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "kimi-coding": {
+        "baseUrl": "https://agent-gw.kimi.com/coding",
+        "apiKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+        "api": "anthropic-messages",
+        "headers": {
+          "User-Agent": "Kimi Claw Plugin",
+          "X-Kimi-Claw-ID": "19f65682-d1e2-827d-8000-00002e0e6de6"
+        },
+        "models": [
+          {
+            "id": "k2p6",
+            "name": "k2p6",
+            "input": [
+              "text",
+              "image"
+            ],
+            "reasoning": true,
+            "headers": {
+              "User-Agent": "Kimi Claw Plugin",
+              "X-Kimi-Claw-ID": "19f65682-d1e2-827d-8000-00002e0e6de6"
+            },
+            "contextWindow": 131072,
+            "maxTokens": 32768
+          }
+        ]
+      }
+    }
+  }
+}
+{
+  "lark": {
+    "appSecret": "M2L78PDSqDMqwgmEjyXgObbdMdjxHsVi"
+  }
+  "gateway": {
+    "auth": {
+      "mode": "token",
+      "token": "e99baabfb3765b17e54e58598a3eb1136077a269c4b5e769"
+    },
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.4.14",
+    "lastTouchedAt": "2026-07-15T10:55:42.000Z"
+  },
+  "commands": {},
+  "agents": {
+    "defaults": {
+      "heartbeat": {
+        "every": "60m"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "thinkingDefault": "high",
+      "memorySearch": {
+        "remote": {
+          "baseUrl": "https://agent-gw.kimi.com/coding/v1",
+          "apiKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+          "headers": {
+            "User-Agent": "Kimi Claw Plugin",
+            "X-Msh-Device-Name": "openclaw-kimi-embedding"
+          }
+        },
+        "enabled": true,
+        "provider": "openai",
+        "model": "bge_m3_embed"
+      },
+      "model": {
+        "primary": "kimi-coding/k2p6"
+      },
+      "models": {
+        "kimi-coding/k2p6": {
+          "alias": "kimi-k2p6"
+        }
+      }
+    }
+  },
+  "skills": {
+    "load": {
+      "extraDirs": [
+        "/root/.openclaw/kimi-skills"
+      ]
+    }
+  },
+  "plugins": {
+    "entries": {
+      "feishu": {
+        "enabled": false
+      },
+      "openclaw-lark": {
+        "enabled": true
+      },
+      "dingtalk-connector": {
+        "enabled": true
+      },
+      "weibo-openclaw-plugin": {
+        "enabled": true
+      },
+      "wecom-openclaw-plugin": {
+        "enabled": true
+      },
+      "openclaw-weixin": {
+        "enabled": true
+      },
+      "openclaw-qqbot": {
+        "enabled": true
+      },
+      "kimi-claw": {
+        "enabled": true,
+        "config": {
+          "bridge": {
+            "url": "wss://www.kimi.com/api-claw/bots/agent-ws",
+            "kimiapiHost": "https://www.kimi.com/api-claw",
+            "promptTimeoutMs": 300000,
+            "bot_type": "remote",
+            "token": "km_b_prod_HuNRb1NueeErmOmlmNoGfFyL2dXfbpAx",
+            "kimiFileDownloadDir": "./openclaw/kimi/downloads",
+            "mode": "acp",
+            "forwardThinking": true,
+            "forwardToolCalls": true,
+            "kimiCodeAPIKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+            "kimiPluginAPIKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+            "kimiCodeBaseURL": "https://agent-gw.kimi.com/coding"
+          },
+          "log": {
+            "enabled": true,
+            "verbose": false
+          },
+          "gateway": {
+            "url": "ws://127.0.0.1:18789",
+            "agentId": "main"
+          },
+          "retry": {
+            "baseMs": 1000,
+            "maxMs": 600000,
+            "maxAttempts": 0
+          },
+          "defaultModel": {
+            "enabled": true,
+            "provider": "kimi-coding",
+            "modelId": "k2p6",
+            "apiKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+            "baseUrl": "https://agent-gw.kimi.com/coding"
+          }
+        }
+      },
+      "kimi-search": {
+        "enabled": true,
+        "config": {
+          "search": {
+            "baseUrl": "https://agent-gw.kimi.com/coding/v1/search"
+          },
+          "fetch": {
+            "baseUrl": "https://agent-gw.kimi.com/coding/v1/fetch"
+          }
+        }
+      },
+      "browser": {
+        "enabled": true
+      },
+      "kimi": {
+        "enabled": true
+      }
+    },
+    "installs": {
+      "openclaw-lark": {
+        "source": "archive",
+        "sourcePath": "/tmp/openclaw-lark-YBYIfi/larksuite-openclaw-lark-2026.4.9.tgz",
+        "installPath": "/root/.openclaw/extensions/openclaw-lark",
+        "version": "2026.4.9",
+        "installedAt": "2026-06-08T12:47:28.681Z"
+      },
+      "dingtalk-connector": {
+        "source": "npm",
+        "spec": "@dingtalk-real-ai/dingtalk-connector@0.8.13",
+        "installPath": "/root/.openclaw/extensions/dingtalk-connector",
+        "version": "0.8.13",
+        "resolvedName": "@dingtalk-real-ai/dingtalk-connector",
+        "resolvedVersion": "0.8.13",
+        "resolvedSpec": "@dingtalk-real-ai/dingtalk-connector@0.8.13",
+        "integrity": "sha512-vq4ooab1LMdqCZ43GCO824R3v1EqrDNq3lrvybU99nyxY8RbAkz75Cm3mla/1Hz/jRXi3cicX96gxjuj44ldSQ==",
+        "shasum": "86cd1aa3bcc6022358e34ea1553c9584b6bbcf21",
+        "resolvedAt": "2026-06-08T12:47:55.481Z",
+        "installedAt": "2026-06-08T12:48:07.623Z"
+      },
+      "weibo-openclaw-plugin": {
+        "source": "npm",
+        "spec": "@wecode-ai/weibo-openclaw-plugin@2.2.3",
+        "installPath": "/root/.openclaw/extensions/weibo-openclaw-plugin",
+        "version": "2.2.3",
+        "resolvedName": "@wecode-ai/weibo-openclaw-plugin",
+        "resolvedVersion": "2.2.3",
+        "resolvedSpec": "@wecode-ai/weibo-openclaw-plugin@2.2.3",
+        "integrity": "sha512-5wG5/2RkTifL5KXgryFBDbui9BB0qMBq48hzge+qfCAy+mX+DXWNeSQkHfXvISmOnyPHcZnvDXD5jR470pNfgg==",
+        "shasum": "20eae5366cf999f929e17ba0e8492d3a936fff64",
+        "resolvedAt": "2026-06-08T12:48:37.965Z",
+        "installedAt": "2026-06-08T12:49:48.027Z"
+      },
+      "wecom-openclaw-plugin": {
+        "source": "npm",
+        "spec": "@wecom/wecom-openclaw-plugin@2026.4.23",
+        "installPath": "/root/.openclaw/extensions/wecom-openclaw-plugin",
+        "version": "2026.4.23",
+        "resolvedName": "@wecom/wecom-openclaw-plugin",
+        "resolvedVersion": "2026.4.23",
+        "resolvedSpec": "@wecom/wecom-openclaw-plugin@2026.4.23",
+        "integrity": "sha512-bnzfdIEEu1/LFvcdyjaTkyxt27w6c7dqhkPezU62OWaqmcdFsUGR3T55USK/O9pIKsNcnL1Tnu1pqKYCWHFgWQ==",
+        "shasum": "34f76a1dc3e416ea7664f31b2f0d0239b1fd0939",
+        "resolvedAt": "2026-06-08T12:50:07.317Z",
+        "installedAt": "2026-06-08T12:50:18.429Z"
+      },
+      "openclaw-weixin": {
+        "source": "npm",
+        "spec": "@tencent-weixin/openclaw-weixin@2.1.10",
+        "installPath": "/root/.openclaw/extensions/openclaw-weixin",
+        "version": "2.1.10",
+        "resolvedName": "@tencent-weixin/openclaw-weixin",
+        "resolvedVersion": "2.1.10",
+        "resolvedSpec": "@tencent-weixin/openclaw-weixin@2.1.10",
+        "integrity": "sha512-cEG6Iw5g2qqlA+8/TcmV+E8aFUEX0ruxF0+a5LgVy5wv56/qP07KoapfRa7YTRPzhRW5UDaz6zsZQArt/4ZNnA==",
+        "shasum": "3e4fa19e5997567a6f8e0bacef8ec96d46cc432c",
+        "resolvedAt": "2026-06-08T12:50:42.934Z",
+        "installedAt": "2026-06-08T12:51:11.107Z"
+      },
+      "openclaw-qqbot": {
+        "source": "npm",
+        "spec": "@tencent-connect/openclaw-qqbot@1.7.1",
+        "installPath": "/root/.openclaw/extensions/openclaw-qqbot",
+        "version": "1.7.1",
+        "resolvedName": "@tencent-connect/openclaw-qqbot",
+        "resolvedVersion": "1.7.1",
+        "resolvedSpec": "@tencent-connect/openclaw-qqbot@1.7.1",
+        "integrity": "sha512-h7rQFxsDpfBIQG8eGkQixSdSQB05eqF9waCWo8bKI/5K+v53dh+jiJr8va1pqVIpCTYPXFw0VaVNfOtlnjE/DQ==",
+        "shasum": "e1dc206b2b59b11c977c55df87c4eeff936c45e4",
+        "resolvedAt": "2026-06-08T12:51:46.367Z",
+        "installedAt": "2026-06-08T12:52:06.190Z"
+      },
+      "kimi-claw": {
+        "source": "path",
+        "sourcePath": "/tmp/tmp.5JYwtUqutH/staged_main",
+        "installPath": "/root/.openclaw/extensions/kimi-claw",
+        "version": "0.27.1",
+        "installedAt": "2026-06-08T12:54:10.139Z"
+      },
+      "kimi-search": {
+        "source": "path",
+        "sourcePath": "/tmp/tmp.5JYwtUqutH/staged_search",
+        "installPath": "/root/.openclaw/extensions/kimi-search",
+        "version": "0.1.15",
+        "installedAt": "2026-06-08T12:55:39.523Z"
+      }
+    },
+    "allow": [
+      "openclaw-lark",
+      "memory-core",
+      "dingtalk-connector",
+      "weibo-openclaw-plugin",
+      "wecom-openclaw-plugin",
+      "openclaw-weixin",
+      "openclaw-qqbot",
+      "kimi-claw",
+      "kimi-search",
+      "browser",
+      "feishu",
+      "telegram",
+      "discord",
+      "slack",
+      "whatsapp",
+      "signal",
+      "line",
+      "googlechat",
+      "msteams",
+      "mattermost",
+      "matrix",
+      "nextcloud-talk",
+      "synology-chat",
+      "irc",
+      "imessage",
+      "bluebubbles",
+      "zalo",
+      "zalouser",
+      "kimi"
+    ],
+    "load": {
+      "paths": []
+    }
+  },
+  "channels": {},
+  "secrets": {
+    "providers": {
+      "lark-secrets": {
+        "source": "file",
+        "path": "~/.openclaw/credentials/lark.secrets.json"
+      }
+    }
+  },
+  "tools": {
+    "alsoAllow": [
+      "feishu_bitable_app",
+      "feishu_bitable_app_table",
+      "feishu_bitable_app_table_field",
+      "feishu_bitable_app_table_record",
+      "feishu_bitable_app_table_view",
+      "feishu_calendar_calendar",
+      "feishu_calendar_event",
+      "feishu_calendar_event_attendee",
+      "feishu_calendar_freebusy",
+      "feishu_chat",
+      "feishu_chat_members",
+      "feishu_create_doc",
+      "feishu_doc_comments",
+      "feishu_doc_media",
+      "feishu_drive_file",
+      "feishu_fetch_doc",
+      "feishu_get_user",
+      "feishu_im_bot_image",
+      "feishu_im_user_fetch_resource",
+      "feishu_im_user_get_messages",
+      "feishu_im_user_get_thread_messages",
+      "feishu_im_user_message",
+      "feishu_im_user_search_messages",
+      "feishu_oauth",
+      "feishu_oauth_batch_auth",
+      "feishu_search_doc_wiki",
+      "feishu_search_user",
+      "feishu_sheet",
+      "feishu_task_comment",
+      "feishu_task_subtask",
+      "feishu_task_task",
+      "feishu_task_agent",
+      "feishu_task_attachment",
+      "feishu_task_tasklist",
+      "feishu_update_doc",
+      "feishu_wiki_space",
+      "feishu_wiki_space_node"
+    ],
+    "profile": "full"
+  },
+  "browser": {
+    "defaultProfile": "openclaw",
+    "headless": true,
+    "noSandbox": true,
+    "executablePath": "/usr/bin/google-chrome"
+  },
+  "logging": {
+    "file": "/root/.openclaw/logs/openclaw.log"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "memory-stm-refresh": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "session": {
+    "dmScope": "main"
+  },
+  "env": {
+    "KIMI_API_KEY": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+    "KIMI_PLUGIN_API_KEY": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo"
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "kimi-coding": {
+        "baseUrl": "https://agent-gw.kimi.com/coding",
+        "apiKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+        "api": "anthropic-messages",
+        "headers": {
+          "User-Agent": "Kimi Claw Plugin",
+          "X-Kimi-Claw-ID": "19f65682-d1e2-827d-8000-00002e0e6de6"
+        },
+        "models": [
+          {
+            "id": "k2p6",
+            "name": "k2p6",
+            "input": [
+              "text",
+              "image"
+            ],
+            "reasoning": true,
+            "headers": {
+              "User-Agent": "Kimi Claw Plugin",
+              "X-Kimi-Claw-ID": "19f65682-d1e2-827d-8000-00002e0e6de6"
+            },
+            "contextWindow": 131072,
+            "maxTokens": 32768
+          }
+        ]
+      }
+    }
+  }
+}Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-90-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Sun Jul 19 06:27:36 PM CST 2026
+
+  System load:  0.04               Processes:             123
+  Usage of /:   29.5% of 39.01GB   Users logged in:       0
+  Memory usage: 15%                IPv4 address for eth0: 10.184.5.203
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+Expanded Security Maintenance for Applications is not enabled.
+
+60 updates can be applied immediately.
+To see these additional updates run: apt list --upgradable
+
+3 additional security updates can be applied with ESM Apps.
+Learn more about enabling ESM Apps service at https://ubuntu.com/esm
+
+
+2 updates could not be installed automatically. For more details,
+see /var/log/unattended-upgrades/unattended-upgrades.log
+
+*** System restart required ***
+
+Welcome to Alibaba Cloud Elastic Compute Service !
+
+root@iZt4n4i9cbmylfxdyvuy6gZ:~# ls -la /
+total 4194396
+drwxr-xr-x  23 root root       4096 Jul 15 18:53 .
+drwxr-xr-x  23 root root       4096 Jul 15 18:53 ..
+lrwxrwxrwx   1 root root          7 Apr 22  2024 bin -> usr/bin
+drwxr-xr-x   2 root root       4096 Feb 26  2024 bin.usr-is-merged
+drwxr-xr-x   4 root root       4096 Jul 18 06:04 boot
+dr-xr-xr-x   2 root root       4096 Apr 23  2024 cdrom
+drwxr-xr-x  19 root root       4020 Jul 15 18:54 dev
+drwxr-xr-x 119 root root       4096 Jul 18 06:04 etc
+drwxr-xr-x   2 root root       4096 Apr 22  2024 home
+lrwxrwxrwx   1 root root          7 Apr 22  2024 lib -> usr/lib
+lrwxrwxrwx   1 root root          9 Apr 22  2024 lib64 -> usr/lib64
+drwxr-xr-x   2 root root       4096 Feb 26  2024 lib.usr-is-merged
+drwx------   2 root root      16384 Jan 19 16:04 lost+found
+drwxr-xr-x   2 root root       4096 Apr 23  2024 media
+drwxr-xr-x   2 root root       4096 Apr 23  2024 mnt
+drwxr-xr-x   3 root root       4096 Jun  8 20:56 opt
+dr-xr-xr-x 182 root root          0 Jul 15 18:52 proc
+drwx------  10 root root       4096 Jul 19 17:17 root
+drwxr-xr-x  32 root root       1120 Jul 19 18:27 run
+lrwxrwxrwx   1 root root          8 Apr 22  2024 sbin -> usr/sbin
+drwxr-xr-x   2 root root       4096 Apr  3  2024 sbin.usr-is-merged
+drwxr-xr-x   2 root root       4096 Jan 19 16:10 snap
+drwxr-xr-x   2 root root       4096 Apr 23  2024 srv
+-rw-------   1 root root 4294967296 Jun  8 20:58 swapfile
+dr-xr-xr-x  13 root root          0 Jul 19 16:39 sys
+drwxrwxrwt  17 root root       4096 Jul 19 08:51 tmp
+drwxr-xr-x  12 root root       4096 Apr 23  2024 usr
+drwxr-xr-x  13 root root       4096 Jan 19 16:10 var
+root@iZt4n4i9cbmylfxdyvuy6gZ:~# cd .
+root@iZt4n4i9cbmylfxdyvuy6gZ:~# ls -la /
+total 4194396
+drwxr-xr-x  23 root root       4096 Jul 15 18:53 .
+drwxr-xr-x  23 root root       4096 Jul 15 18:53 ..
+lrwxrwxrwx   1 root root          7 Apr 22  2024 bin -> usr/bin
+drwxr-xr-x   2 root root       4096 Feb 26  2024 bin.usr-is-merged
+drwxr-xr-x   4 root root       4096 Jul 18 06:04 boot
+dr-xr-xr-x   2 root root       4096 Apr 23  2024 cdrom
+drwxr-xr-x  19 root root       4020 Jul 15 18:54 dev
+drwxr-xr-x 119 root root       4096 Jul 18 06:04 etc
+drwxr-xr-x   2 root root       4096 Apr 22  2024 home
+lrwxrwxrwx   1 root root          7 Apr 22  2024 lib -> usr/lib
+lrwxrwxrwx   1 root root          9 Apr 22  2024 lib64 -> usr/lib64
+drwxr-xr-x   2 root root       4096 Feb 26  2024 lib.usr-is-merged
+drwx------   2 root root      16384 Jan 19 16:04 lost+found
+drwxr-xr-x   2 root root       4096 Apr 23  2024 media
+drwxr-xr-x   2 root root       4096 Apr 23  2024 mnt
+drwxr-xr-x   3 root root       4096 Jun  8 20:56 opt
+dr-xr-xr-x 182 root root          0 Jul 15 18:52 proc
+drwx------  10 root root       4096 Jul 19 17:17 root
+drwxr-xr-x  32 root root       1120 Jul 19 18:27 run
+lrwxrwxrwx   1 root root          8 Apr 22  2024 sbin -> usr/sbin
+drwxr-xr-x   2 root root       4096 Apr  3  2024 sbin.usr-is-merged
+drwxr-xr-x   2 root root       4096 Jan 19 16:10 snap
+drwxr-xr-x   2 root root       4096 Apr 23  2024 srv
+-rw-------   1 root root 4294967296 Jun  8 20:58 swapfile
+dr-xr-xr-x  13 root root          0 Jul 19 16:39 sys
+drwxrwxrwt  17 root root       4096 Jul 19 08:51 tmp
+drwxr-xr-x  12 root root       4096 Apr 23  2024 usr
+drwxr-xr-x  13 root root       4096 Jan 19 16:10 var
+root@iZt4n4i9cbmylfxdyvuy6gZ:~# cd ..
+root@iZt4n4i9cbmylfxdyvuy6gZ:/# ls -la /
+total 4194396
+drwxr-xr-x  23 root root       4096 Jul 15 18:53 .
+drwxr-xr-x  23 root root       4096 Jul 15 18:53 ..
+lrwxrwxrwx   1 root root          7 Apr 22  2024 bin -> usr/bin
+drwxr-xr-x   2 root root       4096 Feb 26  2024 bin.usr-is-merged
+drwxr-xr-x   4 root root       4096 Jul 18 06:04 boot
+dr-xr-xr-x   2 root root       4096 Apr 23  2024 cdrom
+drwxr-xr-x  19 root root       4020 Jul 15 18:54 dev
+drwxr-xr-x 119 root root       4096 Jul 18 06:04 etc
+drwxr-xr-x   2 root root       4096 Apr 22  2024 home
+lrwxrwxrwx   1 root root          7 Apr 22  2024 lib -> usr/lib
+lrwxrwxrwx   1 root root          9 Apr 22  2024 lib64 -> usr/lib64
+drwxr-xr-x   2 root root       4096 Feb 26  2024 lib.usr-is-merged
+drwx------   2 root root      16384 Jan 19 16:04 lost+found
+drwxr-xr-x   2 root root       4096 Apr 23  2024 media
+drwxr-xr-x   2 root root       4096 Apr 23  2024 mnt
+drwxr-xr-x   3 root root       4096 Jun  8 20:56 opt
+dr-xr-xr-x 182 root root          0 Jul 15 18:52 proc
+drwx------  10 root root       4096 Jul 19 17:17 root
+drwxr-xr-x  32 root root       1120 Jul 19 18:27 run
+lrwxrwxrwx   1 root root          8 Apr 22  2024 sbin -> usr/sbin
+drwxr-xr-x   2 root root       4096 Apr  3  2024 sbin.usr-is-merged
+drwxr-xr-x   2 root root       4096 Jan 19 16:10 snap
+drwxr-xr-x   2 root root       4096 Apr 23  2024 srv
+-rw-------   1 root root 4294967296 Jun  8 20:58 swapfile
+dr-xr-xr-x  13 root root          0 Jul 19 16:39 sys
+drwxrwxrwt  17 root root       4096 Jul 19 08:51 tmp
+drwxr-xr-x  12 root root       4096 Apr 23  2024 usr
+drwxr-xr-x  13 root root       4096 Jan 19 16:10 var
+root@iZt4n4i9cbmylfxdyvuy6gZ:/# cd .kimi
+-bash: cd: .kimi: No such file or directory
+root@iZt4n4i9cbmylfxdyvuy6gZ:/# cd .find / -name "*kimi*" 2>/dev/null
+root@iZt4n4i9cbmylfxdyvuy6gZ:/# find / -name "*kimi*" 2>/dev/null
+/root/.local/bin/kimi
+/root/.local/bin/kimiim-cli
+/root/.local/bin/kimi-cli
+/root/.local/share/uv/tools/kimi-cli
+/root/.local/share/uv/tools/kimi-cli/bin/kimi
+/root/.local/share/uv/tools/kimi-cli/bin/kimi-cli
+/root/.local/share/uv/tools/kimi-cli/lib/python3.13/site-packages/kosong/chat_provider/kimi.py
+/root/.local/share/uv/tools/kimi-cli/lib/python3.13/site-packages/kimi_cli
+/root/.local/share/uv/tools/kimi-cli/lib/python3.13/site-packages/kimi_cli/skills/kimi-cli-help
+/root/.local/share/uv/tools/kimi-cli/lib/python3.13/site-packages/kimi_cli/soul/kimisoul.py
+/root/.local/share/uv/tools/kimi-cli/lib/python3.13/site-packages/kimi_cli-1.47.0.dist-info
+/root/.kimi
+/root/.kimi/kimi-claw
+/root/.kimi/kimi-claw/kimi-claw-config.json
+/root/.openclaw/plugins/memory_consolidation/openclaw-plugin/kimi-memory-consolidation
+/root/.openclaw/plugins/kimi-claw
+/root/.openclaw/extensions/kimi-search
+/root/.openclaw/extensions/kimi-search/dist/src/data_source/kimi_datasource.js.map
+/root/.openclaw/extensions/kimi-search/dist/src/data_source/kimi_finance.d.ts.map
+/root/.openclaw/extensions/kimi-search/dist/src/data_source/kimi_datasource.d.ts.map
+/root/.openclaw/extensions/kimi-search/dist/src/data_source/kimi_finance.js.map
+/root/.openclaw/extensions/kimi-search/dist/src/data_source/kimi_datasource.js
+/root/.openclaw/extensions/kimi-search/dist/src/data_source/kimi_finance.js
+/root/.openclaw/extensions/kimi-search/dist/src/data_source/kimi_datasource.d.ts
+/root/.openclaw/extensions/kimi-search/dist/src/data_source/kimi_finance.d.ts
+/root/.openclaw/extensions/openclaw-qqbot/node_modules/openclaw/dist/kimi-web-search-provider.runtime.js
+/root/.openclaw/extensions/openclaw-qqbot/node_modules/openclaw/dist/kimi-web-search-provider-DdkgJ-Qd.js
+/root/.openclaw/extensions/openclaw-qqbot/node_modules/openclaw/dist/kimi-web-search-provider.runtime-CwDSqQ7e.js
+/root/.openclaw/extensions/openclaw-qqbot/node_modules/openclaw/dist/extensions/kimi-coding
+/root/.openclaw/extensions/openclaw-qqbot/node_modules/openclaw/docs/plugins/reference/kimi.md
+/root/.openclaw/extensions/openclaw-qqbot/node_modules/openclaw/docs/tools/kimi-search.md
+/root/.openclaw/extensions/kimi-claw
+/root/.openclaw/extensions/kimi-claw/dist/src/acp-gateway/kimi-file-resolver.js
+/root/.openclaw/extensions/kimi-claw/dist/src/kimi-upload-tool.js
+/root/.openclaw/extensions/kimi-claw/dist/src/im/proto/generated/official/kimi
+/root/.openclaw/extensions/kimi-claw/dist/src/im/proto/generated/official/kimi/chat/v1/kimiplus_pb.js
+/root/.openclaw/extensions/kimi-claw/dist/src/kimi-upload-tool-result-cache.js
+/root/.openclaw/extensions/kimi-claw/dist/src/channel/shared/kimi-file-resolver.js
+/root/.openclaw/workspace/skills/kimiim
+/root/.cache/uv/wheels-v6/pypi/kimi-cli
+/root/.cache/uv/simple-v21/pypi/kimi-cli.rkyv
+/root/.cache/uv/archive-v0/uj4BJ3mHOcCBxQOt/kosong/chat_provider/kimi.py
+/root/.cache/uv/archive-v0/K_jQjBjOGGarnuhR/kimi_cli
+/root/.cache/uv/archive-v0/K_jQjBjOGGarnuhR/kimi_cli/skills/kimi-cli-help
+/root/.cache/uv/archive-v0/K_jQjBjOGGarnuhR/kimi_cli/soul/kimisoul.py
+/root/.cache/uv/archive-v0/K_jQjBjOGGarnuhR/kimi_cli-1.47.0.dist-info
+/etc/cron.d/kimi-claw.cron
+/usr/lib/node_modules/openclaw/dist/extensions/kimi-coding
+/usr/lib/node_modules/openclaw/dist/kimi-web-search-provider-DAn8n0lL.js
+/usr/lib/node_modules/openclaw/docs/tools/kimi-search.md
+root@iZt4n4i9cbmylfxdyvuy6gZ:/# cat /root/.kimi/kimi-claw/kimi-claw-config.json
+{
+    "bridge": {
+        "bot_type": "remote",
+        "url": "wss://www.kimi.com/api-claw/bots/agent-ws",
+        "token": "km_b_prod_HuNRb1NueeErmOmlmNoGfFyL2dXfbpAx",
+        "kimiapiHost": "https://www.kimi.com/api-claw",
+        "kimiFileDownloadDir": "./openclaw/kimi/downloads",
+        "mode": "acp",
+        "forwardThinking": false,
+        "forwardToolCalls": false,
+        "promptTimeoutMs": 300000,
+        "kimiCodeAPIKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+        "kimiPluginAPIKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+        "kimiCodeBaseURL": "https://agent-gw.kimi.com/coding"
+    },
+    "gateway": { "url": "ws://127.0.0.1:18789", "agentId": "main" },
+    "retry": { "baseMs": 1000, "maxMs": 600000, "maxAttempts": 0 },
+    "log": { "verbose": false }
+}
+root@iZt4n4i9cbmylfxdyvuy6gZ:/# cat /root/.openclaw/openclaw.json
+{
+  "gateway": {
+    "auth": {
+      "mode": "token",
+      "token": "e99baabfb3765b17e54e58598a3eb1136077a269c4b5e769"
+    },
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback"
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.4.14",
+    "lastTouchedAt": "2026-07-15T10:55:42.000Z"
+  },
+  "commands": {},
+  "agents": {
+    "defaults": {
+      "heartbeat": {
+        "every": "60m"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "thinkingDefault": "high",
+      "memorySearch": {
+        "remote": {
+          "baseUrl": "https://agent-gw.kimi.com/coding/v1",
+          "apiKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+          "headers": {
+            "User-Agent": "Kimi Claw Plugin",
+            "X-Msh-Device-Name": "openclaw-kimi-embedding"
+          }
+        },
+        "enabled": true,
+        "provider": "openai",
+        "model": "bge_m3_embed"
+      },
+      "model": {
+        "primary": "kimi-coding/k2p6"
+      },
+      "models": {
+        "kimi-coding/k2p6": {
+          "alias": "kimi-k2p6"
+        }
+      }
+    }
+  },
+  "skills": {
+    "load": {
+      "extraDirs": [
+        "/root/.openclaw/kimi-skills"
+      ]
+    }
+  },
+  "plugins": {
+    "entries": {
+      "feishu": {
+        "enabled": false
+      },
+      "openclaw-lark": {
+        "enabled": true
+      },
+      "dingtalk-connector": {
+        "enabled": true
+      },
+      "weibo-openclaw-plugin": {
+        "enabled": true
+      },
+      "wecom-openclaw-plugin": {
+        "enabled": true
+      },
+      "openclaw-weixin": {
+        "enabled": true
+      },
+      "openclaw-qqbot": {
+        "enabled": true
+      },
+      "kimi-claw": {
+        "enabled": true,
+        "config": {
+          "bridge": {
+            "url": "wss://www.kimi.com/api-claw/bots/agent-ws",
+            "kimiapiHost": "https://www.kimi.com/api-claw",
+            "promptTimeoutMs": 300000,
+            "bot_type": "remote",
+            "token": "km_b_prod_HuNRb1NueeErmOmlmNoGfFyL2dXfbpAx",
+            "kimiFileDownloadDir": "./openclaw/kimi/downloads",
+            "mode": "acp",
+            "forwardThinking": true,
+            "forwardToolCalls": true,
+            "kimiCodeAPIKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+            "kimiPluginAPIKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+            "kimiCodeBaseURL": "https://agent-gw.kimi.com/coding"
+          },
+          "log": {
+            "enabled": true,
+            "verbose": false
+          },
+          "gateway": {
+            "url": "ws://127.0.0.1:18789",
+            "agentId": "main"
+          },
+          "retry": {
+            "baseMs": 1000,
+            "maxMs": 600000,
+            "maxAttempts": 0
+          },
+          "defaultModel": {
+            "enabled": true,
+            "provider": "kimi-coding",
+            "modelId": "k2p6",
+            "apiKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+            "baseUrl": "https://agent-gw.kimi.com/coding"
+          }
+        }
+      },
+      "kimi-search": {
+        "enabled": true,
+        "config": {
+          "search": {
+            "baseUrl": "https://agent-gw.kimi.com/coding/v1/search"
+          },
+          "fetch": {
+            "baseUrl": "https://agent-gw.kimi.com/coding/v1/fetch"
+          }
+        }
+      },
+      "browser": {
+        "enabled": true
+      },
+      "kimi": {
+        "enabled": true
+      }
+    },
+    "installs": {
+      "openclaw-lark": {
+        "source": "archive",
+        "sourcePath": "/tmp/openclaw-lark-YBYIfi/larksuite-openclaw-lark-2026.4.9.tgz",
+        "installPath": "/root/.openclaw/extensions/openclaw-lark",
+        "version": "2026.4.9",
+        "installedAt": "2026-06-08T12:47:28.681Z"
+      },
+      "dingtalk-connector": {
+        "source": "npm",
+        "spec": "@dingtalk-real-ai/dingtalk-connector@0.8.13",
+        "installPath": "/root/.openclaw/extensions/dingtalk-connector",
+        "version": "0.8.13",
+        "resolvedName": "@dingtalk-real-ai/dingtalk-connector",
+        "resolvedVersion": "0.8.13",
+        "resolvedSpec": "@dingtalk-real-ai/dingtalk-connector@0.8.13",
+        "integrity": "sha512-vq4ooab1LMdqCZ43GCO824R3v1EqrDNq3lrvybU99nyxY8RbAkz75Cm3mla/1Hz/jRXi3cicX96gxjuj44ldSQ==",
+        "shasum": "86cd1aa3bcc6022358e34ea1553c9584b6bbcf21",
+        "resolvedAt": "2026-06-08T12:47:55.481Z",
+        "installedAt": "2026-06-08T12:48:07.623Z"
+      },
+      "weibo-openclaw-plugin": {
+        "source": "npm",
+        "spec": "@wecode-ai/weibo-openclaw-plugin@2.2.3",
+        "installPath": "/root/.openclaw/extensions/weibo-openclaw-plugin",
+        "version": "2.2.3",
+        "resolvedName": "@wecode-ai/weibo-openclaw-plugin",
+        "resolvedVersion": "2.2.3",
+        "resolvedSpec": "@wecode-ai/weibo-openclaw-plugin@2.2.3",
+        "integrity": "sha512-5wG5/2RkTifL5KXgryFBDbui9BB0qMBq48hzge+qfCAy+mX+DXWNeSQkHfXvISmOnyPHcZnvDXD5jR470pNfgg==",
+        "shasum": "20eae5366cf999f929e17ba0e8492d3a936fff64",
+        "resolvedAt": "2026-06-08T12:48:37.965Z",
+        "installedAt": "2026-06-08T12:49:48.027Z"
+      },
+      "wecom-openclaw-plugin": {
+        "source": "npm",
+        "spec": "@wecom/wecom-openclaw-plugin@2026.4.23",
+        "installPath": "/root/.openclaw/extensions/wecom-openclaw-plugin",
+        "version": "2026.4.23",
+        "resolvedName": "@wecom/wecom-openclaw-plugin",
+        "resolvedVersion": "2026.4.23",
+        "resolvedSpec": "@wecom/wecom-openclaw-plugin@2026.4.23",
+        "integrity": "sha512-bnzfdIEEu1/LFvcdyjaTkyxt27w6c7dqhkPezU62OWaqmcdFsUGR3T55USK/O9pIKsNcnL1Tnu1pqKYCWHFgWQ==",
+        "shasum": "34f76a1dc3e416ea7664f31b2f0d0239b1fd0939",
+        "resolvedAt": "2026-06-08T12:50:07.317Z",
+        "installedAt": "2026-06-08T12:50:18.429Z"
+      },
+      "openclaw-weixin": {
+        "source": "npm",
+        "spec": "@tencent-weixin/openclaw-weixin@2.1.10",
+        "installPath": "/root/.openclaw/extensions/openclaw-weixin",
+        "version": "2.1.10",
+        "resolvedName": "@tencent-weixin/openclaw-weixin",
+        "resolvedVersion": "2.1.10",
+        "resolvedSpec": "@tencent-weixin/openclaw-weixin@2.1.10",
+        "integrity": "sha512-cEG6Iw5g2qqlA+8/TcmV+E8aFUEX0ruxF0+a5LgVy5wv56/qP07KoapfRa7YTRPzhRW5UDaz6zsZQArt/4ZNnA==",
+        "shasum": "3e4fa19e5997567a6f8e0bacef8ec96d46cc432c",
+        "resolvedAt": "2026-06-08T12:50:42.934Z",
+        "installedAt": "2026-06-08T12:51:11.107Z"
+      },
+      "openclaw-qqbot": {
+        "source": "npm",
+        "spec": "@tencent-connect/openclaw-qqbot@1.7.1",
+        "installPath": "/root/.openclaw/extensions/openclaw-qqbot",
+        "version": "1.7.1",
+        "resolvedName": "@tencent-connect/openclaw-qqbot",
+        "resolvedVersion": "1.7.1",
+        "resolvedSpec": "@tencent-connect/openclaw-qqbot@1.7.1",
+        "integrity": "sha512-h7rQFxsDpfBIQG8eGkQixSdSQB05eqF9waCWo8bKI/5K+v53dh+jiJr8va1pqVIpCTYPXFw0VaVNfOtlnjE/DQ==",
+        "shasum": "e1dc206b2b59b11c977c55df87c4eeff936c45e4",
+        "resolvedAt": "2026-06-08T12:51:46.367Z",
+        "installedAt": "2026-06-08T12:52:06.190Z"
+      },
+      "kimi-claw": {
+        "source": "path",
+        "sourcePath": "/tmp/tmp.5JYwtUqutH/staged_main",
+        "installPath": "/root/.openclaw/extensions/kimi-claw",
+        "version": "0.27.1",
+        "installedAt": "2026-06-08T12:54:10.139Z"
+      },
+      "kimi-search": {
+        "source": "path",
+        "sourcePath": "/tmp/tmp.5JYwtUqutH/staged_search",
+        "installPath": "/root/.openclaw/extensions/kimi-search",
+        "version": "0.1.15",
+        "installedAt": "2026-06-08T12:55:39.523Z"
+      }
+    },
+    "allow": [
+      "openclaw-lark",
+      "memory-core",
+      "dingtalk-connector",
+      "weibo-openclaw-plugin",
+      "wecom-openclaw-plugin",
+      "openclaw-weixin",
+      "openclaw-qqbot",
+      "kimi-claw",
+      "kimi-search",
+      "browser",
+      "feishu",
+      "telegram",
+      "discord",
+      "slack",
+      "whatsapp",
+      "signal",
+      "line",
+      "googlechat",
+      "msteams",
+      "mattermost",
+      "matrix",
+      "nextcloud-talk",
+      "synology-chat",
+      "irc",
+      "imessage",
+      "bluebubbles",
+      "zalo",
+      "zalouser",
+      "kimi"
+    ],
+    "load": {
+      "paths": []
+    }
+  },
+  "channels": {},
+  "secrets": {
+    "providers": {
+      "lark-secrets": {
+        "source": "file",
+        "path": "~/.openclaw/credentials/lark.secrets.json"
+      }
+    }
+  },
+  "tools": {
+    "alsoAllow": [
+      "feishu_bitable_app",
+      "feishu_bitable_app_table",
+      "feishu_bitable_app_table_field",
+      "feishu_bitable_app_table_record",
+      "feishu_bitable_app_table_view",
+      "feishu_calendar_calendar",
+      "feishu_calendar_event",
+      "feishu_calendar_event_attendee",
+      "feishu_calendar_freebusy",
+      "feishu_chat",
+      "feishu_chat_members",
+      "feishu_create_doc",
+      "feishu_doc_comments",
+      "feishu_doc_media",
+      "feishu_drive_file",
+      "feishu_fetch_doc",
+      "feishu_get_user",
+      "feishu_im_bot_image",
+      "feishu_im_user_fetch_resource",
+      "feishu_im_user_get_messages",
+      "feishu_im_user_get_thread_messages",
+      "feishu_im_user_message",
+      "feishu_im_user_search_messages",
+      "feishu_oauth",
+      "feishu_oauth_batch_auth",
+      "feishu_search_doc_wiki",
+      "feishu_search_user",
+      "feishu_sheet",
+      "feishu_task_comment",
+      "feishu_task_subtask",
+      "feishu_task_task",
+      "feishu_task_agent",
+      "feishu_task_attachment",
+      "feishu_task_tasklist",
+      "feishu_update_doc",
+      "feishu_wiki_space",
+      "feishu_wiki_space_node"
+    ],
+    "profile": "full"
+  },
+  "browser": {
+    "defaultProfile": "openclaw",
+    "headless": true,
+    "noSandbox": true,
+    "executablePath": "/usr/bin/google-chrome"
+  },
+  "logging": {
+    "file": "/root/.openclaw/logs/openclaw.log"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "memory-stm-refresh": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "session": {
+    "dmScope": "main"
+  },
+  "env": {
+    "KIMI_API_KEY": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+    "KIMI_PLUGIN_API_KEY": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo"
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "kimi-coding": {
+        "baseUrl": "https://agent-gw.kimi.com/coding",
+        "apiKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+        "api": "anthropic-messages",
+        "headers": {
+          "User-Agent": "Kimi Claw Plugin",
+          "X-Kimi-Claw-ID": "19f65682-d1e2-827d-8000-00002e0e6de6"
+        },
+        "models": [
+          {
+            "id": "k2p6",
+            "name": "k2p6",
+            "input": [
+              "text",
+              "image"
+            ],
+            "reasoning": true,
+            "headers": {
+              "User-Agent": "Kimi Claw Plugin",
+              "X-Kimi-Claw-ID": "19f65682-d1e2-827d-8000-00002e0e6de6"
+            },
+            "contextWindow": 131072,
+            "maxTokens": 32768
+          }
+        ]
+      }
+    }
+  }
+}
+root@iZt4n4i9cbmylfxdyvuy6gZ:/# cat /etc/cron.d/kimi-claw.cron
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+#* * * * * root /root/.kimi/kimi-claw/scripts/check_gateway.sh >> /var/log/kimi-claw-cron.log 2>&1
+root@iZt4n4i9cbmylfxdyvuy6gZ:/# cat /root/.kimi/kimi-claw/kimi-claw-config.json
+{
+    "bridge": {
+        "bot_type": "remote",
+        "url": "wss://www.kimi.com/api-claw/bots/agent-ws",
+        "token": "km_b_prod_HuNRb1NueeErmOmlmNoGfFyL2dXfbpAx",
+        "kimiapiHost": "https://www.kimi.com/api-claw",
+        "kimiFileDownloadDir": "./openclaw/kimi/downloads",
+        "mode": "acp",
+        "forwardThinking": false,
+        "forwardToolCalls": false,
+        "promptTimeoutMs": 300000,
+        "kimiCodeAPIKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+        "kimiPluginAPIKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+        "kimiCodeBaseURL": "https://agent-gw.kimi.com/coding"
+    },
+    "gateway": { "url": "ws://127.0.0.1:18789", "agentId": "main" },
+    "retry": { "baseMs": 1000, "maxMs": 600000, "maxAttempts": 0 },
+    "log": { "verbose": false }
+}
+root@iZt4n4i9cbmylfxdyvuy6gZ:/# "bot_type": "remote",
+        "url": "wss://www.kimi.com/api-claw/bots/agent-ws",
+        "token": "km_b_prod_HuNRb1NueeErmOmlmNoGfFyL2dXfbpAx",
+        "kimiapiHost": "https://www.kimi.com/api-claw",
+        "kimiFileDownloadDir": "./openclaw/kimi/downloads",
+        "mode": "acp",
+        "forwardThinking": false,
+        "forwardToolCalls": false,
+        "promptTimeoutMs": 300000,
+        "kimiCodeAPIKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+        "kimiPluginAPIKey": "sk-kimi-jKxI1wc0AzS0vOrhEkNO6qODcRe7S3kxWluWqHZk2JpRf4N6BtKwm2LmUAkFSETo",
+        "kimiCodeBaseURL": "https://agent-gw.kimi.com/coding"
+    },
+    "gateway": { "url": "ws://127.0.0.1:18789", "agentId": "main" },
+    "retry": { "baseMs": 1000, "maxMs": 600000, "maxAttempts": 0 },
+    "log": { "verbose": false }
+}
+bot_type:: command not found
+url:: command not found
+Command 'token:' not found, did you mean:
+  command 'tokens' from deb openafs-client (1.8.10-2.1ubuntu3.4)
+Try: apt install <deb name>
+kimiapiHost:: command not found
+kimiFileDownloadDir:: command not found
+Command 'mode:' not found, did you mean:
+  command 'mode2' from deb lirc (0.10.1-7.4)
+Try: apt install <deb name>
+forwardThinking:: command not found
+forwardToolCalls:: command not found
+promptTimeoutMs:: command not found
+kimiCodeAPIKey:: command not found
+kimiPluginAPIKey:: command not found
+kimiCodeBaseURL:: command not found
+},: command not found
+gateway:: command not found
+Command 'retry:' not found, did you mean:
+  command 'retry' from deb retry (1.0.5-3build1~ubuntu0.24.04.1)
+Try: apt install <deb name>
+Command 'log:' not found, did you mean:
+  command 'logo' from deb qlogo (0.92+git.1.29a5ca2-2)
+  command 'logo' from deb ucblogo (6.2.4-1)
+Try: apt install <deb name>
+-bash: syntax error near unexpected token `}'
+root@iZt4n4i9cbmylfxdyvuy6gZ:/# cat /root/.kimi/kimi-claw/scripts/check_gateway.sh
+#!/bin/bash
+# shellcheck disable=SC2016
+
+# 检查 OpenClaw Gateway 是否正在运行
+# 如果未运行，依次尝试：
+#   1. openclaw doctor --fix --non-interactive
+#   2. 若仍未恢复，执行 run_diagnose.sh 深度修复
+#
+# 输出格式：
+#   running  — Gateway 正在运行（端口已监听）
+#   stopped  — 端口未监听，执行自动修复
+
+GATEWAY_PORT=18789
+DIAGNOSE_SCRIPT="/root/.kimi/kimi-claw/scripts/run_diagnose.sh"
+
+check_port() {
+    # 方法 1: ss
+    if ss -tlnp 2>/dev/null | grep -q ":${GATEWAY_PORT} "; then
+        return 0
+    fi
+
+    # 方法 2: /proc/net/tcp
+    local port_hex
+    port_hex=$(printf '%04X' "$GATEWAY_PORT")
+    if grep -qi ":${port_hex} " /proc/net/tcp 2>/dev/null || \
+       grep -qi ":${port_hex} " /proc/net/tcp6 2>/dev/null; then
+        return 0
+    fi
+
+    # 方法 3: TCP 连接探测（兜底）
+    if (: >/dev/tcp/127.0.0.1/$GATEWAY_PORT) 2>/dev/null; then
+        return 0
+    elif command -v nc >/dev/null 2>&1 && nc -z -w1 127.0.0.1 "$GATEWAY_PORT" >/dev/null 2>&1; then
+        return 0
+    elif command -v curl >/dev/null 2>&1; then
+        curl -s --connect-timeout 1 --max-time 2 -o /dev/null "http://127.0.0.1:$GATEWAY_PORT/" >/dev/null 2>&1
+        [ $? -ne 7 ] && return 0
+    fi
+
+    return 1
+}
+
+# ── 第一次检测 ──
+
+if check_port; then
+    echo "running"
+    exit 0
+fi
+
+# ── 第一轮修复: openclaw doctor ──
+
+echo "stopped"
+echo "尝试 openclaw doctor --fix ..."
+openclaw doctor --fix --non-interactive
+
+sleep 5
+
+# ── 第二次检测 ──
+
+if check_port; then
+    echo "running"
+    exit 0
+fi
+
+# ── 第二轮修复: run_diagnose.sh ──
+
+echo "doctor fix 后 Gateway 仍未恢复，执行 run_diagnose.sh ..."
+if [ -x "$DIAGNOSE_SCRIPT" ]; then
+    bash "$DIAGNOSE_SCRIPT"
+else
+    echo "错误: $DIAGNOSE_SCRIPT 不存在或不可执行" >&2
+    exit 1
+fi
+root@iZt4n4i9cbmylfxdyvuy6gZ:/# 

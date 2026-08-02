@@ -1,0 +1,3 @@
+Corrupted
+All ninja tech API keys have been corrupt
+Use your masterkey To generate another API key

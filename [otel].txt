@@ -1,0 +1,5 @@
+[otel]
+environment = "dev"
+exporter = "none"
+metrics_exporter = "none"
+log_user_prompt = false
