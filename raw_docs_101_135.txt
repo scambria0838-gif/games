@@ -1,0 +1,744 @@
+Unreal Engine 5 - AI Training Corpus (Documents 101-135)
+Advanced & Specialized Topics: Editor Scripting, Environments, Rendering, Production
+Unreal Engine 5 - AI Training Corpus (Documents 101-135)
+Advanced & Specialized Topics: Editor Scripting, Environments, Rendering, Production
+
+DOCUMENT 101: Editor Utility Widgets in Unreal Engine
+Source URL: https://docs.unrealengine.com/5.4/en-US/editor-utility-widgets-in-unreal-engine/
+Beta Feature: Learn to use this Beta feature, but use with caution in a production environment.
+If you want to modify the User Interface (UI) of the Unreal Editor, you can use Editor Utility Widgets to add new UI elements. Editor Utility Widgets are based on Unreal Motion Graphics (UMG), so you can set up Widgets in a Blueprint like you would for any other UMG Widget Blueprint.
+These Widgets are specifically for the Editor UI, and you can use them to create custom Editor tabs. You can then select these custom tabs from the Windows menu, like you would select existing Editor tabs.
+Create an Editor Utility Widget
+Right-click in the Content Browser and select Editor Utilities > Editor Utility Widget.
+Name your Editor Utility Widget Asset. In this example, the Asset is named TestEditorUtility.
+Double-click the Editor Utility Widget Asset to open the Widget Blueprint for editing.
+Edit your Widget Blueprint as needed.
+Right-click the Editor Utility Widget Asset and select Run Editor Utility Widget to open an Editor tab with your Editor Utility displayed. The tab is only dockable with Level Editor tabs.
+Once you have run the Editor Utility Widget, it appears in the Level Editor’s Tools dropdown, under the Editor Utility Widgets category.
+
+DOCUMENT 102: Scripting the Unreal Editor Using Python
+Source URL: https://docs.unrealengine.com/5.4/en-US/scripting-the-unreal-editor-using-python/
+Experimental Feature: Learn to use this Experimental feature, but use with caution in a production environment.
+This page describes how to get started using Python in the Unreal Editor.
+Why Python?
+In recent years, Python has become the de facto language for production pipelines and interoperability between 3D applications, particularly in the media and entertainment industry. This is partially due to the wide range of applications that support it. As the complexity of production pipelines continues to soar, and the number of applications involved continues to grow, having a common scripting language makes it easier to create and maintain large-scale asset management systems.
+Even without these outside considerations, or the need to work with other applications, Python is a great choice if you’re looking to automate your workflows within the Unreal Editor. It’s relatively easy for those new to programming to get started, it offers the ability to create complex and full-featured user interfaces through modules like PySide, and there are many other useful free modules available to the community to make your life easier.
+You can use Python in the Unreal Editor to do things like: - Construct larger-scale asset management pipelines or workflows that tie the Unreal Editor to other 3D applications that you use in your organization. - Automate time-consuming Asset management tasks in the Unreal Editor, like generating Levels of Detail (LODs) for Static Meshes. - Procedurally lay out content in a Level. - Control the Unreal Editor from UIs that you create yourself in Python.
+Set Up Your Project to Use Python
+Python support in the Unreal Editor is provided by the Python Editor Script Plugin. You’ll need to enable this plugin for your current Project before you can run Python scripts in the Editor.
+Currently, you must enable the plugin separately for each Project.
+To enable the plugin: 1. Open your Project, and choose Edit > Plugins from the main menu. 2. In the Plugins window, go to the Scripting section. 3. Find the Python Editor Script Plugin in the right-hand panel, and check its Enabled box.
+Python 3.11.8
+Unreal uses Python 3.11.8 by default because it is an important part of the current VFX Reference Platform.
+To use a different version of Python, you can set the UE_PYTHON_DIR environment variable in your operating system to point to the installation you want to embed, then rebuild the Unreal Engine from source.
+Ways to Run Python Code in Unreal Editor
+There are several different ways that you can run Python scripts in the Unreal Editor, each designed for a slightly different usage scenario. You can choose whichever fits your needs.
+Unlike Blueprints, the Python environment is only available in the Unreal Editor, not when your Project is running in the Unreal Engine in any mode, including Play In Editor, Standalone Game, cooked executable, etc. That means that you can use Python freely for scripting and automating the Editor or building asset production pipelines, but you cannot currently use it as a gameplay scripting language.
+The Python Console in the Output Log
+You can switch the Unreal Editor’s console input bar to accept Python code instead of Unreal console commands.
+You can do this in the Output Log panel, or when you bring up the console input bar by pressing the ~ key.
+When the console is in Python mode: - You can enter lines of Python code into this console and have the Editor execute each one immediately, exactly as if you were using an interactive Python console in a command window. This is the only way to execute Python code line-by-line; all other approaches listed below run a script file that you specify. - You can run multiple lines of code at a time by using Shift+Enter to separate each line, or by pasting in a multi-line block that you copy from a text editor. - You can execute Python script files by simply typing the file name into the console. If your Python script requires additional command-line arguments, include them after the name of your script. - Output from the built-in Python print function is also redirected to the Output Log panel.
+The py Console Command
+With the console in Cmd mode, you can use the py command to run the rest of the line as Python code, exactly as if you had typed it into the Python console described above.
+For example, this command runs the specified script file:
+py "C:\MyScripts\my_script.py"
+We don’t recommend running this command in the value of the ExecCmd command-line parameter when you start the Editor. This can cause your script to run before the Editor environment is ready — for example, before the startup Level is fully loaded. See the sections below for better options.
+The File Menu
+The File menu in the main window of the Unreal Editor offers new options that you can use to run Python script files.
+Use Execute Python Script if you want to browse to a new script file on your computer that you haven’t run before.
+Use the Recent Python scripts list to re-run any script that you ran previously. The file is read from disk again, so if you changed the script in the meantime, your new version is run.
+The Command Line
+You can run Python scripts from the command line when launching the Unreal Editor.
+For example:
+UE5Editor-Cmd.exe "C:\MyProject\MyProject.uproject" -ExecutePythonScript="C:\MyScripts\my_script.py"
+This commandlet does not automatically load levels, so when writing your script, add the following line as the first thing it does:
+unreal.get_editor_subsystem(unreal.LevelEditorSubsystem).load_level("/Game/maps/UVlayoutTest.UVlayoutTest")
+You must have already enabled the Python Scripting Plugin in the Unreal Engine Project that you specify on the command line.
+The init_unreal.py File
+If the Editor detects a script file called init_unreal.py in any of the paths it is configured to use (see “Python Paths in the Unreal Editor” below), it automatically runs that script immediately.
+This is a good approach for situations where you are working on a Project or a Plugin and you know that everyone working with that content needs to run the same initialization code every time the Editor starts up. You could put your initialization code inside a script with this name, and put it into the Content/Python folder within that Project or Plugin.
+Startup Scripts
+In your Project Settings, you can specify any number of Python scripts that you want to run every time you open that Project. The Editor runs these scripts after the default startup Level is fully loaded.
+Select Edit > Project Settings…
+Under the Plugins list, select Python.
+Then, add your scripts to the Startup scripts setting.
+Restart the Unreal Editor when done. The next time the Editor loads your Project, it should run your new startup scripts.
+From Editor-only Blueprints
+The Python Script Plugin exposes new nodes to Blueprint Visual Scripting that you can use to run Python code snippets or files during the evaluation of a Blueprint graph.
+Python execution nodes are only available in Editor-only Blueprint classes, such as Editor Utility Widgets and Editor Utility Blueprints. You can’t use this method in any Blueprint classes that are available at runtime, such as a class that you derive directly from Actor.
+You’ll find the following nodes in the Python > Execution section of the Blueprint palette.
+Execute Python Script
+Executes the literal Python code that you pass in to or type in the Python Command input. It is the recommended way to call Python from Blueprints, and supersedes creating a new BlueprintFunctionLibrary (BPFL) type in Python.
+The aforementioned BPFL method causes issues when an asset is saved or loaded due to Python-generated types being transient, and is no longer officially supported.
+Execute Python Script can have custom input and output pins, which are available as variables within the Python script on the node and can be added by the properties of the node. - Inputs are set prior to running the Python script on the node, and can be read in the script. - Outputs are read after running the Python script on the node, and can be set in the script.
+Execute Python Script can contain multiple lines of Python code, and new-lines can be entered by using the keys Shift+Return.
+The Success? output is true if the Python code was executed successfully, or false otherwise. If it is false, you can find the errors in the Output Log.
+This node cannot run files. It can only execute lines of Python code.
+Execute Python Command
+Executes the literal Python code or file that you pass in to or type in the Python Script input. The node will attempt to determine based on your input whether it is literal code or a filename. - The Return Value output is true if the Python code or file was executed successfully, or false otherwise. If it is false, you can find the errors in the engine’s Output Log, in the Log Output output pin, and in the Command Result.
+Python Environment and Paths in the Unreal Editor
+When you use a relative path to run a Python script, or to import another script module using the import command in one of your scripts, the script that you run or import can be in any path that is listed in the sys.path variable of your Python environment.
+The Unreal Editor automatically adds several paths to this sys.path list: - The Content/Python sub-folder in your Project’s folder. - The Content/Python sub-folder in the main Unreal Engine installation. - The Content/Python sub-folder in each enabled Plugin’s folder. - The Documents/UnrealEngine/Python folder inside your user directory. For example, on Windows 10, this is equivalent to C:/Users/Username/Documents/UnrealEngine/Python
+You can also add your own paths to this list using any of the following approaches: - In your Project Settings. Select Edit > Project Settings…. Under the Plugins list, select Python. Then, add the paths to the Additional Paths setting. Restart the Unreal Editor when done. - Add the paths to the value of the UE_PYTHONPATH (or PYTHONPATH if you disabled the Editor isolated interpreter environment option) environment variable in your operating system, then restart the Unreal Editor. - Add the paths directly to the sys.path list within a Python script, or in the Python console.
+By default, Unreal Engine’s embedded Python interpreter runs in isolated mode. You can disable isolated mode by selecting Edit > Project Settings > Plugins > Python > Isolate Interpreter Environment.
+The UE_PYTHONPATH environment variable is always parsed by the engine and its content is added to sys.path, regardless of the isolation mode options you select. UE_PYTHONPATH serves the same purpose as the PYTHONPATH variable, but it should never be modified by any third-party software.
+About the Unreal Editor Python API
+The Python Editor Script Plugin exposes a wide range of classes and functions that you can use to interact with the Unreal Editor, the Assets in your Project, and the content in your Levels. This API is all contained in the unreal module. To access it, import this module at the beginning of any Python script you run in the Editor’s Python environment:
+import unreal
+The unreal module exposes nearly everything that is exposed from C++ to Blueprints in your Editor environment. It’s not pre-generated; it automatically reflects whatever is available in Blueprints in your Editor. As you enable new plugins in the Unreal Editor, anything those plugins expose to Blueprints also becomes available in Python as well. The same goes for any C++ code that you write in your Project and expose to Blueprints.
+The Python API makes every effort to expose native Unreal APIs in a way that is as friendly as possible to Python developers. For example: - Simple data types are transparently converted back and forth between Python and native types whenever necessary. - When you pass in a Python list, set or dict, it is automatically converted to an Unreal array, set, or map. When you retrieve a list, set, or dict returned by an API function, you are actually getting an instance of an Unreal class, but its API is fully consistent with the base Python list, set, or dict type. - Python classes maintain the same inheritance hierarchy as the native types they represent. That means, for example, that you can use the built-in Python functions isinstance() and type() to test whether an object derives from or matches a given class. - The API tries to strike a good balance between the naming conventions used in Unreal for C++ and Blueprints on one hand, and Python naming conventions on the other hand. Classes and objects in the Python API have the same names as they do in Blueprints. This is typically the same as their native types, omitting the prefix (e.g. U or T). Function and property names are automatically exposed as lower-case snake_case. So, for example, you typically call functions like unreal.StaticMeshActor.get_actor_transform(). Enumeration value names are automatically exposed as upper-case SNAKE_CASE. - All exposed functions can accept either ordered parameters, or named parameters in any order.
+For example, the following two function calls are exactly equivalent:
+unreal.get_editor_subsystem(unreal.StaticMeshEditorSubsystem).join_static_mesh_actors(list_of_actors, my_options)
+unreal.get_editor_subsystem(unreal.StaticMeshEditorSubsystem).join_static_mesh_actors(join_options=my_options, actors_to_join=list_of_actors)
+API Reference
+For details on all of the classes and functions exposed by the Unreal Python API, see the API Reference here: Unreal Editor Python API Reference
+The API Reference is not an exhaustive list of everything that may be exposed to Python by plugins. If you’ve installed additional plugins that aren’t included in the API Reference, and you need to see the way their scripting features are exposed to Python, you can generate your own local version of the API Reference that contains docs for the plugins you need. For instructions, see the readme file under **Engine* in your Unreal Engine installation folder.
+Best Practices for Using the Python API
+This section covers a few things that it’s important to keep in mind when you use the Python API.
+Working with Assets
+If you need to work with Assets in your Project, always use functions from the Unreal Python API to do it. Never use file management modules built in to Python to work directly with your Asset files on disk. For example, if you need to move an Asset to a different folder, do not use Python functions like os.rename or shutil.move. Unreal Projects and Assets contain internal content references that you can break if you do not respect this rule.
+Instead, we recommend using the unreal.EditorAssetLibrary API that is provided by the Editor Scripting Utilities plugin, or the unreal.AssetTools class built in to the Unreal Python API.
+Changing Editor Properties
+You can use Python to get access to Objects in your Project and set up many configuration properties on those Objects programmatically.
+These properties may be exposed to Python in two different ways: - Items with the BlueprintReadOnly or BlueprintReadWrite flag are exposed as simple properties on the object. You can read and modify these properties like you access any Python object property. - Items with the ViewAnywhere or EditAnywhere flag are exposed as “editor properties”. You can read and write these values using a special pair of functions exposed by every object: set_editor_property() and get_editor_property().
+In the API Reference for each class, you’ll find a list of Editor Properties immediately following the class description. These are all the values that you can set and get using these set_editor_property() and get_editor_property() functions. Whenever you need to set or get a configuration property on an object, check this list first to see if the property you want is listed there.
+When you need to set a value that is exposed both as an object property and as an editor property, you should in most cases use the set_editor_property() function to set the value rather than set the value directly on the object. When you adjust properties in the UI, the Editor often performs additional operations behind the scenes: pre- and post-edit changes. These operations typically respond to the choices you make in some way, and keep the Editor UI in sync with the state of the object in the game world. If you modify these properties directly on the Python object, this Editor code won’t be run automatically. On the other hand, when you call set_editor_property(), the Editor runs this additional code automatically.
+Use Unreal Types Whenever Possible
+When passing data back and forth between Python and the Unreal Editor, you should always use types provided by the unreal module whenever possible.
+Logging and Feedback
+Use unreal.log() for general information, unreal.log_warning() for possible problems that don’t prevent your script from running, and unreal.log_error() for severe problems that prevent your script from running as expected.
+Your messages appear in the Output Log panel, along with the messages sent by other subsystems.
+Supporting Undo and Redo
+Your scripts can take full advantage of the Undo / Redo system built in to the Unreal Editor.
+Each transaction that you define can contain any number of Python operations. Using these transactions, you can bundle large operations, or operations on many different objects, together into a single entry in the Undo / Redo history.
+To define a transaction, use the unreal.ScopedEditorTransaction scope. For example:
+import unreal
+obj = unreal.MediaPlayer()
+with unreal.ScopedEditorTransaction("My Transaction Test") as trans:
+    obj.set_editor_property("play_on_open", False)
+    obj.set_editor_property("vertical_field_of_view", 80)
+Your Editor’s Undo History panel now lists that transaction by name.
+As a general rule, your scoped transactions can contain any operations that are also undoable in the Editor UI. However, not every Editor operation is undoable. For example, you can’t undo importing a model in the Editor UI, so trying to import a model inside an unreal.ScopedEditorTransaction will not work as you may be expecting.
+Progress Dialogs for Slow Operations
+If your scripts need to work on many Assets or Actors in the same operation, they may take some time to complete. However, while the Unreal Editor is running a Python script, its UI becomes blocked to other user interactions. To give the user information about the progress of a large task, and avoid the Editor appearing to freeze or hang, you can use the unreal.ScopedSlowTask scope.
+For example:
+import unreal
+total_frames = 100
+text_label = "Working!"
+with unreal.ScopedSlowTask(total_frames, text_label) as slow_task:
+    slow_task.make_dialog(True)               # Makes the dialog visible, if it isn't already
+    for i in range(total_frames):
+        if slow_task.should_cancel():         # True if the user has pressed Cancel in the UI
+            break
+        slow_task.enter_progress_frame(1)     # Advance progress by one frame.
+        # You can also update the dialog text in this call, if you want.
+        # Now do work for the current frame here!
+
+DOCUMENT 103: MetaHuman Framework in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/adding-a-metahuman-to-a-game-animation-sample-project-in-unreal-engine
+Adding a MetaHuman to the Game Animation Sample Project
+The Game Animation Sample Project is an example project that you can download to access a suite of motion capture animations, and learn how to use Motion Matching in Unreal Engine. The project contains a sample MetaHuman, with preview meshes for all MetaHuman body types, that you can enable in the Game Utility Widget, to observe how the system functions when using a MetaHuman character.
+Prerequisites
+You have downloaded and created a new project using the Game Animation Sample Project template.
+You have a MetaHuman character you would like to implement in the Game Animation Sample Project.
+Workflow Steps
+Navigate in the Content Browser to Content/Blueprints/RetargetedCharacters.
+Locate the CBP_SandboxCharacter_Metahuman_Kellan Character Blueprint, and duplicate the asset by right-clicking the asset and navigate to the Duplicate option in the Context Menu.
+Open your new duplicated Character Blueprint.
+In the Blueprint Editor’s components panel, select the Body Skeletal Mesh Component and all of its Child Components, and the LODSync component, and delete them.
+Open the MetaHuman Blueprint that you would like to add as a player. In this example workflow Danielle is used.
+Select the Body including the child components and the LODSync component again, right-click the selected components, and select Copy.
+Back in the Character Blueprint and paste the components onto the existing Mesh component.
+Reparent the Body Mesh Component to the Blueprint Mesh Component, by selecting and dragging the Body onto the Mesh in the Components panel.
+Select the Body component to open its Details panel, and then navigate to the Anim Class property and select the ABP_GenericRetarget AnimBP animation blueprint.
+Additionally, you will need to let the Retarget AnimBP know about the new body type, by adding a tag to the Body Mesh Component. In the Details panel, navigate to the Component tags property, and add a new element to the array. Input the following tag: RTG_UEFN_to_Metahuman_nrw
+Open the Viewport panel within the Blueprint Editor.
+Align the MetaHumans Mesh with the capsule component.
+Repair the Construction Script. Open the Construction Script by selecting it in the My Blueprint panel, then re-add the Feet, Legs, and Torso get reference variables.
+Open the EnableMasterPose function in the My Blueprint panel in order to rebind the Body reference variable.
+After setting and connecting your Skeletal Mesh Component reference variables, Save and Compile your Character Blueprint.
+Open the Game Animation Widget asset, which can be found in the Content > Widgets folder path.
+In the Widget Editor’s Designer panel, copy one of the character tiles and paste it right next to the last one on the right.
+Select your new Tile to open its Details panel, and then in the Object property, select the Character Blueprint that you created.
+Finally Save and Compile the Game Animation Widget.
+You can now play the project using PIE and use your new button in the Game Animation Widget to swap the player to be your new MetaHuman character.
+
+DOCUMENT 104: Live Link in Unreal Engine
+Source URL: https://docs.unrealengine.com/5.4/en-US/live-link-in-unreal-engine/
+Live Link describes how to enable and use the Live Link Plugin and features within the animation system in Unreal Engine.
+The purpose of Live Link is to provide a common interface for streaming and consuming animation data from external sources (for example, DDC tools or Mocap Servers) into Unreal Engine. It is designed to be extensible through Unreal Plugins, allowing third parties to develop new features—hopefully with no need to make, then maintain Engine changes.
+With DDC tools like Motionbuilder, Live Link provides a way for you to edit animations externally while seeing a preview of your work inside Unreal Engine in real-time. Motion Capture Systems can also use Live Link to stream data into the Engine that can be previewed in real-time.
+Live Link Client
+The hub of Live Link is the Live Link Client that is created when the Live Link plugin is enabled inside a project. It has two main responsibilities:
+Manage Sources: These are the sources of data and mostly represent connections to other applications, either on the same machine or across the network, that provide data to Live Link.
+Manage Subjects: Subjects are individual streams of data within the client. One animating character would be a subject for instance.
+A subject is made up of the following data: - A name. - Static data that doesn’t change (like the Skeleton for an animation role). - One or more “frames” of data (like the bone transforms for the animation role).
+UDP Messaging
+When using the Live Link Message Bus Source, it uses UDP Messaging under the hood and (by default) will use the first Network Adapter it finds. If you have more than one Network Adapter in your machine, this may cause issues if you expect to receive data from a particular adapter.
+If you want to receive UDP data on a specific Network Adapter, you will need to modify your Project Settings by going to Edit > Project Settings > UDP Messaging and changing the Unicast Endpoint.
+For example, if you have two adapters: - Adapter A: XX.X.XXX.123 - Adapter B: XXX.XXX.X.53
+If you want to receive data from the Live Link Message Bus Source on Network Adapter B, you would need to set your Unicast Endpoint to: XXX.XXX.X.53:0
+The “:0” specifies that all ports should be listed to.
+UDP Messaging is not enabled by default in -game. You can enable it by adding -messaging in a packaged game (shipping target is not supported).
+Enabling Live Link
+The Live Link plugin can be enabled by opening the Plugins window (Edit > Plugins), selecting the Animation category and selecting Enabled on the Live Link Plugin.
+Live Link Connection Window
+Once enabled, the Live Link client can be accessed from the Window menu.
+Subject Panel
+The Subject Panel lists all subjects currently managed by the Live Link Client.
+Editor Integration
+When the Live Link plugin is enabled, the Preview Controller option can be changed to Live Link Preview Controller. Once selected, you can set the following options: - Subject Name: The name of the subject in Live Link you would like to apply to the Preview Mesh. - Enable Camera Sync: Enables syncing of the Unreal Editor camera with an external editor. Internally this looks at Live Link for a subject called EditorActiveCamera. - Retarget Asset: This specifies the Retarget Asset to apply to the Live Link data that will be applied to the Preview Mesh.
+Live Link Components
+The Live Link Controller and Live Link Skeletal Animation components can be added to an Actor in order to drive its parameters with Live Link from a connected external source.
+To use these components, click the Add Component button and use the Live Link Controller (or Live Link Skeletal Animation) component.
+For the Live Link Controller, in the Details panel, you can use the Subject Representation property and select from your connected Subjects. Based on the Subject, a role will automatically be assigned (you can change if needed). The Component to Control is what will actually be driven through Live Link.
+Live Link in Blueprint
+Live Link exposes Blueprint nodes for accessing subject data at runtime.
+Animation Blueprints
+This is achieved by creating a Live Link Pose node inside the AnimGraph of an Animation Blueprint. The node has 2 properties: - Subject Name: The name of the subject in live link to stream data from - Retarget Asset: The Retarget Asset to use to apply the data from Live Link to the Skeleton that the animation Blueprint uses.
+The output of the Live Link Pose node is a normal pose like any other pose node in an Anim Blueprint, and therefore can be manipulated like other poses (fed into Modifier or Blend nodes for instance).
+While you can drive animation without the Live Link Pose node in the Editor, if you want to drive animation at runtime, you will need the Live Link Pose node set up in your Animation Blueprint.
+
+DOCUMENT 105: In-Camera VFX / Virtual Production in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/in-camera-vfx-overview
+In-Camera VFX Overview
+With in-camera VFX you can shoot real-time visual effects during a live action film shoot with an immersive LED volume. In-Camera VFX is an exciting new methodology for shooting real-time visual effects during a live action film shoot. This technique relies on a mixture of LED lighting, live camera tracking, and real-time rendering with off-axis projection to create a seamless integration between foreground actors and virtual backgrounds. Its primary goal is to remove the need for green screen compositing to produce final pixel results in camera.
+Getting Started Documentation
+In-Camera VFX Overview: Describes the in-camera VFX methodology for shooting real-time visual effects during a live action film shoot with an immersive LED volume.
+In-Camera VFX Editor: A tool designed for Virtual Production to bring demanding and often used tools into a single interface.
+In-Camera VFX Quick Start: A guide to your first steps working with in-camera VFX in an LED Volume.
+In-Camera VFX Recommended Hardware: Details on the hardware recommendations for an in-camera VFX setup with Unreal Engine.
+In-Camera VFX Project Structure Example: A reference guide for organizing your In-Camera VFX project’s file structure in the Content Browser.
+In-Camera VFX Best Practices: Ways to improve your In-Camera VFX project for best results.
+In-Camera VFX Best Practices
+Project Set Up
+Ensure your project is set up properly for efficient workflows.
+We recommend disabling the Virtual Reality and Mixed Reality plugins.
+Ensure you define your Project Structure in the Content Browser.
+Performance Targets & Profiling
+For the ICVFX Production Test, assets were created on a Dual NVIDIA RTX 8000 and 128GB DDR5 RAM machine for an intended stage render node using Dual NVIDIA A6000s and 128GB DDR5 RAM.
+Target a frame rate between 48-72 FPS on Artist workstations when viewed in 4K full screen.
+Use Unreal Insights to generate nDisplay traces.
+Asset Creation and LODs
+Use Hero representation for when an asset is extremely close to the camera.
+Use Proxy representation for when an asset is further from the screen.
+Reuse assets so the engine can instance them.
+Reduce the number of Material IDs on a mesh as much as possible.
+High-resolution assets of 4k or 8k are almost always going to be a poor choice.
+Don’t use video elements, use Flipbooks instead.
+Lighting and Rendering
+Avoid ray tracing or over-use of dynamic lights.
+When ray tracing is a requirement, optimize using the RayTracingQualitySwitch.
+Key Console Commands: - r.RayTracing.ForceAllRayTracingEffects 0 — Disables additional ray tracing features.
+In-Camera VFX Quick Start
+Step 1 - Set up Your Project for In-Camera VFX
+The easiest way to set up an in-camera VFX project is to use the In-Camera VFX Example project. 1. Open the Epic Games Launcher. 2. In the Samples tab, find the In-Camera VFX Example project. 3. On the project page, click Free. 4. Click Create Project.
+Key Plugins Enabled
+Aja or Blackmagic Media Player
+Camera Calibration
+Color Correct Regions
+ICVFX
+Level Snapshots
+Live Link
+Live Link Over nDisplay
+Live Link XR
+Multi-User Editing
+nDisplay
+OpenColorIO (OCIO)
+Remote Control API
+Switchboard
+nDisplay Synchronization with NVIDIA GPUs
+Synchronization across multiple nDisplay cluster nodes (PCs) is essential to avoid tearing between LED seams.
+Prerequisites
+An NVIDIA Quadro Sync II card per nDisplay node.
+Compatible Quadro GPUs.
+Cat-5 or Cat-6 RJ45 cables.
+Tri-level or Bi-level sync generator.
+
+DOCUMENT 106: Universal Scene Description (USD) in Unreal Engine
+Source URL: https://docs.unrealengine.com/5.4/en-US/universal-scene-description-in-unreal-engine/
+Beta Feature: Learn to use this Beta feature, but use with caution in a production environment.
+A Universal Scene Description (USD) stage is a container for composing layers, materials, and other scene information. This page explains how you can use the USD stage workflows in Unreal Engine to create and modify a USD stage. The USD stage is a staging element that composes many layers together into one structure. It has a representative root layer that defines how the scene is composed.
+In Unreal Engine, the USD stage has an Actor (UsdStageActor) that contains a reference to a layer (UsdStageActor.RootLayer). This root layer is the foundational piece of information that describes the stage. From this root layer, sublayers can be referenced to compose the scene.
+Supported Actions
+Enabling the USD Import Plugin
+By default, the USD import plugin is disabled. Before you can import a USD stage, you must enable it by opening the Plugins window (Edit > Plugins), selecting the BETA category, and selecting Enabled on the USD Importer plugin.
+Python Scripting
+You can use Python scripting to create and modify a USD stage. The USD Python API is available in the unreal module.
+Example: Export Static Mesh to USD
+import unreal
+
+def export_static_mesh_to_usd(asset_path, usd_file_path):
+    options = unreal.USDPythonScriptingOptions()
+    options.export_options = unreal.StaticMeshExporterUSDOptions()
+    options.export_options.stage_options = unreal.UsdStageOptions()
+    options.export_options.stage_options.prim_path = "/MyMesh"
+    options.export_options.stage_options.identifier = usd_file_path
+    options.export_options.stage_options.time_codes_per_second = 24.0
+
+    mesh = unreal.EditorAssetLibrary.load_asset(asset_path)
+    if mesh is None:
+        unreal.log_error("Failed to load asset: " + asset_path)
+        return False
+
+    task = unreal.AssetExportTask()
+    task.object = mesh
+    task.filename = usd_file_path
+    task.automated = True
+    task.options = options.export_options
+
+    exporter = unreal.USDExporterStaticMesh()
+    success = unreal.Exporter.run_asset_export_tasks([task])
+
+    return success
+
+asset_path = "/Game/MyMesh.MyMesh"
+usd_file_path = "C:/MyUSDExport.usd"
+export_static_mesh_to_usd(asset_path, usd_file_path)
+
+DOCUMENT 107: XR Development in Unreal Engine (VR/AR)
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/getting-started-with-xr-development-in-unreal-engine
+Getting Started with XR Development in Unreal Engine
+Unreal Engine includes support for XR rendering, stereoscopic rendering, and head tracking. It also provides integrated support for some XR devices such as the Oculus VR, Steam VR, Google VR, and OpenXR.
+VR Quick Start
+To develop VR content for Unreal Engine you must: - Set up your VR hardware to work with Unreal Engine. - Set up a new project for VR using the VR Template. - Configure the project settings for your VR device. - Set up a Pawn to work with your VR device. - Test your project using your VR device.
+AR Development with Unreal Engine
+To develop AR content for Unreal Engine you must: - Set up your device to work with Unreal Engine. - Set up a new project for AR using the HandheldAR Template. - Configure the project settings for your device. - Set up a Pawn to work with your device. - Test your project using your device.
+OpenXR Plugin
+The OpenXR plugin in Unreal Engine provides a way to develop XR experiences for a variety of devices. The plugin supports VR and AR devices that use the OpenXR API.
+VR Best Practices
+Use a high frame rate to avoid motion sickness. Target 90 FPS for most VR devices.
+Use teleportation or room-scale locomotion to avoid motion sickness.
+Use audio cues to help the player locate objects in the scene.
+Use haptic feedback to provide tactile feedback to the player.
+AR Best Practices
+Use a high frame rate to avoid jittery tracking. Target 60 FPS for mobile AR.
+Use occlusion to make digital objects appear behind real-world objects.
+Use shadows to make digital objects appear grounded in the real world.
+Use light estimation to match the lighting of digital objects to the real world.
+
+DOCUMENT 108: Quixel Bridge in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/quixel-bridge-plugin-for-unreal-engine
+Overview
+Quixel Bridge plugin for Unreal Engine gives you full featured access to the Megascans library within the Level Editor. You can browse collections, search for specific assets, and add assets to your Unreal Engine projects.
+All of the content accessible through Quixel Bridge is now available from Fab, including the Fab tab in the Epic Games Launcher, and through the Fab window in UE.
+Bridge for Unreal Engine is a plugin included with your installation of Unreal Engine 5. To ensure that your Quixel Bridge plugin is enabled, select Edit > Plugins. Type bridge into the search bar and click the checkbox to enable the plugin.
+Launching Bridge in Unreal Engine
+Quixel Bridge can be accessed from a number places inside the editor:
+Click the Content dropdown in the toolbar and select Quixel Bridge.
+From the top menu, select Window > Quixel Bridge.
+From the Content Drawer, right-click and select Add Quixel Content.
+Download Settings
+Format & Resolution
+All 3D assets in Bridge for Unreal Engine are downloaded in UAsset format and are available in the following resolutions:
+Nanite
+Bridge for Unreal Engine 5 now serves in a fully Nanite-ready tier for 3D assets. These assets are downloaded as pre-converted Nanite meshes which are loaded into the project upon import.
+Adding Assets to Your Project
+There are a couple of ways to download and add assets to your UE project.
+Drag and Drop.
+Download and Add to Scene.
+Drag & Drop
+You can drag and drop a single asset or multiple assets together into your scene.
+If this is the first time you are downloading something in Bridge for Unreal Engine, the following new folders are created in your Content browser:
+Megascans: this is where the assets are saved inside your UE project.
+MSPresets: this contains all the template master materials that are used to render the downloaded assets in your scene.
+
+DOCUMENT 109: Landscape Overview
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/landscape-overview
+Overview
+Using the Landscape system, you can create terrain for your world. Mountains, valleys, uneven or sloped ground, and even openings for caves are possible.
+Landscape Tool Modes
+The Landscape tool has three modes, accessible by their buttons at the top of the Landscape tool’s window.
+Landscape Features
+Large Terrain Sizes
+Landscape terrains can be very large and easily support worlds that are up to 8192x8192 in size using the width or height. As large as this is, you can extend them by setting up multiple terrains adjacent to one another and streaming them.
+World Partition
+The World Partition system uses a grid to divide the space in a level into multiple partitions, and uses these partitions to determine what should be loaded and rendered.
+Landscape Memory Usage
+Landscapes use 4 bytes per vertex for the vertex data. Static Meshes use 6 or 7 times the memory Landscapes use for the same vertex density.
+Static Render Data Stored as Textures
+On most platforms, the Landscape system stores the render data for the terrain in Textures in GPU memory. The render data uses a 32-bit Texture for storage, with the height occupying 16-bits in the form of the R and G channels and the normal stored as 28-bit values for X and Y, occupying the B and A channels.
+Continuous Geo-MipMap LOD
+Standard Texture mipmaps handle LODs for Landscape terrains. Your Landscape can have a large number of LODs, yet maintain smooth LOD transitions.
+Heightmap and Weight Data Streaming
+With Textures storing data, the standard Texture streaming system in Unreal Engine handles streaming mipmaps in and out as needed. This applies to the heightmap data and the weights for Texture layers.
+Collision
+Landscape terrains use only the heightmap data for collision. This uses less memory than the collision data for a Static Mesh of the same size.
+
+DOCUMENT 110: Water System in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/water-system-in-unreal-engine
+Overview
+Water rendering in Unreal Engine uses a specialized rendering path based on a Water Mesh and Water Material pipeline. This pipeline supports both large-scale bodies of water, such as oceans, and smaller localized bodies of water, such as pools, lakes, and rivers.
+Enabling the Water Plugin
+The Water plugin must be enabled in the Plugins window for the project. Open the Plugins window from the Edit > Plugins menu.
+Water Body Actors
+WaterBodyActors provide a spline-based workflow to create lakes, rivers, and oceans which automatically create meshes, carve landscapes, and support physics interactions.
+Derived classes include: - AWaterBodyCustom - AWaterBodyLake - AWaterBodyOcean - AWaterBodyRiver
+Key Topics
+Water Body Custom: A guide to creating custom water bodies.
+Water Material: How to set up and use the Water Material.
+Water Mesh Actors: A guide to using Water Mesh Actors.
+Water Waves: How to set up and use water waves.
+Water Brush System: How to use the Water Brush system to modify landscapes for water bodies.
+Water Physics: Using the Water system for physics interactions, such as buoyancy.
+Water Subsurface Scattering: How subsurface scattering works with water.
+Water Buoyancy Component: Using the Buoyancy component with physics objects.
+
+DOCUMENT 111: Volumetric Clouds and Sky Atmosphere
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/volumetric-cloud-component-in-unreal-engine
+Overview
+The Volumetric Cloud component is used to create realistic cloud volumes in the sky. The system uses ray marching and material-driven cloud shapes to simulate realistic cloud rendering with atmospheric lighting and shadowing.
+How are clouds rendered?
+Clouds are rendered using a volume ray marching approach. The Volumetric Cloud component uses a Volume Material assigned to it to define the cloud’s shape, density, and lighting properties.
+Ray Marching the Cloud Volume
+Ray marching is the technique used to render the cloud volume. Rays are cast through the cloud volume and sampled at regular intervals to determine density and lighting.
+Light Multiple Scattering
+Simulating light multiple scattering within participating media using the octave approximation can result in some energy being lost. The atmosphere light property Cloud Scattering Luminance Scale provides a nice counterbalance.
+Cloud Occlusion and Shadowing
+Directional Light Interactions and Shadowing
+Atmosphere lights provide control for cloud and atmospheric shadowing. Enabling Cast Cloud Shadows on an atmospheric light allows for the cloud volume to shadow scene elements and to cast sunlight shafts (God Rays) within the atmosphere.
+Setting Up and Using Volumetric Clouds
+Create a new level that contains: 1. A Directional Light with Atmosphere Sun Light enabled. 2. A Sky Atmosphere component. 3. A Sky Light with Real Time Capture optionally enabled. 4. A Volumetric Cloud component with a volume material assigned.
+Performance and Scalability
+The Volumetric Cloud system is designed with scalability in mind. The primary performance controls are: - Ray marching sample counts (view, reflection, shadow) - Cloud shadow map resolution and extent - Sky Light real-time capture mode settings - Volumetric render target resolution
+Supported Platforms
+
+DOCUMENT 112: Exponential Height Fog in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/exponential-height-fog-in-unreal-engine
+Exponential Height Fog creates more density in low places of a map and less density in high places. The transition is smooth, so you never get a hard cutoff as you increase altitude.
+Exponential Height Fog Properties
+Exponential Height Fog Component
+Second Fog Data
+These settings control the secondary fog level.
+Volumetric Fog
+Performance
+The rendering cost of Exponential Height Fog is similar to two layers of constant density height fog with an additional optimization; fog Start Distance.
+
+DOCUMENT 113: Mesh Painting
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/mesh-paint-mode-in-unreal-engine
+Mesh Paint Mode is a tool in Unreal Engine that enables you to paint on the vertices of Static Meshes in your level. This can be used for vertex color painting, blend weight painting for landscape layers, and other vertex-level modifications.
+Paint Vertex Colors Tool
+The Paint Vertex Colors tool is used to paint colors directly onto the vertices of Static Meshes in the level. This is useful for adding variation to materials, creating dirt or wear patterns, and blending between different material looks.
+Per-Instance Vertex Colors
+Per-Instance Vertex Colors allow each instance of a Static Mesh in the level to have its own unique vertex color data. This means you can paint one instance of a mesh differently from another instance of the same mesh.
+How Mesh Painting Works
+Mesh painting modifies the vertex color data of the Static Mesh instance in the level. This data is stored per-instance and can be used in materials to blend textures, adjust parameters, or create other effects using the Vertex Color node in the Material Editor.
+
+DOCUMENT 114: Decals in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/decal-materials-in-unreal-engine
+Decals are materials that are projected onto existing geometry in the level. They are useful for adding detail, variation, and visual interest to surfaces without modifying the underlying geometry. Common uses include bullet holes, blood splatters, dirt, graffiti, and localized damage.
+Using Decals
+Decal Material
+Decal Materials are defined by setting their: - Material Domain: Deferred Decal - Blend Mode: Translucent or Alpha Composite
+Decal Actors
+You can create a Decal Actor from the Create menu under Visual Effects > Decal Actor.
+Decal Actor Properties
+Decal Response
+The Decal Response setting on materials controls how the material interacts with decals:
+DBuffer Decals
+DBuffer Decals use a deferred buffer approach that allows them to properly affect material properties such as Base Color, Normal, Roughness, Metallic, and Specular.
+Performance
+DBuffer Decals have a higher memory cost than traditional decals.
+Many decals overlapping can cause overdraw and fill-rate issues.
+Use the Fade Screen Size property to hide small distant decals.
+
+DOCUMENT 115: Light Functions and IES Light Profiles
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/using-light-functions-in-unreal-engine
+Using Light Functions in Unreal Engine
+Light Functions are materials that can be applied to lights to create patterned lighting effects, such as gobos, caustics, or animated light patterns.
+Creating and Applying a Light Function
+Create a new Material and set its Material Domain to Light Function.
+Build your light pattern using standard material nodes. The output connects to Emissive Color.
+Assign the Light Function Material to a light using the Light Function Material slot.
+Light Function Atlas
+Unreal Engine 5 uses a Light Function Atlas to efficiently render light functions in the deferred renderer.
+Light Function Atlas Project Settings
+Using IES Light Profiles in Unreal Engine
+IES Light Profiles are texture assets created from IES (Illuminating Engineering Society) data files that describe the distribution of light intensity from a real-world light fixture.
+Importing and Assigning to Lights
+Import an IES Profile by using one of the available import methods for textures.
+Select a Point, Spot, or Rect Light from your scene. Under the Details panel, assign the light profile to the IES Texture slot under Light Profiles.
+
+DOCUMENT 116: Reflection Environment in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/reflections-environment-in-unreal-engine
+Overview
+The Reflection Environment in Unreal Engine provides methods for creating realistic reflections in your scenes. Reflections are critical for realistic materials, especially metals and glossy surfaces.
+Types of Reflections
+Reflection Capture Actors
+There are two types of Reflection Captures to choose from: a Box and a Sphere shape. They work by capturing an image of the surrounding environment from their center and then mapping that to the reflection capture shape.
+Sphere Shape
+The sphere shape is currently the most useful. It never matches the shape of the geometry being reflected but has no discontinuities or corners, therefore, the error is uniform.
+Box Shape
+The box shape is very limited in usefulness and generally only works for hallways or rectangular rooms.
+Planar Reflections
+Planar Reflections is an Actor that can be placed along surfaces to create accurate, dynamic reflections of the scene whereby it renders the level again from the direction of the reflection.
+
+DOCUMENT 117: Screen Space Reflections (SSR)
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/screen-space-reflections-in-unreal-engine
+Screen Space Reflection is an effect which is enabled by default that alters the appearance of objects on the surface of Materials.
+
+DOCUMENT 118: Screen Space Ambient Occlusion (SSAO)
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/post-process-effects-in-unreal-engine
+Ambient Occlusion is a calculation of how exposed each point in a scene is to ambient lighting from a chosen light source, such as the Sky Light or atmosphere.
+
+DOCUMENT 119: Global Distance Fields
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/distance-field-ambient-occlusion-in-unreal-engine
+Distance Field Ambient Occlusion (DFAO) is a feature that generates ambient occlusion using signed distance fields (SDF) from static mesh geometry. It enables dynamic indirect shadowing and ambient occlusion from movable lights and geometry.
+Scene Setup
+To use Distance Field Ambient Occlusion, you must first enable Generate Mesh Distance Fields in your project settings under Rendering > Lighting.
+Global Distance Fields
+Global Distance Fields merge multiple object distance fields into a unified scene-wide distance field representation. This allows efficient sampling of the nearest surface distance from any point in space without iterating over individual mesh distance fields.
+Performance
+DFAO performance scales with the number of meshes, the resolution of the distance fields, and the number of cones traced per pixel. It is generally more expensive than Screen Space Ambient Occlusion (SSAO) but provides better quality and supports movable geometry.
+Limitations
+DFAO only works with static meshes that have generated distance fields.
+Very thin objects or objects with single-sided geometry may not generate accurate distance fields.
+DFAO does not support skeletal meshes or dynamic deformable objects.
+
+DOCUMENT 120: Planar Reflections
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/planar-reflections-in-unreal-engine
+Planar Reflections capture the scene from a mirrored viewpoint and render it to a texture that is projected onto a reflective surface. This provides accurate, high-quality reflections on flat surfaces.
+Planar Reflection Properties
+Performance and Limitations
+Planar Reflections work by rendering the entire scene again from the reflected camera position. This means they are very accurate but also very expensive. Each planar reflection essentially doubles the rendering cost of everything it reflects.
+
+DOCUMENT 121: Groom / Hair Rendering
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/hair-rendering-and-simulation-in-unreal-engine
+Groom hair rendering and simulation is a system for creating realistic hair, fur, and other strand-based effects in Unreal Engine. It uses Alembic (.abc) groom files imported from external digital content creation (DCC) applications.
+Supported DCC Applications
+The groom system supports importing grooms created in applications such as XGen, Yeti, Ornatrix, and Houdini. The groom must be exported as an Alembic file with the proper strand attributes.
+Documentation Topics
+Hair Rendering and Simulation Overview
+Groom Import Guide
+Groom Asset Properties
+Groom Binding
+Hair Physics and Simulation
+Hair Shading and Materials
+Hair LODs
+Hair Cards
+
+DOCUMENT 122: Runtime Virtual Texturing (RVT)
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/runtime-virtual-texturing-in-unreal-engine
+Runtime Virtual Texturing (RVT) is a rendering feature that enables writing material outputs to a virtual texture at runtime. This can be used for complex blending effects, decals on landscapes, road splines, and other runtime compositing scenarios.
+Runtime Virtual Texture Material Types
+Runtime Virtual Texture Material Expressions
+Runtime Virtual Texture Output — Writes material outputs to the RVT.
+Runtime Virtual Texture Sample — Samples data from the RVT.
+Runtime Virtual Texture Sample Parameter — Same as above but exposes the RVT Asset as a parameter for Material Instances.
+Scene Component Output Properties
+Use the Virtual Texture Pass Type setting on primitive components to control whether they render to the RVT, to the main pass, or both.
+
+DOCUMENT 123: Hierarchical Level of Detail (HLOD)
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/hierarchical-level-of-detail-in-unreal-engine
+Overview
+A complex level in Unreal Engine contains hundreds of detailed Static Mesh assets. The Hierarchical Level of Detail (HLOD) system can be used to organize multiple Static Mesh Actors and combine them into a single proxy mesh and Material at long view distances.
+Proxy Meshes
+Proxy Meshes can be opened independently and their settings can be adjusted as desired. The Proxy Mesh contains several elements that had their own Textures which were combined into a single texture.
+Hierarchical LOD Volume
+The Hierarchical LOD Volume (HLOD Volume) is used to manually define/create an HLOD cluster. The Hierarchical LOD Volume can be dragged into your Level from the Place Actors panel in the Volumes tab.
+HLOD Actions
+
+DOCUMENT 124: Replication Graph
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/replication-graph-in-unreal-engine
+Overview
+The Replication Graph Plugin is a system for network replication in multiplayer games that is designed to scale well with large numbers of players and replicated Actors. As an example, Epic’s own Fortnite Battle Royale starts each game with 100 connected players and about 50,000 replicated Actors.
+Structure
+The Replication Graph contains a series of Replication Graph Nodes, which are responsible for building lists of Actors to replicate to each client on demand.
+Enabling The System
+You can configure your project to use a custom Replication Driver (the parent class of Replication Graph) in one of two ways: - Specifying a Replication Driver class in the DefaultEngine.ini file. - Binding a function that returns an instance of your Replication Driver class to the default Replication Driver’s creation Delegate.
+Configuration (.ini) Files
+To configure the Engine’s default Replication Driver, open the DefaultEngine.ini file for your project:
+[/Script/OnlineSubsystemUtils.IpNetDriver]
+ReplicationDriverClassName="/Script/ProjectName.ClassName"
+High-Level Example
+A Replication Graph that assigns Actors based on type and status to different nodes can save a tremendous amount of CPU time: - Separate Actors into groups based on location. - Identify “dormant” placed Actors and keep them in a separate list. - If characters in your game can pick up and carry items, update those items with their carriers. - Make a list of special Actors that are always known to all clients.
+
+DOCUMENT 125: Network Profiler
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/using-the-network-profiler-in-unreal-engine
+The Network Profiler is a standalone tool used to display network traffic and performance information recorded by Unreal Engine (UE) as a game runs. This is a good way to identify areas of a multiplayer game that use unusually high bandwidth.
+Record a Profiling Session
+You can pass the networkprofiler=true command-line argument to record as soon as the engine starts up.
+You can also use console commands at runtime: - netprofile: toggles recording on and off - netprofile enable: start recording - netprofile disable: stop recording
+File Save Location
+The data file is saved as <PROJECT_DIRECTORY>/Saved/Profiling/<PROJECT_NAME>-<TIMESTAMP>.nprof.
+View a Profiling Session
+The network profiler is a standalone application located at <UNREAL_ENGINE_ROOT>/Engine/Binaries/DotNET/NetworkProfiler.exe.
+User Interface
+View Tabs
+Chart, Filters, Details
+All Actors
+All Properties
+All RPCs
+All Objects
+Chart
+Shows a graph of the enabled stats over time. You can click on a particular frame to populate the other views with the data associated with that frame.
+Stats List
+A list of all the stats tracked by the network profiler. Toggling the checkboxes will show or hide that particular stat in the graph.
+Details
+The details tabs display more in-depth network profiling information: - Summary — raw totals as well as per-second information - Actors — actor types replicated during the selected frame - Token Details — data sent on the currently selected frame
+
+DOCUMENT 126: Console Commands Reference
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-console-commands-reference
+Overview
+List of console commands available for Unreal Engine.
+Sample Console Commands Table
+
+DOCUMENT 127: Shader Development in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/shader-development-in-unreal-engine
+Overview
+Information for graphics programmers writing shaders.
+Quick Start
+When working with shaders, be sure to set r.ShaderDevelopmentMode to 1 to enable it. The easiest way to do this is to edit ConsoleVariables.ini.
+Use Ctrl+Shift+. which executes the recompileshaders changed command. This command should be executed after you save changes to an Unreal Shader (.usf) file.
+Shaders and Materials
+Global Shaders
+Global shaders are shaders that operate on fixed geometry (such as a full-screen quad) and do not need to interact with materials.
+Vertex Factory
+FVertexFactoryType represents a unique mesh type, while FVertexFactory instances store per-instance data to support that unique mesh type.
+Material Shaders
+Material shaders are shaders that interact with the material system.
+Shader Compilation
+Debugging the Shader Compile Process
+Use r.ShaderCompiler.PrintStats to print out to the log the stats for the shader compiler.
+Shader Caching and Priming
+
+DOCUMENT 128: Texture Asset Editor in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/texture-asset-editor-in-unreal-engine
+Texture Asset Editor Interface
+Details Panel
+The Details panel displays the properties and settings of the Texture you can edit.
+Texture Information
+Level of Detail Settings
+Compression Settings
+
+DOCUMENT 129: Physics Constraint Reference in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/physics-constraint-reference-in-unreal-engine
+Overview
+The Physics Constraint Reference documents the properties available on Physics Constraints in Unreal Engine.
+Linear Limits
+Advanced (Linear)
+Angular Limits
+Advanced (Angular)
+
+DOCUMENT 130: Chaos Vehicles in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/chaos-vehicles
+Overview
+Chaos Vehicles is Unreal Engine’s lightweight system for performing vehicle physics simulations.
+Vehicle System vs. Modular Vehicle System
+How to Set Up Vehicles in Unreal Engine
+Required Assets
+A Skeletal Mesh
+A Physics Asset
+An Animation Blueprint
+A Vehicle Blueprint
+One or more Wheel Blueprints
+A Float Curve asset that represents the engine’s torque curve
+Step 1: Enabling the Chaos Vehicles Plugin
+Before using Chaos Vehicles, the Chaos Plugin needs to be enabled.
+Click Settings > Plugins to open the Plugins Menu.
+Click the Physics category and enable the ChaosVehiclesPlugin.
+Restart Unreal Editor after enabling the plugin.
+Step 7: Creating a Vehicle Blueprint
+In the Content Browser, right-click and select Blueprint Class.
+Search for and select WheeledVehiclePawn.
+In the Components window, click the Mesh Skeletal Mesh Component.
+Go to the Details panel and select your vehicle’s Skeletal Mesh asset.
+Scroll to the Animation section and select your vehicle’s Animation Blueprint.
+Scroll to the Physics section and enable Simulate Physics.
+Add a Spring Arm component, then add a Camera component.
+Select the Vehicle Movement Component.
+Under Vehicle Setup > Wheel Setups, set the Wheel Class and Bone Name for each wheel.
+Vehicle Features
+Advanced Configuration
+Aerofoil Surfaces: Add any number of aerofoil surfaces that provide downforce or uplift.
+Thrust Forces: Configure any number of thrust forces that can be applied at specific locations.
+Asynchronous Physics: Supports the Asynchronous Physics mode in Unreal Engine 5.
+
+DOCUMENT 131: Using Perforce as Source Control for Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/using-perforce-as-source-control-for-unreal-engine
+Setting up a Perforce Server on your Local Machine
+To avoid potential integration issues with our tools, such as UnrealGameSync, we recommend running a case-insensitive Perforce server.
+P4 Typemap
+Before you start adding files to your depot, you should set up your P4 Typemap so Perforce knows how to treat Unreal file types.
+p4 set P4USER=your.username
+p4 set P4PORT=localhost:1666
+p4 -P <PASSWORD> typemap
+Example typemap:
+TypeMap:
+            binary+w //depot/....exe
+            binary+w //depot/....dll
+            binary+w //depot/....lib
+            binary //depot/....bmp
+            text //depot/....ini
+            text //depot/....cpp
+            text //depot/....h
+            binary+l //depot/....uasset
+            binary+l //depot/....umap
+            binary+l //depot/....upk
+            binary+l //depot/....ubulk
+Setting up a Local Workspace
+To work with files that are under Perforce control, you will need to set up a Workspace.
+Folders and files to add to your depot: - Config/ - Configuration files - Content/ - Assets and content - Source/ - C++ source code (if applicable) - .uproject - Project file - Binaries/ (Optional) - Compiled binaries
+Connecting from Unreal Editor
+Open your project from within your Perforce workspace directory.
+In the Unreal Editor, click the Source Control button in the toolbar.
+Select Connect to Source Control.
+Choose Perforce as the provider.
+Enter your server address and username.
+Select your Workspace from the dropdown.
+Click Accept Settings.
+Unreal Game Sync (UGS)
+Unreal Game Sync (UGS) is a client that interfaces with Perforce, Unreal Build Tool, and your IDE to make it easy for team members to download or compile working builds of your project.
+Virtual Assets
+Unreal Engine supports virtualizing assets using Perforce as the persistent storage backend. Set up a shared Derived Data Cache (DDC) and configure your DefaultEngine.ini.
+
+DOCUMENT 132: Source Control in Unreal Engine (Git)
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/source-control-in-unreal-engine
+Overview
+The Unreal Editor has built-in support for source control packages. Unreal Engine supports the following version control integrations: - Perforce - Git with GitLFS - Subversion - Diversion
+Git Source Control Setup
+When connecting to Git via the editor: 1. Select Git from the source control provider dropdown. 2. Specify the path to your Git executable if it is not auto-detected. 3. The editor can initialize your project with Git if it is not already a repository. 4. Make the initial commit with the .uproject file and the contents of Config/Content/Source folders. 5. Click Accept Settings to enable the Git source control provider.
+Git Configuration for Unreal Projects
+A typical .gitignore for an Unreal Engine project managed with Git should exclude generated files:
+**/Build/*
+**/ArchivedBuilds/*
+**/Binaries/*
+**/Saved/*
+**/Intermediate/*
+**/DerivedDataCache/*
+Important Notes for Git Users
+Git with GitLFS is recommended for Unreal projects due to large binary asset files.
+The Git plugin can pick up a Git executable shipped by some common tools (SmartGit, SourceTree, GitHub Desktop).
+For large teams or projects with extensive binary assets, Perforce remains the primary recommendation.
+
+DOCUMENT 133: Console Development in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/xbox-development-in-unreal-engine
+Xbox Development in Unreal Engine
+Access Requirements
+Access to the Unreal Engine Xbox documentation is available without additional cost or licensing to any Unreal Engine developer who has met all NDA requirements and been granted the necessary permissions.
+How to Gain Access
+If your company has already completed the console request process, ask your administrator to grant you Xbox GDK access from the Unreal Engine > Consoles page on the Epic Developer Portal.
+If your company or you have not already begun the console request process then submit a first time or additional access request.
+Development for PlayStation 5 in Unreal Engine
+Access Requirements
+Access to the Unreal Engine PlayStation 5 documentation is available without additional cost or licensing to any Unreal Engine developer who has met all NDA requirements.
+Technical Notes
+You must use release versions of Unreal Engine and the corresponding SDKs.
+You may need to upgrade your SDK during development.
+Quality levels of rendering settings can be hard-coded on a per-platform basis.
+Strip out incompatible features (such as Steam APIs) early in the porting process.
+General Console Porting Workflow
+Preparation Phase
+Complete platform holder registration and obtain SDK access.
+Submit console access request to Epic Games.
+Sign any required NDAs.
+Order development hardware (dev kits, test kits).
+Porting Phase
+Strip out non-console features.
+Hard-code quality levels per platform.
+Configure rendering settings to meet platform certification requirements.
+Certification and Release
+Follow the platform holder’s certification requirements (TCR/TRC).
+Use the platform-specific validation tools provided in the SDK.
+
+This training corpus contains the full extracted content from Documents 101-135 of the Unreal Engine 5 essential documentation, covering Editor Scripting, Python API, MetaHuman, Live Link, Virtual Production, USD, XR, Quixel, Landscape, Water, Volumetric Clouds, Fog, Mesh Painting, Decals, Light Functions, Reflections, SSR, SSAO, Distance Fields, Planar Reflections, Groom, Runtime Virtual Texturing, HLOD, Replication Graph, Network Profiler, Console Commands, Shaders, Textures, Physics Constraints, Vehicles, Perforce, Git, and Console Development.

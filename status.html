@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SuperNinja Dashboard</title>
+<style>
+  body { font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+         background:#0c1020; color:#e6e8f0; margin:0; padding:24px; }
+  h1 { color:#7fd4ff; margin:0 0 8px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+          gap:16px; margin-top:16px; }
+  .card { background:#141a32; border:1px solid #243155; border-radius:8px;
+          padding:14px 16px; }
+  .card h2 { font-size:13px; text-transform:uppercase; letter-spacing:.08em;
+             color:#9aa6c2; margin:0 0 10px; }
+  .big { font-size:28px; color:#fff; font-weight:600; }
+  .ok  { color:#5be3a1; }
+  .warn{ color:#f5b041; }
+  .err { color:#ff6b6b; }
+  pre { background:#0a0e1c; padding:10px; border-radius:6px; overflow:auto;
+        max-height:240px; color:#cbd5f5; }
+  .kv { display:grid; grid-template-columns: max-content 1fr; column-gap:14px;
+        row-gap:6px; }
+  .kv b { color:#9aa6c2; font-weight:500; }
+  footer { margin-top:24px; color:#637296; font-size:12px; }
+  textarea, button, input { font:inherit; }
+  textarea { width:100%; min-height:64px; background:#0a0e1c; color:#e6e8f0;
+             border:1px solid #243155; border-radius:6px; padding:8px; }
+  button { background:#2a4be0; color:#fff; border:0; padding:8px 14px;
+           border-radius:6px; cursor:pointer; }
+  button:hover { background:#3a5cf0; }
+  .scene { font-family:ui-monospace, "SF Mono", Menlo, monospace; font-size:11px;
+           line-height:1.0; white-space:pre; color:#9be0ff; }
+</style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+  <h1>SuperNinja — Live Dashboard</h1>
+  <div id="meta" class="kv"></div>
+
+  <div class="grid">
+    <div class="card"><h2>Status</h2>
+      <div class="big" id="health">…</div>
+      <div id="components"></div>
+    </div>
+    <div class="card"><h2>Queue / Results</h2>
+      <div class="kv" id="queue"></div>
+    </div>
+    <div class="card"><h2>Latency</h2>
+      <div class="kv" id="latency"></div>
+    </div>
+    <div class="card"><h2>Counters</h2>
+      <div class="kv" id="counters"></div>
+    </div>
+  </div>
+
+  <h2 style="margin-top:24px">Try a natural-language command</h2>
+  <textarea id="nl" placeholder="e.g. build me a forest"></textarea>
+  <div style="margin-top:8px"><button onclick="runNL(false)">Translate</button>
+       <button onclick="runNL(true)" style="margin-left:8px">Translate + Execute</button></div>
+  <pre id="nlout"></pre>
+
+  <h2 style="margin-top:24px">Scene snapshot</h2>
+  <pre class="scene" id="scene"></pre>
+
+  <h2 style="margin-top:24px">Recent history</h2>
+  <pre id="history"></pre>
+
+  <footer>Auto-refresh every 3s · <span id="ts"></span></footer>
+
+<script>
+const BASE = "";   // same origin if served by 8791, else set absolute URL.
+const SERVER = (location.port === "" || location.port === "80" || location.port === "443")
+  ? "http://localhost:8791" : (location.origin);
+
+async function j(path, opts) {
+  const r = await fetch(SERVER + path, opts || {});
+  return await r.json();
+}
+
+function setKV(el, obj) {
+  el.innerHTML = Object.entries(obj).map(([k,v]) =>
+    `<b>${k}</b><span>${typeof v === "object" ? JSON.stringify(v) : v}</span>`
+  ).join("");
+}
+
+async function refresh() {
+  try {
+    const h = await j("/health");
+    const m = await j("/metrics");
+    const v = await j("/version");
+    const hist = await j("/history?limit=20");
+    let scene = "(no snapshot yet)";
+    try {
+      const s = await j("/scene_summary");
+      scene = `actors=${s.actor_count}  lights=${s.light_count}  updated=${s.updated_at || "—"}`;
+    } catch(e) {}
+
+    document.getElementById("meta").innerHTML =
+      `<b>version</b><span>${v.version}</span>
+       <b>phase</b><span>${v.phase}</span>
+       <b>uptime</b><span>${v.uptime_seconds}s</span>
+       <b>python</b><span>${v.python}</span>`;
+
+    const hEl = document.getElementById("health");
+    hEl.textContent = h.status.toUpperCase();
+    hEl.className = "big " + (h.status === "ok" ? "ok" : h.status === "warn" ? "warn" : "err");
+    setKV(document.getElementById("components"), h.components);
+
+    setKV(document.getElementById("queue"), {
+      "queue length":           m.queue_length,
+      "results available":      m.results_available,
+      "screenshots available":  m.screenshots_available,
+      "pending acks":           m.pending_acks,
+    });
+    setKV(document.getElementById("latency"), {
+      "p50 (ms)":   m.latency_ms_p50.toFixed(2),
+      "p95 (ms)":   m.latency_ms_p95.toFixed(2),
+      "max (ms)":   m.latency_ms_max.toFixed(2),
+    });
+    setKV(document.getElementById("counters"), {
+      "enqueued":   m.commands_enqueued,
+      "completed":  m.commands_completed,
+      "failed":     m.commands_failed,
+      "rejected":   m.commands_rejected,
+      "timed_out":  m.commands_timed_out,
+    });
+    document.getElementById("history").textContent =
+      hist.history.slice().reverse().map(x =>
+        `[${x.ts}] ${x.kind.padEnd(8)} ${x.command || ""} ${x.id || ""}`
+      ).join("\n");
+    document.getElementById("scene").textContent = scene;
+    document.getElementById("ts").textContent = new Date().toLocaleTimeString();
+  } catch(e) {
+    document.getElementById("health").textContent = "OFFLINE";
+    document.getElementById("health").className = "big err";
+  }
+}
+
+async function runNL(execute) {
+  const text = document.getElementById("nl").value.trim();
+  if (!text) return;
+  const url = "/translate";
+  const r1 = await j(url, {
+    method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({text})
+  });
+  let out = "Translated:\n" + JSON.stringify(r1, null, 2);
+  if (execute && r1.commands && r1.commands.length) {
+    const r2 = await j("/batch_execute", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({commands: r1.commands.map(c => ({command:c.command, args:c.args}))})
+    });
+    out += "\n\nBatch enqueue:\n" + JSON.stringify(r2, null, 2);
+  }
+  document.getElementById("nlout").textContent = out;
+}
+
+refresh();
+setInterval(refresh, 3000);
+</script>
+</body>
+</html>

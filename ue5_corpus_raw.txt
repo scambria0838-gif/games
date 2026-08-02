@@ -1,0 +1,988 @@
+Unreal Engine 5 - AI Training Corpus
+First 20 Essential Documents
+Unreal Engine 5 - AI Training Corpus
+First 20 Essential Documents: Engine Fundamentals, Editor, Blueprints, and C++
+DOCUMENT 1: Unreal Engine 5.4 Documentation Hub
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-5-4-documentation
+Overview: Complete resources for learning to use Unreal Engine 5. This is the main documentation hub page that organizes all UE5 documentation into categories and provides navigation to all major documentation sections.
+Main Documentation Categories
+What’s New
+Information about new features in each release of Unreal Engine.
+Understanding the Basics
+Essential skills and concepts to help you get started in Unreal Engine. Sub-sections include: - Installing Unreal Engine - Foundational Knowledge - Content Browser - Customizing Unreal Engine - Working with Projects and Templates - Project Settings - Levels - Assets and Content Packs - Actors and Geometry - Components - Running and Simulation - Packaging Projects - Source Control - Unreal Engine for Unity Developers
+Working with Content
+Information on using art created in external applications, importing it into Unreal Engine, and setting it up for use in visualization and interactive applications.
+Building Virtual Worlds
+Information on the tools and techniques for interactive environment and level design.
+Designing Visuals, Rendering, and Graphics
+Rendering subsystem including lighting and shadowing, materials and textures, visual effects, and post processing.
+Creating Visual Effects
+Use Unreal Engine’s Niagara visual effects system to create and preview particle effects in real time.
+Programming and Scripting
+How to use the programming and scripting languages and tools for controlling Unreal Engine programmatically at runtime. Includes: - C++ API Reference - Blueprint API Reference - Python API Documentation
+Making Interactive Experiences
+How to create gameplay mechanics, behaviors, and conditions that make the virtual world responsive to players carrying out actions over time.
+Animating Characters and Objects
+Explore Unreal Engine’s animation tools and editors for working with 2D and 3D characters and objects.
+Creating User Interfaces
+Learn to create user interfaces using Unreal Engine’s UI tools (UMG and Slate).
+Motion Design
+How to create graphics and animations for broadcast using Motion Design.
+Working with Audio
+Explore Unreal Engine’s audio tools.
+Working with Media
+How to play linear video in your projects, and how to integrate Unreal’s rendered frames into virtual production and broadcast scenarios.
+Setting Up Your Production Pipeline
+Tools and procedures for improving development efficiency in Unreal Engine.
+Testing and Optimizing Your Content
+How to make sure your content does what you expect it to, at the quality and frame rates that you need.
+Sharing and Releasing Projects
+Information on publishing projects on platforms supported by Unreal Engine.
+Samples and Tutorials
+Links to various example scenes, sample games, and tutorials.
+DOCUMENT 2: Understanding the Basics of Unreal Engine (Getting Started Guide)
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/understanding-the-basics-of-unreal-engine
+Overview: This section covers the fundamentals of Unreal Engine 5 (UE5) and its tools. If you are new to UE5, you should become familiar with the Unreal Editor interface, Blueprint visual scripting, and the types of content you can use inside an Unreal project.
+Installing Unreal Engine
+Steps for Installing Unreal Engine
+Access the Download Unreal Engine page
+Click the Download Launcher button to download the installer file
+After the download is complete, execute the installer file to run the Setup Wizard
+Once the Setup Wizard is complete, open the Epic Games Launcher
+Sign In to the Epic Games Launcher
+You must be signed in to download Unreal Engine. Options include: - Sign in with email and password - Sign in with a supported third-party social media or gaming platform account - Create a new Epic Games account
+Install and Run Unreal Engine
+In the Epic Games Launcher, click Unreal Engine in the left-hand navigation panel
+Click the Library tab
+Click the Add (+) button next to ENGINE VERSIONS
+Select the version of Unreal Engine to install
+On the engine tile, click Install
+Review terms and licensing options and click Accept
+Choose install location and click Install
+Unreal Engine Installation Options
+Hardware and Software Specifications
+Minimum and recommended hardware specifications and necessary software for developing with Unreal Engine. Additional requirements include Microsoft Visual Studio, mobile platform SDKs for iOS and Android, console platform SDKs, and third-party debugging tools.
+Note: Developing and packaging for consoles requires a source code build of Unreal Engine.
+Foundational Knowledge
+Become familiar with the major components of the Unreal Editor interface, the various tools and editors you can use, and the most common Unreal Engine terms.
+Unreal Engine Terminology
+Covers the most commonly used terms when working with Unreal Engine.
+Coordinate System and Spaces
+Introduction to the coordinate system and different coordinate spaces.
+Tools and Editors
+Overview of the different types of Editors contained within Unreal Engine 5.
+Directory Structure
+Overview of the directories that make up the engine and game projects.
+Content Browser
+Learn how to use the Content Browser to work with assets. It is the primary area in the Unreal Editor for creating, importing, organizing, viewing, and managing content.
+Working with Projects and Templates
+Creating a New Project
+When you launch Unreal Engine from the Epic Games Launcher, you use the Project Browser to select an industry development category and a template project to start from.
+Project Creation Steps
+From the Epic Games Launcher, click Launch to open Unreal Engine
+The Project Browser loads
+Select the Games tab (or other category)
+Choose a template
+Set a Project Name
+Set a Project Location
+Click Create
+Available Games Templates
+Actors and Geometry
+Actors
+Actors are objects that can be placed in levels. Everything in a level is an Actor.
+Components
+Components are reusable pieces of functionality that can be added to Actors.
+Geometry (Brushes)
+Brushes are basic 3D geometry shapes used for blocking out level designs.
+DOCUMENT 3: Samples and Tutorials for Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/samples-and-tutorials-for-unreal-engine
+Overview: To help you understand the various ways you can use Unreal Engine and the assets you can create with it, Epic Games has assembled a collection of learning resources for you to download, play with, and deconstruct.
+Unreal Engine Templates
+When you create a new Unreal Engine project, you have the option to use one of the existing UE templates as a base for your game or application. Unreal Engine templates contain character controllers, Blueprints, and other features that work without the need for additional configuration.
+Learning Resource Projects
+Epic Games offers sample projects to highlight and teach various engine features and workflows. You can acquire the projects from Fab.com, the Fab tab in the Epic Games Launcher, or the Fab plugin for Unreal Engine.
+Available Sample Game Projects
+Engine Feature Examples
+Full scenes demonstrating particular features or approaches to specific challenges.
+Content Examples
+Sample project that demonstrates specific concepts and techniques to use in Unreal Engine. Topics covered include: - Basic concepts and techniques - Advanced rendering features - Material systems - Lighting techniques - Blueprint scripting examples - Physics and collision - Audio systems - UI/UMG examples - Animation systems - Niagara visual effects
+Blueprints Quick Start Guide
+Required Project Setup
+From the New Project tab, create a new project from the Games category
+Select settings: Side Scroller, Blueprint, With Starter Content
+Choose scalability and quality settings
+Name your project and click Create Project
+Constructing a Launchpad (Example Tutorial)
+Move in viewport to top platforms
+From Place Actors panel, drag an Empty Actor into the level
+Rename it to LaunchPad
+Click Add Component and select Cube under Common
+Make Cube the new root by dragging it to DefaultSceneRoot
+Set Cube scale to (X: 1.0, Y: 1.0, Z: 0.1)
+Add Box Collision Component
+Set Box Collision scale to (X: 1.25, Y: 1.25, Z: 9.75) and location to (X: 0, Y: 0, Z: 200)
+Convert Actor to Blueprint Class
+In Details panel, click Blueprint/Add Script button
+Change path to Game/SideScrollerBP/Blueprints
+Click Create Blueprint
+Blueprint Graph Setup
+Double-click Blueprint to open Blueprint Editor
+Click on Event Graph tab
+Select Box component, right-click in graph
+Add On Component Begin Overlap event
+Add Get Player Pawn node
+Add Equal (Object) node to compare Other Actor with Player Pawn
+Add Branch node for flow control
+Add Cast to Character node
+Add Launch Character node with Z value of 3000
+Compile and Save the Blueprint
+DOCUMENT 4: Unreal Engine Architecture Overview
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/gameplay-framework-in-unreal-engine
+Overview: This document covers the core architectural concepts of Unreal Engine including the gameplay framework, class hierarchy, Slate UI framework, and engine structure.
+Gameplay Framework
+The gameplay framework provides the foundation for building games and interactive experiences in Unreal Engine. It consists of a set of base classes that work together to create the game structure.
+Game Instance
+The game instance is instantiated on engine launch and remains active until the engine shuts down
+It is a manager class with no physical presence in the game
+Exists to track data and run code
+Not replicated - exists independently on the server and all connected clients in network multiplayer
+Anything that should persist between level loads should live in the game instance
+Good place to manage save game systems
+Acts as a manager for game instance subsystems
+Game Mode
+Instantiated immediately after level is loaded and world is created
+Server-based manager class inherited from Actor
+Not persistent across levels (created upon level load)
+First actor to instantiate upon level load
+Can be set on a map-by-map basis
+Manages overall rules and structure of a gameplay session
+Instantiates the remaining framework actors upon creation
+Game State
+Non-physical actor tracking the state of the game
+Replicates state information between authoritative server and all connected clients
+Contains data and logic relevant to all players:
+Team scores
+Objectives
+List of all players and their associated player states
+A single game state is created by the game mode
+Player State
+Non-physical actor tracking individual player state
+Replicates between server and clients
+Contains data and logic relevant to individual players:
+Health
+Ammo count
+Inventory
+Created for each player when they join a game or enter a level
+Controller Classes
+Controllers handle the logic that dictates a player’s actions in the game world. There are two main types:
+Player Controller
+Processes input from humans
+Displays heads-up information (HUD)
+Possesses physical representations in the game (Pawns)
+AI Controller
+Possesses physical representations in the game
+Dictates actions using AI systems: Behavior Trees, State Trees, Navigation systems
+Important: Controller classes are non-physical - they do not have a physical manifestation in the game world.
+Pawn
+Physical manifestation of the player in the game world
+Actor-derived class
+Contains actor components: Collision component, Static mesh component, Movement component
+Controllers possess pawns and direct them to perform actions
+Character
+Pawn-derived subclass with more feature-rich components:
+Character Movement Component - advanced movement logic
+Skeletal Mesh Component - animated character mesh
+Capsule Component - collision representation
+Framework Class Relationships
+GameInstance (persists entire session)
+  |
+  +-- GameMode (per level)
+        |
+        +-- GameState (one per game)
+        |     +-- PlayerState(s) (one per player)
+        |
+        +-- PlayerController(s) + Pawn/Character(s)
+        |
+        +-- AIController(s) + Pawn/Character(s)
+Slate UI Architecture
+Slate is Unreal Engine’s cross-platform UI framework used for building editor tools and in-game interfaces.
+Core Concepts
+Polling Data Flow and Delegates
+UIs visualize and manipulate Models
+Slate uses delegates as a flexible conduit for widgets to read/write Model data
+Widgets read Model data when displaying it
+Widgets invoke write delegates to modify data when users perform actions
+Layout System
+Slate layout is accomplished in two passes:
+Pass 1: Cache Desired Size
+Goal: Figure out how much space each widget wants
+Leaf widgets compute size based on intrinsic properties
+Compound widgets/panels determine size as a function of children
+Bottom-up pass - children compute before parents
+Pass 2: ArrangeChildren
+Arranges children within the parent’s allotted area
+Key SWidget Functions
+ComputeDesiredSize() - responsible for desired size
+ArrangeChildren() - responsible for arrangement of children
+OnPaint() - responsible for appearance
+Event handlers (OnSomething) - invoked by Slate at various times
+Directory Structure
+Engine Directory Structure
+[UERoot]/
+  Engine/
+    Binaries/       - Compiled binaries
+    Build/          - Build scripts and configuration
+    Config/         - Engine configuration files
+    Content/        - Engine content assets
+    Extras/         - Additional tools and utilities
+    Intermediate/   - Temporary build files
+    Plugins/        - Engine plugins
+    Saved/          - Logs, crashes, and user settings
+    Source/         - Engine source code
+      Runtime/      - Runtime engine modules
+      Editor/       - Editor-only modules
+      Developer/    - Development tools
+  Templates/        - Project templates
+Game Project Directory Structure
+[ProjectRoot]/
+  Binaries/         - Compiled game binaries
+  Config/           - Project configuration files
+    DefaultEngine.ini
+    DefaultGame.ini
+    DefaultInput.ini
+    DefaultEditor.ini
+    [Platform]/     - Platform-specific configs
+  Content/          - All project assets
+    Collections/    - Asset collections
+    Developers/     - Developer-specific content
+    Maps/           - Level files
+  Intermediate/     - Temporary build files
+  Saved/            - Logs, auto-saves, screenshots
+    AutoSave/       - Auto-saved levels
+    Config/         - Local user config overrides
+    Logs/           - Log files
+    Screenshots/    - Captured screenshots
+  Source/           - C++ source code (if applicable)
+    [ProjectName]/  - Game module source
+      [ProjectName].Build.cs
+      [ProjectName].Target.cs
+      Private/      - Private implementation
+      Public/       - Public headers
+  [ProjectName].uproject
+DOCUMENT 5: Unreal Editor Interface
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/unreal-editor-interface
+Overview: This page provides an overview of the most common elements in the Unreal Engine 5 interface and what they do. Several elements (such as panels and the menu bar) are consistent across different parts of the engine.
+Default Unreal Editor Interface Layout
+When you first open Unreal Engine 5, the Level Editor opens with the following window layout:
+Menu Bar
+Every editor in Unreal Engine has a Menu Bar located at the top-right (Windows) or top of screen (macOS). Menus that appear in all editor windows: File, Window, Help. Other menus are editor-specific.
+Main Toolbar
+The Main Toolbar contains shortcuts to the most commonly used tools and commands. It contains the following areas:
+1. Save Button
+Click to save the currently open level.
+2. Mode Selection
+Quick-switch between different editing modes: - Select/Edit Mode - Default selection and transformation - Landscape Mode - Terrain editing - Foliage Mode - Paint vegetation - Mesh Paint Mode - Paint on meshes - Fracture Mode - Geometry destruction - Brush Editing - CSG brush editing
+3. Content Shortcuts
+4. Play Mode Controls
+Contains shortcut buttons for running the game in the editor: - Play - Launch game in viewport - Skip - Skip to next sequence - Stop - Stop play session - Eject - Detach camera from player
+5. Platform Menu
+Options for configuring, preparing, and deploying projects to different platforms (Desktop, Mobile, Console).
+6. Settings
+Contains various settings for: Unreal Editor preferences, Level Editor viewport settings, Game behavior settings.
+Level Viewport
+The Level Viewport displays the contents of the currently open level.
+Viewport Display Modes
+Perspective: 3D view where you can view content from different angles
+Orthographic: 2D view looking down one of the principal axes (X, Y, or Z): Top view, Front view, Side view
+Viewport Controls
+Standard Perspective Controls
+Orthographic Controls (Top, Front, Side)
+Focusing
+Content Drawer / Content Browser
+The Content Browser is a file browser window showing all assets, Blueprints, and files in the project.
+Content Drawer (Quick Access)
+The Content Drawer button in the bottom-left opens a special instance of the Content Browser that automatically minimizes when it loses focus. To keep it open, click Dock in Layout button.
+Content Browser Capabilities
+Browse content
+Drag assets into levels
+Migrate assets between projects
+Create, organize, and manage folders
+Bottom Toolbar
+The Bottom Toolbar contains shortcuts and status displays:
+Outliner (World Outliner)
+The Outliner panel displays a hierarchical view of everything in the level.
+Outliner Features
+Default location: top-right of editor window
+Up to four Outliner panels can be open simultaneously
+Each Outliner can have different layout and filtering settings
+Click the Eye icon to quickly hide/show Actors
+Right-click an Actor for context menu with actor-specific actions
+Create, move, and delete content folders
+Outliner Capabilities
+Search and filter actors
+Organize actors into folders
+Attach/detach parent-child relationships
+Hide/show actors in the viewport
+Lock actors to prevent accidental selection
+Details Panel
+When an Actor is selected in the viewport, the Details Panel displays settings and properties for the selected Actor.
+Details Panel Content
+The panel shows different settings depending on what is selected. Common properties include: - Transform - Position, Rotation, Scale in the level - Static Mesh - Mesh asset reference - Materials - Material assignments - Physics - Collision and physics settings - Rendering - Visibility, shadows, LOD settings - Lighting - Lightmap resolution, mobility - Tags - Actor identification tags
+Details Panel Features
+Property search/filter
+Property copying/pasting
+Multiple actor selection support
+Category collapse/expand
+Blueprint-editable properties highlighted
+Related Tools and Editors
+Unreal Engine 5 includes various specialized editors: - Blueprint Editor - Material Editor - Niagara Editor - Skeletal Mesh Editor - Animation Editor - Physics Asset Editor - Static Mesh Editor - Sound Cue Editor - Level Sequence Editor - Behavior Tree Editor - Environment Query Editor - UMG UI Editor
+DOCUMENT 6: Project Settings in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/project-settings-in-unreal-engine
+Overview: The Project Settings window provides access to configuration options that affect your Unreal Engine project, how the engine behaves when running your project, and how the project should run on specific platforms. Some plugins also append their configuration options to the Project Settings window.
+Accessing Project Settings
+Access via: Edit > Project Settings
+Settings are stored in INI files: - DefaultEngine.ini - DefaultGame.ini - DefaultInput.ini - Platform-specific INIs in Config/[Platform]/
+Project Settings Categories
+Project
+General project information: Project name, company name, homepage, support contact, copyright notice, licensing terms, project ID, description.
+Game
+Default Classes: Default GameMode, Pawn, PlayerController, HUD, GameState, PlayerState
+Default Maps: Editor startup map, Game default map
+Input: Action and axis mappings, input bindings
+Engine
+Collision: Collision presets, object types, collision channels
+Rendering: Default post-process settings, anti-aliasing, reflection environment, lighting
+Navigation: Navigation mesh settings, agent properties
+Network: Replication settings, network interpolation
+Editor
+Undo: Undo buffer size
+Blueprints: Blueprint debugging, compilation settings
+Source Control: Editor integration with source control systems
+Platforms
+Platform-specific settings for Windows, macOS, Linux, iOS, Android, consoles
+Icon and splash screen configurations
+SDK paths and build settings
+Plugins
+Plugin-specific configuration options. Many plugins add their own sections here when enabled.
+DOCUMENT 7: Content Browser in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/content-browser-in-unreal-engine
+Overview: The Content Browser is the primary area of the Unreal Editor for creating, importing, organizing, viewing, and managing content Assets within your Unreal project.
+Key Capabilities
+With the Content Browser, you can: - Browse to and interact with all of the Assets in your project. - Find Assets using a text filter, which you can optionally combine with more advanced filtering. - Organize Assets into private, local, or shared collections. - Identify Assets that might contain problems. - Migrate Assets between content folders or to a different project.
+Accessing the Content Browser
+There are three ways to open the Content Browser: 1. From the Window menu in the top menu bar. 2. From the Create menu on the Main Toolbar. 3. By clicking the Content Drawer button on the bottom toolbar of the editor.
+You can open up to four instances of the Content Browser at the same time. This is useful for: - Having different Asset types filtered in different Content Browsers - Moving Assets between different folders in your project
+Content Drawer
+The Content Drawer is a special instance of the Content Browser with slightly different behavior. - Opens with Ctrl + Space Bar (Windows) or Cmd + Space Bar (macOS) - Automatically minimizes when it loses focus - Click Dock in Layout to keep it open as a persistent Content Browser
+Content Browser Topics
+Content Browser Interface
+Describes the Content Browser interface and functionality.
+Sources Panel Reference
+Reference for working with the Sources panel inside the Content Browser.
+Content Browser Settings Reference
+Adjust thumbnail display, Asset filtering, and other areas of the Content Browser.
+Filters and Collections
+Use filters and Collections to sort and group Assets within the Content Browser.
+Advanced Search Syntax
+Reference for advanced search operators you can use in the Content Browser.
+Developers Folder
+A folder available to all users on a project for experimental work.
+DOCUMENT 8: Using Source Control in the Unreal Editor
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/using-source-control-in-the-unreal-editor
+Overview: The Unreal Editor has built-in support for Source Control (also known as version control), which is a way of storing snapshots (called a revision history) of your project and all its contents so that you can see all of the changes you have made to a project.
+Why Use Source Control?
+Source control helps you protect your work and prevent conflict by providing a way to: - Share Assets and code with other members of a team. - Prevent work from being lost. - Resolve conflicts when two or more people change the same content.
+Supported Source Control Providers
+Source Control Status Icons
+Common Source Control Operations
+Checking Out a File
+Right-click the asset in the Content Browser.
+Select Source Control > Check Out.
+Checking In (Committing) Changes
+Right-click the asset in the Content Browser.
+Select Source Control > Check In.
+Enter a description of the changes you made in the Changelist Description field.
+Click the Check In button.
+Syncing/Updating to Latest
+Click the Source Control button in the bottom-right corner of the editor.
+Select Sync to Latest.
+Reverting Changes
+Right-click the asset in the Content Browser.
+Select Source Control > Revert.
+Source Control Settings
+Configure in Edit > Editor Preferences > Loading & Saving > Source Control: - Prompt for Check Out on Change: Prompt to check out an asset when you attempt to modify it. - Add New Files When Modified: New assets are automatically added to source control when you save them. - Use Global Settings: Use global source control settings rather than project-specific settings. - Tool for Diffing: The diff tool to use when comparing different versions of assets.
+One File Per Actor (OFPA)
+Unreal Engine 5 introduces One File Per Actor (OFPA), which stores each actor in a level as a separate file. This dramatically reduces the risk of merge conflicts when multiple team members are working on the same level.
+Best Practices for Source Control
+Check in early, check in often. Frequent check-ins reduce the risk of conflicts and make it easier to track changes.
+Write meaningful check-in descriptions.
+Sync before you start working. Always get the latest version of the project before you begin making changes.
+Avoid checking in broken content. Make sure your changes compile and work correctly before submitting them.
+Use exclusive check-out for binary files. Binary files cannot be merged, so use exclusive check-out to prevent conflicts.
+Organize your project with a clear folder structure.
+Use ignore rules. Configure your source control system to ignore unnecessary files.
+DOCUMENT 9: Level Editor Details Panel
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/level-editor-details-panel-in-unreal-engine
+Overview: The Details panel contains information, utilities, and functions specific to the current selection in the viewport. It contains transform edit boxes for moving, rotating, and scaling Actors, displays all of the editable properties for the selected Actors, and provides quick access to additional editing functionality.
+Actor Names
+You can set friendly names for Actors directly in the editor. These names can be used to access related Actors or find them using the search functionality in the World Outliner panel. To edit the Actor Name, simply type the name into the text box at the top of the Details panel.
+Search Filter
+The properties displayed within the Details panel can be filtered using the Search Details box. As you type, the properties are automatically filtered to display only those properties matching the text. To clear the filter, click the X button on the right of the Search box.
+Favorites
+If there are properties within an Actor that you frequently change or want quick access to, you can use the Favorites property to flag them so they appear at the top of the Details panel.
+Enabling Favorites
+In the Edit menu, select Editor Preferences.
+Under Experimental, check the Enable Details Panel Favorites option.
+Marking a Property as a Favorite
+With the option enabled, click the star icon next to a property in any Details panel.
+The property (along with any other marked favorites) is listed under the Favorites section of the panel.
+Default Values
+When a property is modified to a value other than its default value, an indicator is displayed. To reset all properties to their default values, click the indicator and choose to reset the value from the menu.
+Edit Conditions
+Properties can be either enabled or disabled. A property can only be edited when it is enabled. By default, all properties are enabled unless they have an edit condition. Properties with an edit condition rely on the value of another variable to determine if they are enabled and can be edited.
+In some cases, edit conditions are used to determine whether the property will override some other value or if it has any effect at all. For example, you may have a group of properties that pertain to indirect lighting and a bool property that globally toggles whether indirect lighting is enabled or disabled. Each property in the group could be conditional on the global toggle so they are only enabled when indirect lighting is being used.
+A property with a simple edit condition will be displayed with a checkbox in the left margin. When the checkbox is toggled on, the property is enabled. When not checked, the property is disabled and grayed out.
+EditConst Properties
+Properties declared as editconst, which cannot be modified in the editor, display their values and are highlighted to indicate they cannot be edited.
+Categories
+Properties in the Details panel are displayed in categories. Categories such as Rendering, Lighting, and Collision are determined by how the property is declared in code, and are used as a means of organizing related properties into groups. Other categories, such as Transform, Static Mesh, Materials, Actor, Code View, and Layers are custom widgets designed to expose certain properties or functionality in a manner that makes them easier to find, modify and use.
+DOCUMENT 10: Blueprints Visual Scripting in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/blueprints-visual-scripting-in-unreal-engine
+Overview: The Blueprint Visual Scripting system in Unreal Engine is a complete gameplay scripting system based on the concept of using a node-based interface to create gameplay elements from within Unreal Editor. As with many common scripting languages, it is used to define object-oriented (OO) classes or objects in the engine.
+System Overview
+This system is extremely flexible and powerful as it provides the ability for designers to use virtually the full range of concepts and tools generally only available to programmers. In addition, Blueprint-specific markup available in Unreal Engine’s C++ implementation enables programmers to create baseline systems that can be extended by designers.
+Getting Started
+Blueprints Quick Start Guide
+Get up and running by creating your first Blueprint.
+Blueprints Visual Scripting Overview
+The Blueprint Overview page breaks down the anatomy of a Blueprint and the different types of Blueprints available.
+General Scripting
+Basic Scripting with Blueprints
+Get a general overview of the variables and execution flow of the Blueprints visual scripting system.
+Anatomy of a Blueprint
+The User Guide is the go-to source to learn the different parts of Blueprints and nodes that are available to use within Blueprint graphs.
+Specialized Blueprint Node Groups
+Learn the different parts of Blueprints and nodes that are available to use within Blueprint graphs.
+Building Blueprints
+Blueprint Communication Usage
+Overview of when to use different methods of Blueprint Communications.
+Event Dispatchers
+Allows a Blueprint Class to report on its state to the Level Blueprint.
+Blueprint Interface
+Blueprints that declare functions to define an interface between Blueprints.
+Topics
+Blueprints Technical Guide
+Technical guide for programmers working with Blueprints.
+Blueprint Best Practices
+Tips and tricks to help you make decisions about when to use Blueprints and how best to set them up.
+Blueprint Namespaces
+An overview of Blueprint Namespaces.
+Introduction to Blueprints
+Introduction to visual scripting with Blueprints.
+Blueprint Debugger
+Pause Blueprint execution using Breakpoints to inspect graphs and the values of their variables.
+DOCUMENT 11: Blueprint Best Practices in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/blueprint-best-practices-in-unreal-engine
+Overview: This page provides tips, guidelines, and best practices for setting up your Blueprints correctly. Following these recommendations will ensure your Blueprints are efficient, organized, and performant.
+Structuring Blueprints
+Keep Graphs Clean and Organized
+Use the following strategies to keep your graphs organized: - Use comments and comment boxes to group related nodes together and explain what a section of code does. - Align nodes neatly using the alignment tools in the Blueprint editor. - Use reroute nodes to straighten wires and reduce visual clutter. - Break up large graphs into smaller, manageable functions or macros. - Use consistent naming conventions for variables, functions, and events.
+Use Functions for Reusability
+If you find yourself copying and pasting the same group of nodes in multiple places, consider creating a function. Functions are reusable blocks of code that you can call from anywhere within the same Blueprint.
+Use Macros for Complex Logic
+Macros are similar to functions but can contain multiple output execution pins. They are useful when you need to perform a complex sequence of operations that has different outcomes.
+Break Up Large Blueprints
+If a Blueprint becomes too large or complex, consider breaking it up into smaller, more focused Blueprints. You can use Blueprint Communication methods to allow these smaller Blueprints to interact with each other.
+Blueprint Communication
+Choose the Right Communication Method
+Avoid Excessive Casting
+Casting is a common way to communicate between Blueprints, but excessive casting can create tight coupling and make your code harder to maintain. If you find yourself casting to the same Blueprint type in many places, consider using a Blueprint Interface or Event Dispatcher instead.
+Use Blueprint Interfaces for Loose Coupling
+Blueprint Interfaces are a great way to create loose coupling between Blueprints. They allow you to define a set of functions that any Blueprint can implement, without the calling Blueprint needing to know the specific type of the target Blueprint.
+Use Event Dispatchers for One-to-Many Communication
+Event Dispatchers are ideal when one Blueprint needs to notify multiple other Blueprints about an event. For example, a health pickup might use an Event Dispatcher to notify the player, the UI, and a score manager all at once.
+Performance Best Practices
+Avoid Tick When Possible
+The Event Tick node fires every frame, which can be very expensive if you have complex logic running on tick. Instead of using tick, consider: - Using timers to run logic at regular intervals. - Using events to trigger logic only when something happens. - Using timelines for time-based animations and effects. - Using notifications in Animation Blueprints to trigger logic at specific points in an animation.
+If you must use tick, make sure to: - Keep the logic as simple as possible. - Use gate or branch nodes to disable tick when it is not needed. - Consider using timers instead for logic that does not need to run every frame.
+Use Native (C++) for Performance-Critical Code
+While Blueprints are powerful, they are generally slower than C++ code. For performance-critical systems (such as AI, physics, or complex calculations), consider implementing the core logic in C++ and exposing it to Blueprints using BlueprintCallable functions.
+Be Careful with Dynamic Material Instances
+Creating dynamic material instances at runtime can be expensive. If possible, create them in the construction script or at Begin Play and store them in variables for reuse.
+Use Construction Script Wisely
+The Construction Script runs every time an Actor is moved, modified, or placed in the editor. Complex logic in the Construction Script can slow down the editor. For runtime-only logic, use BeginPlay or other events instead.
+Use Timelines for Time-Based Operations
+For operations that need to happen over time (like lerping a value, animating a door, or fading a light), use Timelines instead of tick. Timelines are more efficient and easier to control.
+Use Built-In Nodes
+Unreal Engine provides many built-in Blueprint nodes that are highly optimized. Before implementing complex logic yourself, check if there is already a node that does what you need. For example, use Select nodes instead of long chains of branches when possible.
+Collaboration Best Practices
+Use Source Control
+Always use source control when working with Blueprints, especially in a team. Blueprints are stored as binary files, which means two people cannot edit the same Blueprint simultaneously without causing merge conflicts.
+Document Your Blueprints
+Use comments, comment boxes, and descriptive names to document your Blueprints.
+Follow Naming Conventions
+Use clear, descriptive names for variables, functions, and events: - Variables: Use nouns (e.g., PlayerHealth, MovementSpeed). - Functions: Use verbs (e.g., TakeDamage, OpenDoor). - Booleans: Use prefixes like Is, Has, or Can (e.g., IsAlive, HasKey). - Events: Use descriptive phrases (e.g., OnHealthChanged, OnDoorOpened).
+Debugging Tips
+Use Print String for Quick Debugging
+The Print String node is a simple but effective way to debug Blueprints. Use it to output variable values and messages to the screen during gameplay. Remember to remove or disable print strings before shipping your project.
+Use Breakpoints
+You can set breakpoints on any node in a Blueprint by pressing F9 or right-clicking the node and selecting Add Breakpoint. When the game reaches that node, it will pause.
+Use the Blueprint Debugger
+The Blueprint Debugger (Window > Blueprint Debugger) provides a detailed view of the execution flow and variable values in your Blueprints.
+Watch Variables
+In the Blueprint editor, you can watch variables by clicking the eye icon next to them in the My Blueprint panel. Watched variables are displayed in the Watch panel during debugging.
+General Best Practices
+Use Variables Instead of Hardcoded Values
+Instead of hardcoding values directly into nodes, create variables for them. This makes your Blueprints more flexible and easier to tweak.
+Use Enums for States
+When an Actor can be in one of several states, use an Enumeration (Enum) instead of multiple boolean variables. Enums are cleaner, more readable, and less error-prone.
+Keep Variable Scope Minimal
+Only expose variables to the editor or other Blueprints when necessary. Use the private access modifier for variables that should only be used within the same Blueprint.
+Use Local Variables
+Inside functions, use local variables instead of member variables when the value does not need to persist after the function completes.
+Avoid Circular Dependencies
+A circular dependency occurs when Blueprint A references Blueprint B, and Blueprint B also references Blueprint A. To avoid this, use Blueprint Interfaces or Event Dispatchers instead of direct references.
+Use Blueprint Nativization for Performance
+Blueprint Nativization is a feature that converts Blueprints into C++ code during packaging, which can improve runtime performance.
+Prefer Composition Over Inheritance
+Instead of creating deep inheritance hierarchies, prefer composition (using components) to build complex behaviors. For example, instead of creating a “Vehicle” base class and inheriting from it, add components like “Movement Component”, “Health Component”, and “Weapon Component” to your Blueprint.
+DOCUMENT 12: Blueprint Communications in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/blueprint-communications-in-unreal-engine
+Overview: When working with Blueprints, in order to pass or share information between your Blueprints, you will need to use a form of Blueprint Communication. Based on your needs you can use several different types of communication.
+Communication Methods Summary
+Direct Blueprint Communication - One-to-one communication between Actors
+Blueprint Casting - Accessing specialized versions of Blueprints
+Event Dispatchers - Broadcasting events to listening Blueprints
+Blueprint Interfaces - Common methods for interacting with multiple object types
+Direct Blueprint Communications
+Direct Actor communication is the most common method of sharing information between Actors in your Level. This method requires a reference to the target Actor so you can access its information from your working Actor. This communication type uses a one-to-one relationship between your working Actor and your target Actor.
+When to Use Direct Blueprint Communication
+You have two Actors in your level that you want to communicate with each other.
+Interacting with a switch in your level opens a specific door or turns on a specific light.
+How to Set Up Direct Blueprint Communication
+In the working Blueprint, under My Blueprint, click the + button on the Variables category.
+In the Details panel, under Variable Type, select the type of Blueprint you wish to access. Hover over the Blueprint type and select Reference from the list.
+Configure: Variable Name, Variable Type, Editable (check to expose in Level Editor), Tool Tip.
+With the working Blueprint selected in the level, in the Level Editor under Details, find the exposed variable.
+Click the None drop-down box to assign a Target Blueprint, or use the eyedropper icon.
+In the working Blueprint, while holding Ctrl, drag the variable into the graph to create a Getter node.
+Drag off the output pin to access Events, Variables, Functions, etc. from the Target Blueprint.
+Blueprint Casting
+When using a Cast node, you are asking the object: “Are you a special version of that object?” If so, let me access you; if not, disregard my request.
+How Casting Works
+In the target Character Blueprint, create variables that need to be accessed.
+Inside the calling Blueprint, add overlap events for the trigger component.
+Drag off the Other Actor pin and search for Cast To [YourCharacterBlueprint].
+Select the Cast node to check/assign the Actor and access it.
+Drag off the As [YourCharacter] pin to access Events, Variables, Functions.
+Common Cast Types
+Event Dispatchers
+Event Dispatchers are best suited for telling other “listening” Blueprints that an event has happened. When that event occurs, those listening Blueprints can react and do whatever they want independently of each other.
+How Event Dispatchers Work
+Example: A Boss in your game calls an “OnDied” Event Dispatcher when killed. You could Bind the “OnDied” event inside any number of other Blueprints: - Your Character (performs a celebration) - A door (opens) - A HUD (flashes UI message)
+All execute when getting the “OnDied” notification.
+When to Use Event Dispatchers
+You want to communicate from your Character Blueprint to your Level Blueprint
+You want Events fired when a spawned Actor has something done to it
+One-to-many communication scenarios
+How to Set Up Event Dispatchers
+Inside the sender Blueprint, click the Event Dispatcher icon and name it.
+Right-click in the graph and add the triggering event, then add the Call [DispatcherName] Event Dispatcher.
+Compile and Save.
+In the receiving Blueprint, add an Event Begin Play node and get a reference to the sender.
+Off the sender reference, add the Assign [DispatcherName] Event Dispatcher (a new Bound Event will be created).
+Off the Bound Event, implement the desired behavior.
+Blueprint Interfaces
+Blueprint Interfaces allow for a common method of interacting with multiple types of objects that all share some specific functionality.
+How Blueprint Interfaces Work
+Think of Blueprint Interfaces as a contract: “If you implement this interface, you promise to implement these specific functions and respond to them when called.” Multiple Blueprints can implement an Interface, but only those that care will respond. Those that don’t simply ignore the call.
+When to Use Blueprint Interfaces
+You have similar functionality in several Blueprints but execute differently when called
+Player has a flamethrower with ElementalDamage event: Tree burns, Snowman melts
+Player has a “use” button that opens doors, turns off lights, picks up items
+How to Set Up Blueprint Interfaces
+Create the Interface: Right-click in Content Browser, create Blueprint Interface, name it, add functions.
+Set up the Trigger Blueprint: Add overlap events, call Interface Message function.
+Implement the Interface on target Blueprints: Open each target Blueprint, click Blueprint Props, under Interfaces, click Add, select your Interface, implement the function.
+Assign targets in the level: Select the trigger, in Details panel, add target Actors.
+Passing Variables through Blueprint Interfaces
+Open the Interface, add a function (e.g., GetHealth)
+In the Details panel, add Outputs (e.g., Bool playerIsDead, Float playerHealth)
+Compile, Save
+In the implementing Blueprint, implement the function to return the desired values
+In calling Blueprints, use the Interface Message to get the returned values
+Blueprint Communication Usage Summary
+Direct Blueprint Communication
+Best for: One-to-one communication between placed Actors
+Requires: Reference variable to target Actor, set as Editable
+Relationship: One-to-one
+Event Dispatchers
+Best for: Broadcasting events to multiple listening Blueprints
+Requires: Event Dispatcher in sender, Bind Event in receivers
+Relationship: One-to-many
+Blueprint Interfaces
+Best for: Common functionality across different Blueprint types
+Requires: Interface asset, implementation on each Blueprint
+Relationship: Many-to-many
+Blueprint Casting
+Best for: Accessing specialized versions of Blueprints
+Requires: Cast node with proper target type
+Relationship: One-to-one (with type checking)
+DOCUMENT 13: Blueprint Debugger in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/blueprint-debugger-in-unreal-engine
+Overview: Use the Blueprint Debugger to pause the execution of your Project during Play-In-Editor (PIE) or Simulate-In-Editor (SIE) mode. Once paused, you can step through any Blueprint or Level Blueprint graph through the use of Breakpoints.
+Debugging Controls
+The Blueprint Debugger controls become enabled in the Toolbar when the Project is running.
+Debugging Control Buttons
+Breakpoints
+Breakpoints are markers that can be placed on Blueprint graph nodes. When a node with an active Breakpoint is about to execute during PIE or SIE mode: - The simulation pauses - You are navigated to the node in the Blueprint Editor’s graph view - You can observe variable values and step through execution flow
+Managing Breakpoints
+To place a Breakpoint: - Right-click a node and select Add Breakpoint - A solid red octagon appears in the upper-left corner of the node
+To remove a Breakpoint: - Right-click the node and select Remove Breakpoint - Or right-click the Breakpoint’s entry in the debugger window and select Remove
+Breakpoint States: - Active (Red octagon): Breakpoint is enabled and will trigger - Disabled: Breakpoint won’t trigger but remains in list - Invalid (Yellow with exclamation): Breakpoint is in an invalid location. Try compiling the Blueprint to resolve.
+Breakpoint Persistence
+Breakpoints can be created, disabled, enabled, or deleted at any time, including during debugging sessions
+Breakpoints are saved in the project’s .ini files
+They persist between editor sessions but are not replicated for other developers on the project
+Watches
+Watches track Blueprint node pin values so you can view them during debugging sessions.
+A watched pin retains the value assigned during its node’s most recent execution
+To start watching a pin: Right-click the pin name and select Watch this value
+To stop watching: Right-click and select Stop watching this value
+Pin Value Inspection
+When stopped at a Breakpoint: - Hover over a pin to see an interactive tooltip with immediate debug information - Pins from nodes that haven’t executed yet show a message indicating no debug data is available
+Important: Pin values are only updated when the node’s underlying code executes at least once.
+Blueprint Debugger Window
+The Blueprint Debugger window displays: - Breakpoints list - Watches - Execution Trace stack - Execution control buttons (Stop, Resume, Step)
+You can use tabs to switch between: - Full execution call stack - Specific Blueprint instance information (Breakpoints, Watches, Call Stack)
+Call Stack
+The Call Stack displays the execution flow between Blueprint visual script functions and native (C++) code functions. The currently executing Blueprint visual script function is listed at the top of the stack.
+Blueprint macros do NOT appear in the Call Stack. Instead, they appear as part of the function that called them.
+Each entry contains the name of the function that called the function listed below it
+In recursive (self-calling) functions, the same function name may appear multiple times
+Execution Trace
+The Execution Trace stack displays a list of executed nodes, with the most recent at the top. This list updates as you step through the graph during debugging.
+DOCUMENT 14: Blueprint Editor Cheat Sheet in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/blueprint-editor-cheat-sheet-in-unreal-engine
+Overview: The Blueprint Editor has many productivity-boosting shortcuts built-in. This reference covers the most commonly used actions and their keyboard shortcuts.
+Graph Actions
+Selection
+Navigation
+Generic Commands
+Variable Actions
+Node Actions
+Pin Actions
+Creation Shortcuts
+Quickly create common nodes by pressing a key and clicking:
+DOCUMENT 15: Construction Script in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/construction-script-in-unreal-engine
+Overview: The Construction Script runs following the Components list when an instance of a Blueprint Class is created. It contains a node graph that is executed allowing the Blueprint Class instance to perform initialization operations.
+Key Characteristics
+Execution Timing: Runs when an instance of a Blueprint Class is created
+Location: In the Blueprint Editor, alongside the Event Graph
+Entry Point: Always contains a ConstructionScript node as the execution entry point
+Only Blueprint Classes contain Construction Scripts - Level Blueprints do not have them
+What Construction Scripts Can Do
+Construction Scripts can be extremely powerful for context-specific setup: - Performing traces into the world - Setting meshes and materials dynamically - Achieving context-specific setup based on the Actor’s environment
+Common Use Cases
+Adaptive Objects
+A light Blueprint could determine what type of ground it is placed upon and choose the correct mesh from a set of meshes.
+Procedural Placement
+A fence Blueprint could perform traces extending out in each direction to determine how long a fence is needed to span a distance.
+Dynamic Materials
+Change materials or colors based on environment or properties set in the editor.
+Procedural Generation
+Spawn components or child actors based on parameters exposed to the editor.
+Important Notes
+Construction Scripts run in the editor (not just during play), making them powerful for editor-time visualization
+Heavy Construction Script logic can slow down editor performance
+Construction Scripts re-run when properties are changed on the instance
+Only Blueprint Classes have Construction Scripts - Level Blueprints do not
+DOCUMENT 16: Blueprint Editor Reference
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/user-interface-reference-for-the-blueprints-visual-scripting-editor-in-unreal-engine
+Overview: The Blueprint Editor is a node-based graph editor - the primary tool for creating and editing visual scripting node networks (Blueprints).
+Blueprint Editor Variants
+The Blueprint Editor comes in several specialized forms:
+1. Blueprint Class Editor
+The standard Blueprint Editor for editing Blueprint Classes. Contains: - Viewport - for visual component placement - Components panel - list of components in the Blueprint - My Blueprint panel - variables, functions, macros, and event graphs - Graph Editor - main workspace for visual scripting - Details panel - properties of selected items - Toolbar - compile, save, search, and debugging controls
+2. Level Blueprint Editor
+For editing Level Blueprints (scripting specific to the current level). Similar to Class Editor but without the Viewport and Components panel.
+3. Blueprint Interface Editor
+For creating and editing Blueprint Interfaces. Simplified editor focused on function declarations. No implementation - only function signatures with inputs/outputs.
+4. Blueprint Macro Library Editor
+For creating reusable macro graphs. Macros are reusable graph snippets that can be used across Blueprints.
+5. Animation Blueprint Editor
+Specialized editor for animation-related Blueprints. Integrates with the Animation system.
+Common UI Elements
+Components Panel
+Lists all components attached to the Blueprint Actor. Used to add new components, arrange component hierarchy, and select components to edit their properties.
+My Blueprint Panel
+The central hub for Blueprint organization: - Variables - create and manage Blueprint variables - Functions - create reusable function graphs - Macros - create reusable macro graphs - Event Graphs - manage multiple event graphs - Event Dispatchers - create and manage dispatchers - Interfaces - add or remove implemented interfaces
+Graph Editor
+The main workspace: Add and connect nodes, create visual logic flows. Pan with RMB drag. Zoom with Mouse Wheel.
+Details Panel
+Context-sensitive property editor: Shows properties of selected nodes, variables, or components. Edit default values. Configure node behavior.
+Toolbar
+Contains essential controls: Compile (F7), Save (Ctrl+S), Undo/Redo, Browse (Ctrl+B), Find (Ctrl+F), Debugging Controls (appear during PIE/SIE sessions).
+Related UI Components
+Blueprint Header View
+Shows the Blueprint’s parent class and implemented interfaces.
+Blueprint Bookmarks
+Save graph locations for quick navigation.
+Blueprint Defaults Tab
+Edit default property values for the Blueprint class.
+Unreal Diff Tool
+Compare differences between Blueprint versions.
+DOCUMENT 17: Programming with C++ in Unreal Engine
+Source URL: https://docs.unrealengine.com/5.4/en-US/cpp-programming-in-unreal-engine/
+Overview: Unreal Engine provides a robust framework for C++ programmers. This document introduces powerful features you can use to accelerate your development workflow.
+Key Features
+Creating New Gameplay Classes in C++
+After compilation in Visual Studio or XCode, all changes will be reflected in the Unreal Editor. Creating classes in Unreal Engine is similar to creating standard C++ classes, functions, and variables - all are defined using standard C++ syntax.
+Unreal Reflection System
+Use the Unreal Reflection System with macros wrapped with metadata specifiers to expose your classes to the editor. Each class defines a new template for Objects or Actors.
+Containers in Unreal Engine
+Containers provide information about collections of classes and data structures.
+Gameplay Architecture
+Use the Gameplay Architecture to structure your project. The Gameplay Framework provides a structure composed of Objects and Actors.
+Delegates
+Delegates enable calling member functions on C++ objects in a generic, type-safe way. You can dynamically bind a delegate to an arbitrary object’s member function, and call that object’s function at a future time.
+DOCUMENT 18: Gameplay Classes in Unreal Engine
+Source URL: https://docs.unrealengine.com/5.4/en-US/gameplay-classes-in-unreal-engine/
+Overview: Each gameplay class in Unreal Engine consists of a class header file (.h) and a class source file (.cpp). The class header contains declarations of the class and its members, while the class source file defines the class’s functionality.
+Class Naming Prefixes
+Class Declaration
+Syntax:
+UCLASS([specifier, specifier, ...], [meta(key=value, key=value, ...)])
+class ClassName : public ParentName
+{
+    GENERATED_BODY()
+}
+Class Specifiers
+Class Constructors
+Basic UObject constructor:
+UMyObject::UMyObject()
+{
+    // Initialize Class Default Object properties here.
+}
+Secondary constructor with FObjectInitializer:
+UMyObject::UMyObject(const FObjectInitializer& ObjectInitializer)
+    : Super(ObjectInitializer)
+{
+    // Initialize CDO properties here.
+}
+Constructor Helpers
+Resource References:
+ConstructorHelpers::FObjectFinder<UStaticMesh> Object0(TEXT("StaticMesh'/Game/...'"));
+Class References:
+ConstructorHelpers::FClassFinder<UNavigationMeshBase> ClassFinder(TEXT("class'Engine.NavigationMeshBase'"));
+Components and Subobjects
+Components can be created and attached to the actor’s hierarchy in constructors:
+AWindPointSource::AWindPointSource()
+{
+    WindPointSource = CreateDefaultSubobject<UWindPointSourceComponent>(TEXT("WindPointSourceComponent0"));
+    
+    if (RootComponent == nullptr)
+    {
+        RootComponent = WindPointSource;
+    }
+    
+    DisplaySphere = CreateDefaultSubobject<UDrawSphereComponent>(TEXT("DrawSphereComponent0"));
+    DisplaySphere->AttachTo(RootComponent);
+}
+DOCUMENT 19: Blueprint and C++ Interoperability in Unreal Engine
+Source URL: https://docs.unrealengine.com/5.4/en-US/blueprint-and-cpp-in-unreal-engine/
+Overview: Blueprint and C++ interoperability in Unreal Engine is enabled through the Reflection System and a comprehensive set of macros and specifiers.
+Core Macros for Blueprint/C++ Interop
+UCLASS Macro
+UCLASS(Blueprintable, BlueprintType)
+class MYPROJECT_API UMyBlueprintClass : public UObject
+{
+    GENERATED_BODY()
+};
+UPROPERTY Macro
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MyCategory")
+float MyFloatProperty;
+UFUNCTION Macro
+UFUNCTION(BlueprintCallable, Category="MyCategory")
+void MyBlueprintFunction();
+Blueprint Function Specifiers
+Blueprint Property Specifiers
+Common Code Examples
+BlueprintCallable Function
+UFUNCTION(BlueprintCallable, Category="MyGame|Weapons")
+void FireWeapon();
+BlueprintPure Function
+UFUNCTION(BlueprintPure, Category="MyGame|Health")
+float GetHealthPercent() const;
+BlueprintImplementableEvent
+UFUNCTION(BlueprintImplementableEvent, Category="MyGame|Events")
+void OnPlayerScored(int32 Points);
+BlueprintNativeEvent
+// Declaration in header
+UFUNCTION(BlueprintNativeEvent, Category="MyGame|Events")
+void OnItemCollected();
+
+// C++ implementation (note the _Implementation suffix)
+void AMyActor::OnItemCollected_Implementation()
+{
+    // Default C++ behavior
+}
+Exposing Properties to Blueprints
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="MyGame|Config")
+float MaxHealth;
+
+UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="MyGame|Config")
+TSubclassOf<AActor> SpawnClass;
+
+UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly, Category="MyGame|State")
+float CurrentHealth;
+DOCUMENT 20: Epic C++ Coding Standard for Unreal Engine
+Source URL: https://docs.unrealengine.com/5.4/en-US/epic-cplusplus-coding-standard-for-unreal-engine/
+Overview: The official coding standard for C++ development in Unreal Engine.
+Class Organization
+Classes are generally organized for readers, not writers. Most readers will use the class’s public interface, so the public implementation should be declared first, followed by the private implementation:
+UCLASS()
+class EXAMPLEPROJECT_API AExampleActor : public AActor
+{
+    GENERATED_BODY()
+public:
+    AExampleActor();
+
+protected:
+    virtual void BeginPlay() override;
+};
+Copyright Notice
+Source files (.h, .cpp, .xaml) provided by Epic Games must contain:
+// Copyright Epic Games, Inc. All Rights Reserved.
+Naming Conventions
+General Rules
+Each word in a name should start with a capital letter, with no underscores between words (PascalCase).
+Examples: Health, UPrimitiveComponent
+Type Prefixes
+Variable Naming
+Names should be clear, unambiguous, and descriptive.
+The larger the scope, the more important a good descriptive name is.
+Avoid over-abbreviation.
+All variables should be declared one per line for commenting.
+Function Naming
+Boolean-returning functions should ask a true/false question: IsVisible(), ShouldClearBuffer()
+Procedures (void functions) should use strong verbs: RemoveItem(), ClearList()
+Avoid starting with “Handle” and “Process” as these are ambiguous.
+Inclusive Language
+Use inclusive, respectful, professional language
+Use allowlist/denylist instead of whitelist/blacklist
+Use “they/them/their” for hypothetical individuals
+Use “it/its” for non-human entities
+Portable C++ Code
+Common Types
+Const Correctness
+Use const wherever possible:
+// Good - const reference parameters
+void SomeMutatingOperation(FThing& OutResult, const TArray<Int32>& InArray)
+{
+    // InArray won't be modified here, but OutResult might be
+}
+
+// Good - const member function
+void FThing::SomeNonMutatingOperation() const
+{
+    // This won't modify FThing
+}
+Place const keyword at the end when creating pointers to const: T* const Ptr = ...;
+Never use const on return types
+Modern C++ Language Syntax
+Nullptr
+Use nullptr in all cases, not C-style NULL macro.
+Auto
+Do NOT use auto except: - When binding anonymous functions to variables - When iterator types are verbose and hurt readability - In template code where the type cannot be clearly identified
+Range-Based For
+Prefer range-based for loops for readability.
+Strongly-Typed Enums
+Always use enum class (strongly-typed enums):
+UENUM()
+enum class EThing : uint8
+{
+    Thing1,
+    Thing2
+};
+Enums exposed to Blueprint must be based on uint8.
+Default Member Initializers
+Use default member initializers to define defaults in the class itself:
+UCLASS()
+class UTeaOptions : public UObject
+{
+    GENERATED_BODY()
+public:
+    UPROPERTY()
+    int32 MaximumNumberOfCupsPerDay = 10;
+
+    UPROPERTY()
+    float CupWidth = 11.5f;
+
+    UPROPERTY()
+    FString TeaType = TEXT("Earl Grey");
+
+    UPROPERTY()
+    EDrinkingStyle DrinkingStyle = EDrinkingStyle::PinkyExtended;
+};
+Code Formatting
+Braces
+Braces must always be on their own new line (K&R/Allman style)
+Always use braces in single-statement blocks
+Tabs and Indentation
+Use tabs (not spaces) at the start of lines
+Set tabs to 4 characters
+Use spaces only when necessary for alignment
+Switch Statements
+Each case should contain a break or a “fall through” comment
+Namespaces
+Use UE:: as the root namespace for new Epic code
+Do NOT put using declarations in global scope or .cpp files
+using can be placed inside other namespaces or function bodies
+Forward declarations need to be made in their respective namespaces
+Physical Dependencies
+File names should not add prefixes (use Scene.cpp, not UnScene.cpp)
+All header files should use #pragma once after the copyright notice
+Minimize physical coupling
+Use forward declarations when possible
+Include as specifically as possible
+Modules have Private and Public source directories
+Encapsulation
+Use protected keywords to enforce encapsulation
+Declare class members as private unless they’re part of the class’s public/protected interface
+Use final for classes not designed for derivation
+API Design Guidelines
+Avoid boolean function parameters (they’re unclear at call sites)
+Break up large functions into logical sub-functions
+Don’t overuse inline functions
+Use FORCEINLINE with caution
+Appendix A: UObject Class Hierarchy
+Core Class Hierarchy
+UObject
+  +-- AActor (spawnable in world)
+  |     +-- APawn (can be possessed by controller)
+  |     |     +-- ACharacter (has CharacterMovementComponent)
+  |     +-- AController
+  |     |     +-- APlayerController
+  |     |     +-- AAIController
+  |     +-- AGameModeBase
+  |     +-- AGameStateBase
+  |     +-- AHUD
+  +-- UActorComponent
+  |     +-- USceneComponent (has transform)
+  |     |     +-- UPrimitiveComponent (visual representation)
+  |     |     |     +-- UStaticMeshComponent
+  |     |     |     +-- USkeletalMeshComponent
+  |     |     +-- UCameraComponent
+  |     +-- UActorComponent (no transform)
+  |           +-- UInputComponent
+  +-- UStruct
+UObject Benefits
+Garbage Collection - Automatic memory management
+Reference Updating - Pointers are automatically updated when objects are destroyed
+Reflection - Runtime introspection of class members
+Serialization - Automatic saving/loading
+Automatic Editor Integration - Exposed to editor and Blueprints
+Network Replication - Properties can replicate across network
+This training corpus contains the full extracted content from the first 20 essential Unreal Engine 5 documentation documents, covering Engine Fundamentals, Editor Interface, Blueprints Visual Scripting, and C++ Programming.

@@ -1,0 +1,778 @@
+Unreal Engine 5 - AI Training Corpus (Documents 61-100)
+Niagara, Audio, UI, AI, Networking, Optimization, Packaging, Cinematics & Plugins
+Unreal Engine 5 - AI Training Corpus (Documents 61-100)
+Niagara, Audio, UI, AI, Networking, Optimization, Packaging, Cinematics & Plugins
+
+DOCUMENT 61: Niagara Fluids in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/niagara-fluids-in-unreal-engine
+Niagara Fluids is a plugin that enables you to create 2D and 3D fluid simulations using the Niagara visual effects system. These simulations can represent fire, smoke, water, and other fluid effects.
+Key Features
+2D and 3D Gas Simulations — Create fire, smoke, and other gas-based effects.
+2D and 3D Liquid Simulations — Create water and other liquid-based effects.
+Real-time Simulation — Fluids simulate in real-time during gameplay or cinematic playback.
+GPU-based Computation — Simulations run on the GPU for high performance.
+Collision Support — Fluids can collide with static geometry in the scene.
+Lighting Integration — Simulated volumes can interact with scene lighting.
+Niagara Integration — Full integration with the Niagara particle system for rendering and behavior control.
+Setup and Requirements
+Enable the NiagaraFluids plugin in Edit > Plugins.
+Restart the editor.
+Create a new Niagara System using the Niagara Fluids template.
+Simulation Types
+2D Gas (Grid2D Collection)
+Simulates gas behavior on a 2D grid. Useful for effects like fire, smoke, and heat haze that can be represented in a plane.
+3D Gas (Grid3D Collection)
+Simulates gas behavior in 3D space. Useful for volumetric effects like smoke plumes, explosions, and atmospheric phenomena.
+2D Liquid
+Simulates liquid behavior on a 2D grid. Useful for effects like water surfaces, splashes, and flowing liquids in a planar representation.
+3D Liquid
+Simulates liquid behavior in 3D space. Useful for effects like pouring water, splashing, and volumetric liquid interactions.
+Important Notes
+Simulations must be run in Play in Editor (PIE) mode to see the fluid dynamics update.
+Ensure your graphics card drivers are up to date for best performance.
+Quality and performance tradeoffs can be adjusted through simulation resolution settings.
+
+DOCUMENT 62: Niagara Editor Reference
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/reference-for-niagara-effects-in-unreal-engine
+Niagara Editor UI Reference
+The Niagara Editor is the primary interface for creating and editing Niagara particle systems.
+Niagara System Editor
+The System Editor is where you create and manage particle effects. It contains:
+Toolbar — Contains compile, save, undo/redo, and playback controls.
+Viewport — Real-time preview of the particle effect.
+Timeline — Controls simulation timing and looping behavior.
+System Overview — Shows the hierarchy of emitters in the system.
+Selected Emitter Panel — Shows modules and settings for the selected emitter.
+Parameters Panel — Lists all parameters available in the system.
+Scratch Pad — Area for prototyping custom modules.
+Niagara Script Editor
+The Script Editor is used for creating and editing custom Niagara modules and functions. It provides a node-based interface for writing GPU/CPU simulation logic.
+System and Emitter Module Reference
+Modules are the building blocks of Niagara emitters. They are organized into categories:
+
+DOCUMENT 63: Creating Visual Effects in Niagara
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/creating-visual-effects-in-niagara-for-unreal-engine
+Niagara Quick Start Guide
+This guide walks through creating your first visual effect using Niagara.
+Creating a Niagara System
+In the Content Browser, right-click and select FX > Niagara System.
+Choose a template (e.g., Fountain, Fire, Smoke).
+Name your system and click Create.
+Niagara System Basics
+A Niagara System is the top-level asset that contains one or more Emitters. Each emitter spawns and controls particles.
+Key Concepts
+Emitters — Individual particle sources within a system.
+Modules — Reusable pieces of logic that control particle behavior.
+Parameters — Data that flows through the system (constants, curves, dynamic inputs).
+Bindings — Connections between module inputs and parameters.
+Modifying an Effect
+Open the Niagara System.
+Select an emitter in the System Overview.
+Expand module groups (Emitter Spawn, Emitter Update, Particle Spawn, Particle Update, Render).
+Click on a module to edit its properties.
+Adjust values like spawn rate, lifetime, velocity, color, and size.
+Common Modules
+
+DOCUMENT 64: Creating Custom Modules in Niagara
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/creating-custom-modules-in-niagara-effects-for-unreal-engine
+Why Create Custom Modules?
+Custom modules allow you to extend Niagara’s functionality beyond the built-in modules. They are useful when: - Built-in modules don’t provide the behavior you need. - You want to encapsulate reusable logic across multiple emitters. - You need to perform complex calculations or access external data.
+Creating a Module from Scratch
+In the Content Browser, right-click and select FX > Niagara Module Script.
+Choose Module as the script usage type.
+Open the script in the Niagara Script Editor.
+Add input and output parameters.
+Create your logic using nodes.
+Save and compile.
+Creating a Dynamic Input
+In the Content Browser, right-click and select FX > Niagara Dynamic Input Script.
+Open the script and define your logic.
+Save and compile.
+Creating a Function Script
+In the Content Browser, right-click and select FX > Niagara Function Script.
+Function scripts are reusable pieces of logic that can be called from other scripts.
+Module Best Practices
+Keep modules focused on a single purpose.
+Use clear, descriptive names for parameters.
+Document your modules with descriptions.
+Test modules in isolation before using them in complex systems.
+
+DOCUMENT 65: Niagara Data Channels
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/niagara-data-channels
+Overview
+Niagara Data Channels provide a way for Niagara systems to share data with each other and with external systems like Blueprints and C++ code.
+Key Concepts
+Data Channels — Named channels through which data flows.
+Writers — Components that write data to channels.
+Readers — Components that read data from channels.
+Use Cases
+Sharing particle data between emitters.
+Communicating between Niagara and gameplay code.
+Creating complex effects that require data from multiple sources.
+Driving gameplay events from particle behavior.
+Usage
+Create a Data Channel asset.
+Configure the channel’s data structure (what parameters it carries).
+In emitters, use the Write Data Channel module to send data.
+In other emitters or Blueprints, use the Read Data Channel module to receive data.
+
+DOCUMENT 66: Audio in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/audio-in-unreal-engine
+Unreal Engine provides a comprehensive audio system for creating immersive soundscapes in your projects.
+Key Audio Systems
+Core Concepts
+Sound Waves
+Sound Wave assets represent raw audio files imported into Unreal Engine. Supported formats include WAV, OGG, and AIFF.
+Sound Classes
+Sound Classes group sounds together for collective volume control and mixing. They form a hierarchy where child classes inherit properties from parent classes.
+Sound Mixes
+Sound Mixes dynamically modify Sound Class properties at runtime. They can be activated by gameplay events to create dynamic audio changes (e.g., muffling sounds when underwater).
+Submixes
+Submixes route audio to dedicated processing buses where effects like reverb, EQ, and compression can be applied to groups of sounds.
+
+DOCUMENT 67: MetaSounds in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/metasounds-in-unreal-engine
+MetaSounds is Unreal Engine’s high-performance audio system that gives sound designers fully-featured Dynamic Signal Processing (DSP) graph capabilities.
+Key Features
+Procedural Sound Generation — Create sounds from scratch using synthesis nodes.
+Dynamic Signal Processing — Build complex audio processing chains.
+Blueprint Interface — Control sounds from gameplay using Blueprint events and parameters.
+Real-time Parameter Control — Modify sound properties in real-time based on game state.
+Sample-accurate Timing — Precise audio event triggering.
+How MetaSounds Work
+MetaSounds use a node-based graph where: - Input nodes receive external data (gameplay parameters, trigger events). - Process nodes perform audio synthesis and processing (oscillators, filters, envelopes). - Output nodes send the final audio to the sound system.
+MetaSounds vs Sound Cues
+Example Use Case
+In Valley of the Ancient, sfx_Golem_RobotBlast_Meta demonstrates MetaSounds’ power: - The main charge sound is entirely procedurally generated. - Intro wave and shot wave samples add texture layers. - The graph handles mixing, filtering, and final stereo output.
+
+DOCUMENT 68: Sound Cues in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/sound-cues-in-unreal-engine
+Sound Cues are Unreal Engine’s traditional audio system for importing, mixing, and modifying Sound Waves to produce varied and dynamic audio output.
+Sound Cue Editor
+The Sound Cue Editor uses a node-based interface:
+Common Workflow
+Import a Sound Wave asset.
+Create a Sound Cue asset.
+Open the Sound Cue Editor.
+Add nodes to build your audio logic.
+Connect nodes from left (input) to right (output).
+The rightmost Output node is the final mixed result.
+
+DOCUMENT 69: Spatial Audio in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/spatialization-overview-in-unreal-engine
+Overview
+Spatial audio is the technique of giving sounds a perceived location in 3D space around the listener. Unreal Engine supports several spatial audio technologies.
+Panning Methods
+Stereo Panning
+The simplest form of spatialization. Sound is distributed between left and right speakers based on the source’s horizontal position relative to the listener.
+Surround Sound
+Uses multiple speakers arranged around the listener (5.1, 7.1, etc.) to create a more immersive sound field.
+Vector-Based Amplitude Panning (VBAP)
+Distributes sound across multiple speakers using vector calculations. Provides smooth positioning between speaker locations.
+Ambisonics
+A full-sphere surround sound technique that captures directional audio information. Supports both first-order and higher-order Ambisonics for increased spatial resolution.
+HRTF-based Binaural Spatialization
+Uses Head-Related Transfer Functions to simulate how sound reaches the ears. Provides the most realistic spatial audio when listening with headphones.
+Platform Support
+
+DOCUMENT 70: Sound Attenuation in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/sound-attenuation-in-unreal-engine
+Sound Attenuation controls how a sound changes as the listener moves away from the source.
+Attenuation (Volume)
+Controls how volume decreases with distance.
+Distance Algorithm
+Attenuation Shapes
+Attenuation (Spatialization)
+Controls how sound is positioned in 3D space.
+Attenuation (Air Absorption)
+Simulates high-frequency absorption by air over distance.
+Attenuation (Focus)
+Controls how sound behaves when the listener is focused on or away from the source.
+Attenuation (Reverb Send)
+Controls how much signal is sent to the reverb submix.
+Attenuation (Priority)
+Controls sound priority for voice management when too many sounds are playing.
+Attenuation (Occlusion)
+Simulates sound being blocked by geometry.
+Plugin Settings
+Additional settings for third-party spatialization, occlusion, and reverb plugins.
+
+DOCUMENT 71: UMG UI Designer Quick Start Guide
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/umg-ui-designer-quick-start-guide-in-unreal-engine
+Overview
+This quick start guide covers how to set up user interfaces with the UMG UI Designer. UMG (Unreal Motion Graphics) is Unreal Engine’s visual UI authoring tool. This guide walks through creating a menu UI and an in-game HUD (Head-Up Display) showing Health, Energy, and Ammo.
+Project Setup
+Before starting, create a new project using the First Person template with Blueprints enabled.
+Creating a Widget Blueprint
+In the Content Browser, right-click in the content folder.
+Select User Interface > Widget Blueprint.
+Name it WBP_Menu.
+Adding Widget to Viewport
+To display the menu, you need to add the widget to the viewport:
+Open the Level Blueprint.
+Right-click and search for Create Widget node.
+Set the Class pin to your WBP_Menu widget.
+Drag off the Return Value pin and select Add to Viewport.
+Connect this to a BeginPlay event or an input action to trigger the menu.
+Removing the Widget
+To close/dismiss the menu, call Remove from Parent from a widget reference. This is typically connected to a button click event (e.g., “Resume” or “Quit” button).
+Designing the HUD Layout
+This section creates a HUD with three progress bars (Health, Energy, Ammo) using a Horizontal Box layout:
+Create a new Widget Blueprint called WBP_HUD.
+In the Widget Designer, add a Horizontal Box to the canvas.
+Add three Progress Bar widgets inside the Horizontal Box.
+Set the Fill Color and Opacity to distinguish them (Green for Health, Blue for Energy, Orange/Yellow for Ammo).
+Set Percent to 1.0 initially (full).
+Scripting the Progress Bars
+Creating the Binding
+Select the Health progress bar in the Designer.
+Next to Percent in the Details panel, click Bind > Create Binding.
+This creates a Get Percent function in the Graph tab.
+Accessing Player Data
+Inside the binding function: 1. Right-click and add a Get Owning Player Pawn node. 2. Drag off the return value and add a Cast To [YourPlayerClass] node. 3. From the cast result, access the relevant variable (e.g., Health, Energy, Ammo). 4. Divide the current value by the max value to get a 0.0-1.0 range. 5. Return this value as the output of the binding function.
+Repeat this process for each progress bar.
+
+DOCUMENT 72: Widget Blueprints in UMG
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/widget-blueprints-in-umg-for-unreal-engine
+Overview
+A Widget Blueprint in Unreal Engine is a specialized Blueprint for creating user interface elements. Widget Blueprints contain both a visual Designer interface for constructing the UI and a Graph interface for scripting the UI logic.
+Widget Blueprint Editor
+Workflow
+Create a new Widget Blueprint from the Content Browser.
+Use the Palette panel to find available widgets.
+Drag widgets into the Hierarchy or Visual Designer.
+Arrange and configure widgets using the Visual Designer and Details panel.
+Switch to Graph mode to script widget behavior.
+Use the Animation panel to create UI animations.
+
+DOCUMENT 73: Common UI Plugin
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/common-ui-plugin-for-advanced-user-interfaces-in-unreal-engine
+Overview
+The Common UI Plugin is designed to be the backbone of advanced user interfaces. It provides standardized patterns and systems for building complex, multi-layered UIs that work across different platforms and input devices.
+Features
+Data Driven — Backend to drive UI creation, minimizing manual widget creation.
+Input Driven UI — Abstracts raw input into UI-navigable events.
+Stack Based Architecture — Manages UI layers with automatic open/close/transition.
+Rich Navigation — Widget, tab, menu, and “return to” navigation patterns.
+Routed Events — Events bubble up through the widget hierarchy.
+Action Router — Central system for handling UI actions.
+Activatable Widgets — Widgets that manage visibility, input, and lifecycle automatically.
+Common Input Actions — Pre-configured mappings for accept, back, navigate, etc.
+Visual Data Structure — Separates presentation from logic through data.
+Async Loading — Asynchronous UI asset loading to prevent hitches.
+MVVM Support — Model-View-ViewModel pattern support.
+Style Driven — Widgets driven by style data tables for easy theming.
+
+DOCUMENT 74: Slate User Interface Programming Framework
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/slate-user-interface-programming-framework-for-unreal-engine
+Overview
+Slate is a custom, platform-agnostic user interface framework built on top of Unreal Engine. It serves as the low-level foundation upon which UMG is built.
+Key Sections
+Creating Widgets in C++
+Slate widgets are created entirely in C++ using a declarative syntax.
+Declaring and Manipulating Controls in C++
+Slate uses a special declarative macro syntax for defining widget hierarchies.
+Handling User Input and Interaction
+Slate provides systems for capturing and responding to mouse, keyboard, and gamepad input.
+Styling and Theming with Slate
+Slate uses a styling system for consistent visual appearance.
+Creating Custom Slate Widgets
+Developers can create entirely new widget types in C++.
+Differences from UMG
+
+DOCUMENT 75: Widget Components in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/widget-components-in-unreal-engine
+Overview
+Widget Components allow you to embed a Widget Blueprint into a 3D Actor in the world. This enables in-world displays, interactive screens, diegetic UI elements, and 3D projected interfaces.
+Properties Reference
+Use Cases
+In-world computer terminals
+Floating nameplates
+Diegetic health bars
+3D menus
+Holographic displays
+
+DOCUMENT 76: Behavior Trees in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/behavior-trees-in-unreal-engine
+Overview
+The Behavior Tree resource in Unreal Engine is used to create AI for non-player characters. Behavior Trees execute branches containing logic to determine which actions to perform. They rely on a Blackboard which acts as the “brain” for the Behavior Tree.
+Blackboard
+The Blackboard contains user-defined Keys that store information used by the Behavior Tree: - Example: A Boolean key “IsLightOn” — if true, make a cockroach flee; if false, make it roam. - In multiplayer games, Behavior Trees can be extremely complex, simulating actions like finding cover, shooting, and finding pickups.
+Behavior Tree Structure
+Available Guides
+Behavior Tree Quick Start Guide — Set up an AI that patrols or chases the player.
+Behavior Tree Overview — How Behavior Trees work in UE.
+Behavior Tree User Guide — Creating and editing Behavior Trees and Blackboards.
+Behavior Tree Node Reference — Reference for available nodes.
+
+DOCUMENT 77: Environment Query System (EQS)
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/environment-query-system-in-unreal-engine
+Overview
+The Environment Query System (EQS) is a feature of UE5’s AI system that collects data from the environment and evaluates it through Tests to find the most suitable item.
+Integration with Behavior Trees
+EQS queries can be called from Behavior Trees to determine subsequent actions.
+Generators
+Generators produce locations or Actors to be tested:
+Contexts
+Frames of reference for tests and generators: - Querier — The AI performing the query - Literal — A specific predefined location - Actor or Player — The player character
+Tests
+Conditions used to score or filter items: - Score items based on distance, visibility, dot product, etc. - Filter items that don’t meet criteria (min distance, line of sight, etc.).
+Use Cases
+Find best attack position against player
+Find nearest health/ammo pickup
+Find nearest cover point
+Determine optimal patrol positions
+
+DOCUMENT 78: Navigation System in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/navigation-in-unreal-engine
+Overview
+The Navigation System enables AI agents to navigate using NavMesh (Navigation Mesh) generated from collision geometry. The mesh is divided into tiles and polygons for pathfinding.
+Navigation Mesh Generation Modes
+Pathfinding Obstacle Avoidance
+Reciprocal Velocity Obstacles (RVO)
+Predicts collisions based on velocities; agents adjust reciprocally. Good for simple avoidance.
+Detour Crowd Manager
+Manages groups as a crowd system. Better for large numbers of agents and dense scenarios.
+Additional Features
+Navigation Links — Connect discontinuous areas (jumping, dropping).
+Navigation Modifiers — Volumes that modify costs or mark areas unwalkable.
+Navigation Filters — Custom query filters for modified pathfinding behavior.
+Navigation Invokers — Generate NavMesh around moving agents on demand.
+World Partition Support — Integration for large open worlds.
+
+DOCUMENT 79: AI Perception in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/ai-perception-in-unreal-engine
+Overview
+AI Perception provides a means for Pawns to receive sensory data from the environment (noise source, damage, sight). Implemented through the AI Perception Component.
+AI Perception Component
+Added to an AI Controller. Defines which senses to listen for and how to respond.
+AI Damage
+AI Hearing
+AI Sight
+AI Touch
+Detects active or passive collision between AI and objects. Useful for stealth games.
+AI Team
+Notifies owner when a teammate is nearby.
+AI Prediction
+Provides estimated position of predicted actors within a time window.
+Perception Events
+On Perception Updated — Any registered stimulus update.
+On Target Perception Updated — Specific target’s perception updated.
+On Component Activated/Deactivated — Component lifecycle events.
+Stimulus Properties
+Key Functions
+AI Perception Stimuli Source
+Component that registers its owner as a stimulus source. Set Auto Register as Source to automatically register.
+Debugging
+Press apostrophe (’) key, then 4 key for perception debug info.
+
+DOCUMENT 80: State Tree in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/state-tree-in-unreal-engine
+Overview
+StateTree is a general-purpose hierarchical state machine combining Selectors from Behavior Trees with States and Transitions from state machines.
+Key Characteristics
+Hierarchical — States nest within other states, creating a tree structure.
+Selector-based — Uses selectors for choosing which state to execute.
+Transition-driven — States transition to others based on conditions.
+Efficient — High-performance execution for complex AI and gameplay logic.
+Flexible — For AI, animation state management, gameplay flow control.
+How It Works
+Evaluates selectors at each hierarchy level to determine the active state. When conditions change, transitions fire. Each state contains:
+Enter Conditions — Requirements to enter the state
+Transitions — Rules for when/where to transition
+Tasks — Actions while in the state
+Sub-states — Nested child states
+Available Guides
+StateTree Overview — Comprehensive overview
+StateTree Quick Start Guide — Getting started
+StateTree Selectors Overview — Available selectors
+StateTree Debugger Quick Start Guide — Using the debugger
+External StateTree Quick Start Guide — External StateTrees
+
+DOCUMENT 81: Networking Overview for Unreal Engine
+Source URL: https://docs.unrealengine.com/5.4/en-US/networking-overview-for-unreal-engine/
+Unreal Engine uses a client-server model for multiplayer games. The server acts as the Authority, while players connect as clients. The actual game state is adjusted by the server. Players control their Pawn as Autonomous Proxies, and the server replicates changes to each connected client.
+Key Concepts
+Authority: The server has authority over game state.
+Replication: The process of synchronizing data between server and clients.
+RPCs (Remote Procedure Calls): Functions called on one machine that execute on another.
+Actor Replication: Actors can be configured to replicate from server to clients.
+NetUpdateFrequency: Controls how often an actor replicates per second.
+
+DOCUMENT 82: Actor Replication in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/replicate-actor-properties-in-unreal-engine
+Defining Replicated Properties
+UPROPERTY(Replicated)
+int32 Health;
+ReplicatedUsing
+A callback function triggered when a replicated property changes:
+UPROPERTY(ReplicatedUsing=OnRep_Health)
+int32 Health;
+
+UFUNCTION()
+void OnRep_Health();
+GetLifetimeReplicatedProps
+void AMyActor::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+    Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+    DOREPLIFETIME(AMyActor, Health);
+    DOREPLIFETIME_CONDITION(AMyActor, Ammo, COND_OwnerOnly);
+}
+Replication Conditions
+RPC Types
+Reliable RPCs: Guaranteed to arrive; for critical events.
+Unreliable RPCs: Not guaranteed; for frequent updates.
+
+DOCUMENT 83: Performance and Bandwidth Tips
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/performance-and-bandwidth-tips-for-unreal-engine
+Key Tips
+NetUpdateFrequency: Reduce to decrease replication frequency. Lower = less bandwidth and CPU.
+Dormancy: Put actors in dormant state when not relevant. Dormant actors don’t replicate until woken.
+Relevancy: Actors not relevant to a client are not replicated. Based on distance and other factors.
+Replication Graph: For large-scale multiplayer, controls replication per-actor.
+Property Replication: Only mark properties as replicated if necessary. Derive state from existing properties when possible.
+Quantization: Use FVector_NetQuantize to reduce bandwidth for vectors.
+RPC Parameters: Be careful with FName in RPCs — sends full string, can be expensive.
+
+DOCUMENT 84: Setting Up Dedicated Servers
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/setting-up-dedicated-servers-in-unreal-engine
+Overview
+A Dedicated Server runs headless (no UI, no local player), providing: - Smaller footprint - Eliminates host advantage - Focuses on gameplay logic
+Requirements
+Unreal Engine source code build
+C++ project with client-server multiplayer
+Tutorial: Using Lyra Starter Game
+Configure Project Settings
+Set Server Default Map: Edit > Project Settings > Maps & Modes > Advanced > Server Default Map = L_Expanse
+Set Num Bots to 0 in B_ShooterBotSpawner
+Build Server Target
+Create <PROJECT_NAME>Server.Target.cs:
+public class LyraServerTarget : TargetRules
+{
+    public LyraServerTarget(TargetInfo Target) : base(Target)
+    {
+        Type = TargetType.Server;
+        DefaultBuildSettings = BuildSettingsVersion.V2;
+        ExtraModuleNames.AddRange(new string[] { "LyraGame" });
+    }
+}
+Cooking Content
+Server Content: Build Target = Server, Binary Configuration = Development
+Client Content: Build Target = Client, Binary Configuration = Development
+Testing
+Launch server: ./Binaries/Win64/<PROJECT_NAME>Server.exe -log Connect client: open 127.0.0.1:<PORT>
+
+DOCUMENT 85: Online Subsystem in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/online-subsystem-in-unreal-engine
+Design Philosophy
+Provides a common way to access online services (Steam, Xbox Live, etc.). Uses asynchronous communication with delegates.
+Basic Structure
+Access via:
+static IOnlineSubsystem* Get(const FName& SubsystemName = NAME_None);
+Configure in Engine.ini:
+[OnlineSubsystem]
+DefaultPlatformService=<Default Platform Identifier>
+Interfaces
+
+DOCUMENT 86: Lumen Performance Guide
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/lumen-performance-guide-for-unreal-engine
+Scalability Targets
+Epic scalability: Targets 30 FPS on consoles
+High scalability: Targets 60 FPS on consoles
+Low/Medium: Lumen disabled
+Software Ray Tracing
+Fastest method; traces merged Global Distance Field
+Performance independent of instance count/overlap
+Detail Traces (Epic level): Traces individual mesh distance fields — higher quality but sensitive to instance count
+High scalability: Uses merged global distance field only
+Hardware Ray Tracing
+Better quality but more expensive
+Rebuilds TLAS every frame
+Target: fewer than 100,000 instances after culling
+Use Stat SceneRendering to check Ray tracing active instances
+Culling Settings (DefaultEngine.ini)
+[SystemSettings]
+r.RayTracing.Culling=3
+r.RayTracing.Culling.Radius=15000
+r.RayTracing.Culling.Angle=0.5
+Far Field
+Extends GI/reflections to 1km from camera
+Uses HLOD meshes from World Partition
+Enable with r.LumenScene.FarFields 1
+Lumen Reflections
+Pixels with roughness < 0.4 trace reflection rays by default
+Control via Post Process Volume > Max Roughness To Trace
+Clamp: r.Lumen.Reflections.MaxRoughnessToTraceClamp
+Foliage threshold: r.Lumen.Reflections.MaxRoughnessToTraceForFoliage
+Lumen Scene Lighting
+Update fraction controlled by:
+r.LumenScene.DirectLighting.UpdateFactor
+r.LumenScene.DirectLighting.MaxLightsPerTile
+r.LumenScene.Radiosity.UpdateFactor
+Profiling
+Stat GPU shows Lumen pass timings
+ProfileGPU for detailed breakdown
+Lumen uses Async Compute by default; disable with r.Lumen.AsyncCompute 0 for measurement
+
+DOCUMENT 87: Unreal Insights in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/unreal-insights-in-unreal-engine
+Overview
+Unreal Insights is a telemetry capture and analysis suite for profiling project performance.
+Major Components
+Trace events — Contain EventName and FieldName parameters
+Unreal Trace Server — Records and saves traces
+Unreal Insights — Analyzes and visualizes data
+Trace sessions stored as .utrace files; companion data in .ucache files.
+Launch Options
+From Editor: Trace/Insights Status Bar Widget in bottom toolbar
+Prebuilt binary: Engine\Binaries\[Platform]\UnrealInsights[.exe]
+Build from source:
+Windows: Engine/Build/BatchFiles/RunUBT.bat UnrealInsights Win64 Development
+Trace Server
+Background server (UnrealTraceServer.exe)
+Trace Recorder: Listens on port 1981
+Trace Store: Saves traces as files
+Config stored in:
+Windows: %LOCALAPPDATA%/UnrealEngine/Common/UnrealTrace
+Insights Windows
+
+DOCUMENT 88: Nanite Technical Details
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/nanite-technical-details
+Key Properties
+Console Variables
+r.Nanite.Streaming.StreamingPoolSize: Memory for Nanite streaming data
+r.Nanite.MaxCandidateClusters / r.Nanite.MaxVisibleClusters: Buffer sizes (cannot change at runtime)
+Data Size Example
+High Polygon Static Mesh (4 LODs, 1.5M triangles): 148.95 MB Nanite Static Mesh (same triangles): 19.64 MB (~7.6x smaller)
+Ray Tracing with Nanite
+Use r.RayTracing.UseReferenceBasedResidency (default on) to manage BLAS memory
+Control pool size with r.RayTracing.ResidentGeometryMemoryPoolSizeInMB
+Disable Generate Nanite Fallback Meshes in platform settings if fallback only used for RT
+
+DOCUMENT 89: Virtual Texturing
+Source URL: https://docs.unrealengine.com/5.4/en-US/virtual-texturing-in-unreal-engine/
+Virtual Texture support enables creation and use of large-sized textures for a lower, more consistent memory footprint at runtime.
+Virtual Texturing Methods
+Runtime Virtual Textures (RVT)
+Texel data cached on demand, generated by GPU at runtime
+Suited for procedural textures or composited layered materials
+Streaming Virtual Textures (SVT)
+Texel data cached on demand, cooked and loaded from disk
+Suited for lightmaps or large, detailed artist-created textures
+Virtual Texture Lightmaps
+Enable in Project Settings > Engine > Rendering > Enable virtual texture lightmaps.
+
+DOCUMENT 90: Scalability and Quality Settings
+Source URL: https://docs.unrealengine.com/5.4/en-US/scalability-and-quality-settings-in-unreal-engine/
+Unreal Engine provides a Scalability System with multiple quality levels to balance visual fidelity and performance across different hardware.
+Scalability Levels
+Scalability Groups
+Settings are organized into groups: - View Distance — Level of detail distance scaling - Anti-Aliasing — TAA, MSAA quality - Shadows — Shadow map resolution, distance - Post Processing — Post-process effect quality - Textures — Texture resolution and streaming - Effects — Particle and VFX quality - Foliage — Foliage density and distance - Shading — Shading and lighting quality
+Console Commands
+
+DOCUMENT 91: Packaging Your Project
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/packaging-your-project
+What is Packaging?
+Packaging converts an Unreal Engine project into a standalone executable or application for a target platform (Windows, iOS, console, etc.).
+Build Operations
+Build Configurations
+Packaging Tutorial
+Set Game Default Map in Project Settings > Maps & Modes.
+Set Build Configuration to Development.
+Click Platforms > Windows > Package Project.
+Select staging directory.
+Wait for “Packaging complete!” dialog.
+Running the Executable
+Navigate to staging directory, double-click .exe. Use console command quit or exit to close (Development config).
+
+DOCUMENT 92: Sharing and Releasing Projects
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/sharing-and-releasing-projects-for-unreal-engine
+Platform Support
+Unreal Engine supports packaging for: - Desktop: Windows, macOS, Linux - Mobile: iOS, iPadOS, tvOS, Android - Consoles: All major consoles - XR: OpenXR, PSVR2, ARKit, ARCore, visionOS
+AutoSDK System
+Provides a mechanism for distributing target platform SDKs and configuring them for use by the engine on demand.
+Layout
+General Topics
+Deployment — Cook, Package, Deploy, Run operations
+Content Cooking — Platform-specific content preparation
+Launching to Devices — One-click deploy for mobile
+Project Launcher — Custom launch profiles
+Device Manager — Connect and control remote devices
+Setting Device Profiles — Platform-specific configurations
+
+DOCUMENT 93: Unreal Build Tool (UBT)
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/unreal-build-tool-in-unreal-engine
+Overview
+UnrealBuildTool (UBT) manages building Unreal Engine source code across various build configurations.
+Modular Architecture
+UE is split into modules. Each module has a .build.cs file controlling: - Module dependencies - Additional libraries - Include paths - Build options
+Modules compile into DLLs loaded by a single executable. Can choose monolithic executable in BuildConfiguration.cs.
+Targets
+An overview of UBT Targets, including property descriptions.
+Module Properties
+Overview of UBT Modules and their properties.
+Build Configuration
+Configure how the engine is built via BuildConfiguration.cs.
+Include What You Use (IWYU)
+Dependency model for the codebase. Each source file explicitly includes headers it uses.
+Project Files for IDEs
+Generate project files for games and modules: - GenerateProject.bat in [UE Root Directory] - Run periodically to keep code editor up-to-date
+Static Code Analysis
+UBT supports running static code analyzers:
+Engine\Build\BatchFiles\RunUBT.bat TARGET PLATFORM Development -StaticAnalyzer=ANALYZER
+Supported Analyzers
+Clang Sanitizers
+Instrument sanitizers to find runtime errors: - Address Sanitizer (ASan): Memory errors - Thread Sanitizer: Race conditions - Memory Sanitizer: Uninitialized memory - Undefined Behavior Sanitizer: Undefined behavior
+Build\BatchFiles\Build.bat MyGame Linux Development -EnableASan
+Horde / Unreal Build Accelerator
+Horde enables remote execution for build acceleration. UBA virtualizes compilers for remote execution.
+Prerequisites: - Horde Server and Agents - Network connectivity on ports 7000-7010 - UE project on workstation
+
+DOCUMENT 94: Downloadable Content and Patching
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/downloadable-content-patching-in-unreal-engine
+ChunkDownloader
+Patching solution for UE. Downloads assets from remote service and mounts them in memory.
+Required Setup
+Create C++ project from Blank template.
+Enable ChunkDownloader plugin.
+Enable Use Pak File and Generate Chunks in Project Settings > Packaging.
+Edit [ProjectName]Build.cs.
+Add assets and configure Primary Asset Labels.
+Cook/package project.
+Host packaging files on web server.
+Create BuildManifest-Windows.txt manifest file.
+Configure DefaultGame.ini.
+Default Install Bundle Manager
+Default engine handler for downloading, patching, and mounting content bundles at runtime.
+Cooking and Chunking
+Content Cooking — Platform-specific content generation.
+Preparing Assets for Chunking — Organize using Primary Asset Labels.
+Zen Storage Server — Backend for storing and serving cooked content.
+
+DOCUMENT 95: Content Examples Sample Project
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/content-examples-sample-project-for-unreal-engine
+Overview
+The Content Examples project demonstrates specific concepts and techniques in Unreal Engine. It contains maps focusing on different features.
+Example Maps
+
+DOCUMENT 96: Valley of the Ancient Sample Game
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/valley-of-the-ancient-sample-game-for-unreal-engine
+Overview
+Valley of the Ancient is a short gameplay segment demonstrating early UE5 features. Players control Echo exploring an arid landscape and battling the Ancient One.
+Key Features Demonstrated
+High-end visuals with Nanite and Lumen
+Megascans assets and geometry tools
+Chaos fracture workflow
+World Partition for collaboration
+Full-body IK and motion warping
+Modular gameplay systems
+MetaSounds procedural audio
+Quartz dynamic music synchronization
+Recommended System Specs
+Nanite requires Nvidia Maxwell or AMD GCN generation GPUs or higher.
+MetaSounds Example
+sfx_Golem_RobotBlast_Meta demonstrates MetaSounds: - Main charge sound is entirely procedural - Intro wave and shot wave samples add texture - Graph handles mixing, filtering, and stereo output
+Quartz Audio Synchronization
+Quartz provides sample-accurate audio playback scheduling. Valley uses it in the Underscore Subsystem for dynamic music that schedules events based on beats and bars. The Ancient One fires its laser synchronized to music cues.
+
+DOCUMENT 97: Using Cinematics and Sequencer
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/using-cinematics-and-sequencer-in-unreal-engine-for-maya-users
+Overview
+Sequencer is the non-linear editing suite at the core of cinematic workflows in Unreal Engine.
+Key Benefits
+Real-Time Cinematics — Preview animations, lighting, effects in real-time.
+Non-Linear Timeline Editing — Layer and blend animations, audio, events, camera cuts.
+Fully Integrated — Animate any property of any actor.
+Camera System — Full control of cinematic cameras, FOV, depth of field, lens effects.
+Event Tracks — Trigger gameplay logic from Sequencer.
+Audio Integration — Sync audio tracks with level events.
+Export Options — Movie Render Queue/Graph for high-quality offline output.
+Sequencer Components
+Tween Tools
+Movie Render Pipeline
+Movie Render Graph (MRG) — Graph-based rendering logic
+Movie Render Queue (MRQ) — Preset-based render queuing
+Quick Render
+Toolbar option for quick rendering without manual queue/graph setup.
+
+DOCUMENT 98: Movie Render Queue in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/movie-render-queue-in-unreal-engine
+Overview
+The Movie Render Queue enables high-quality offline rendering of cinematic sequences with better quality than real-time playback.
+Anti-Aliasing
+Temporal Sampling
+Slices frame into time-based samples for motion blur. More temporal samples = smoother radial motion blur.
+Spatial Sampling
+Jittered camera renders for anti-aliasing and noise reduction.
+TAA Considerations
+Default r.TemporalAASamples = 8. If more than 8 samples, disable TAA or increase the sample count.
+Features
+High-Quality Rendering
+Improved Motion Blur
+Lumen GI/Reflections enhanced quality
+Configurable Spatial/Temporal Sampling
+Render Presets
+Command Line Rendering for CI/CD
+Export: EXR, PNG, JPEG image sequences
+Output Settings
+Console Commands
+
+DOCUMENT 99: Take Recorder in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/take-recorder-in-unreal-engine
+Overview
+Take Recorder records gameplay, animations, and events directly into Sequencer. Useful for virtual production, performance capture, and cinematic content from live gameplay.
+Key API Functions
+Project Parameters
+User Parameters
+Use Cases
+Recording gameplay sequences for cinematics
+Motion capture device data
+Physics simulation animations
+Camera movement takes for virtual production
+
+DOCUMENT 100: Plugins in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/plugins-in-unreal-engine
+Overview
+Plugins are collections of code and data that can be enabled/disabled per-project. They can add runtime gameplay functionality, modify engine features, create new file types, and extend the Editor.
+Plugin Folders
+Plugin Descriptor Files
+.uplugin JSON files discovered and loaded automatically.
+Example Descriptor
+{
+  "FileVersion": 3,
+  "Version": 1,
+  "VersionName": "1.0",
+  "FriendlyName": "UObject Example Plugin",
+  "Description": "An example plugin which declares its own UObject type.",
+  "Category": "Examples",
+  "CreatedBy": "Epic Games, Inc.",
+  "CreatedByURL": "http://epicgames.com",
+  "DocsURL": "",
+  "MarketplaceURL": "",
+  "SupportURL": "",
+  "EnabledByDefault": true,
+  "CanContainContent": false,
+  "IsBetaVersion": false,
+  "Installed": false,
+  "Modules": [
+    {
+      "Name": "UObjectPlugin",
+      "Type": "Developer",
+      "LoadingPhase": "Default"
+    }
+  ]
+}
+Module Descriptor Properties
+Code in Plugins
+Plugins with Source folders (containing .Build.cs files) are added to project files.
+Automatically compiled by UBT.
+Can declare reflected types (UCLASS, USTRUCT).
+Support interdependent modules.
+Content in Plugins
+Set CanContainContent to true in .uplugin to include Blueprints, materials, textures, meshes, etc.
+Creating New Plugins
+Use the New Plugin button in the Editor’s Plugin Browser.
+Distributing
+Click Package… in Plugin Browser to package for distribution. For UE 5.2, compile with Visual Studio 2019 for compatibility.
+
+This training corpus contains the full extracted content from Documents 61-100 of the Unreal Engine 5 essential documentation, covering Niagara, Audio, UI/UMG, AI, Networking, Optimization, Packaging, Cinematics, and Plugins.

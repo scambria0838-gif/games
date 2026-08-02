@@ -1,0 +1,181 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>SuperNinja Test Report</title>
+<style>
+body { font: 14px/1.4 -apple-system, BlinkMacSystemFont, sans-serif;
+       background:#1a1f33; color:#e6e8f0; margin:0; padding:24px; }
+h1 { color:#7fd4ff; margin:0; }
+.summary { background:#0d8a4f; padding:14px 18px; border-radius:8px;
+            margin:16px 0; font-size:18px; }
+table { border-collapse:collapse; width:100%; }
+th, td { border-bottom:1px solid #2a324d; padding:8px 12px; text-align:left; }
+th { background:#0e132b; }
+.pass { color:#5be3a1; } .fail { color:#ff6b6b; }
+pre { background:#0a0e1c; padding:12px; border-radius:6px; overflow:auto;
+       max-height:400px; }
+details { margin:14px 0; }
+</style></head><body>
+<h1>SuperNinja — Test Report</h1>
+<div class="summary">58 passed · 0 failed · generated 2026-05-18 09:46:07</div>
+<table><tr><th>Suite</th><th>Script</th><th>Pass</th><th>Fail</th><th>Time</th><th>Exit</th></tr>
+<tr><td>Smoke</td><td>test_smoke.py</td><td class='pass'>1</td><td class='pass'>0</td><td>0.05s</td><td>0</td></tr>
+<tr><td>End-to-end (core)</td><td>test_e2e_headless.py</td><td class='pass'>17</td><td class='pass'>0</td><td>15.44s</td><td>0</td></tr>
+<tr><td>End-to-end (extended)</td><td>test_e2e_extended.py</td><td class='pass'>27</td><td class='pass'>0</td><td>10.76s</td><td>0</td></tr>
+<tr><td>Security</td><td>test_security.py</td><td class='pass'>13</td><td class='pass'>0</td><td>0.06s</td><td>0</td></tr>
+</table>
+<details><summary><b>Smoke</b> — test_smoke.py</summary><pre>SMOKE OK — version=5.0.0-sprint75  commands=82  health=ok
+</pre></details>
+<details><summary><b>End-to-end (core)</b> — test_e2e_headless.py</summary><pre>======================================================================
+ SuperNinja END-TO-END HEADLESS TEST
+======================================================================
+ Tests: 17
+ Cloud: http://localhost:8791
+======================================================================
+
+  ✓ 01 - Cloud server health                                2ms
+      {&quot;status&quot;: &quot;ok&quot;, &quot;service&quot;: &quot;superninja-command-server&quot;, &quot;phase&quot;: 5, &quot;version&quot;: &quot;5.0.0-sprint75&quot;}
+
+  ✓ 02 - Cloud server status                                1ms
+      {&quot;queue&quot;: 0, &quot;results&quot;: 32, &quot;commands_count&quot;: 82}
+
+  ✓ 03 - Echo round-trip                                  604ms
+      {&quot;id&quot;: &quot;cmd-1779097541707-088e8f&quot;, &quot;result&quot;: {&quot;status&quot;: &quot;success&quot;, &quot;timestamp&quot;: 1779097542.241804, &quot;echo&quot;: {&quot;message&quot;: &quot;hello&quot;}}, &quot;completed_at&quot;: &quot;2026-05-18T09:45:42Z&quot;, &quot;_ts&quot;: 1779097542.2423737}
+
+  ✓ 04 - Spawn a Cube                                    1207ms
+      {&quot;actor&quot;: &quot;Cube_4&quot;}
+
+  ✓ 05 - Spawn a Sphere at custom location                905ms
+      {&quot;actor&quot;: &quot;Sphere_12&quot;, &quot;loc&quot;: [500, 300, 100]}
+
+  ✓ 06 - Spawn a Police Station (custom mesh path)       1207ms
+      {&quot;actor&quot;: &quot;PoliceStation_HQ&quot;, &quot;mesh&quot;: &quot;/Game/Architecture/SM_PoliceStation&quot;}
+
+  ✓ 07 - List all actors                                  906ms
+      {&quot;count&quot;: 53}
+
+  ✓ 08 - Move PoliceStation_HQ                           1207ms
+      {&quot;new_loc&quot;: [1000, 0, 0]}
+
+  ✓ 09 - Add cinematic lighting                           906ms
+      {&quot;preset&quot;: &quot;cinematic&quot;, &quot;lights_count&quot;: 2}
+
+  ✓ 10 - Scatter 15 props                                1207ms
+      {&quot;spawned&quot;: 15}
+
+  ✓ 11 - Add 30 foliage                                   906ms
+      {&quot;foliage&quot;: 30}
+
+  ✓ 12 - Take ASCII screenshot                           1207ms
+      {&quot;preview_lines&quot;: 22, &quot;first_chars&quot;: &quot;+---------------------------------------&quot;}
+
+  ✓ 13 - Run python snippet (count actors)                905ms
+      {&quot;stdout&quot;: &quot;Total actors: 100&quot;}
+
+  ✓ 14 - Find actors with &#x27;Cube&#x27;                         1207ms
+      {&quot;matches&quot;: 9}
+
+  ✓ 15 - Cleanup duplicates (dry run)                     905ms
+      {&quot;dupes_found&quot;: 6}
+
+  ✓ 16 - Delete PoliceStation_HQ                         1207ms
+      {&quot;deleted&quot;: &quot;PoliceStation_HQ&quot;}
+
+  ✓ 17 - Final screenshot of full scene                   906ms
+
++------------------------------------------------------------+
+|............................................................|
+|...............................@............................|
+|...............................@..........@@................|
+|.......................@....@..#I.@@O.......................|
+|.......................@@...O.@.....@O......................|
+|...................................O........................|
+|.................@......I..@O...#.@....@....................|
+|................................I..OO.......................|
+|.......................O.......I............................|
+|.........................O...........#.@....................|
+|................@......@......*.OOI.........................|
+|................@........O....#@..@O...@...@................|
+|.......................@....@...............................|
+|............................................@...............|
+|.............................O@@#...........................|
+|.......................#....................................|
+|.........................I...I........@.....................|
+|...................@...O...O..O.............................|
+|.........................@@.................................|
+|........................@................@..................|
++------------------------------------------------------------+
+  Actors: 99  Lights: 4
+
+======================================================================
+ RESULTS: 17 passed, 0 failed (of 17)
+======================================================================
+</pre></details>
+<details><summary><b>End-to-end (extended)</b> — test_e2e_extended.py</summary><pre>============================================================
+ SuperNinja Extended E2E Tests (Sprint 75)
+============================================================
+
+=== Cloud control endpoints ===
+  ✓ GET /health 200 + ok status
+  ✓ GET /metrics returns counters
+  ✓ GET /version returns version+phase
+  ✓ GET /history returns list
+
+=== Security &amp; validation ===
+  ✓ Reject command not in allowlist
+  ✓ Reject body that is not a JSON object
+  ✓ Reject huge body (&gt;10MB)
+  ✓ Reject invalid args type
+
+=== Translate endpoint (NL -&gt; commands) ===
+  ✓ Translate &#x27;build me a forest&#x27; returns &gt;=2 commands
+  ✓ Translate &#x27;make it brighter&#x27; -&gt; light_scene
+  ✓ Translate &#x27;place a police station&#x27; -&gt; spawn_actor
+  ✓ Translate empty text -&gt; 400
+
+=== Batch execute ===
+  ✓ Batch endpoint accepts 3 commands
+  ✓ Batch enqueued ids are unique
+
+=== Scene summary + export/import ===
+  ✓ GET /scene_summary returns counts
+  ✓ export_scene_json skill returns scene dict
+
+=== New Group-G skills ===
+  ✓ save_to_file persists scene
+  ✓ load_from_file reloads scene
+  ✓ export_screenshot_png writes PNG
+  ✓ undo_last_command returns success
+  ✓ clear_scene with confirm=true succeeds
+  ✓ clear_scene without confirm -&gt; error
+  ✓ undo restores cleared scene
+
+=== Replay ===
+  ✓ /replay accepts request
+
+=== Ack endpoint (task 25) ===
+  ✓ /ack accepts a known id
+  ✓ /ack rejects missing id
+
+=== Smoke ===
+  ✓ Cloud allowed_commands count &gt;= 60
+
+============================================================
+ RESULTS: 27 passed, 0 failed (of 27)
+============================================================
+</pre></details>
+<details><summary><b>Security</b> — test_security.py</summary><pre>  ✓ oversize body rejected
+  ✓ malformed JSON rejected
+  ✓ array body rejected (must be object)
+  ✓ empty body rejected
+  ✓ disallowed command rejected (403)
+  ✓ missing command rejected
+  ✓ non-dict args rejected
+  ✓ ack without id rejected
+  ✓ translate empty rejected
+  ✓ batch with non-list rejected
+  ✓ batch oversized rejected
+  ✓ upload_screenshot missing id rejected
+  ✓ upload_screenshot bad b64 rejected
+
+Security tests: 13 passed, 0 failed (of 13)
+</pre></details>
+</body></html>

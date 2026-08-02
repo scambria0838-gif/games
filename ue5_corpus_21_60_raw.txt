@@ -1,0 +1,778 @@
+Unreal Engine 5 - AI Training Corpus (Documents 21-60)
+Advanced Topics: GAS, Lighting, Materials, Rendering, Environment, Animation, Physics, VFX
+Unreal Engine 5 - AI Training Corpus (Documents 21-60)
+Advanced Topics: GAS, Lighting, Materials, Rendering, Environment, Animation, Physics, VFX
+
+DOCUMENT 21: Gameplay Ability System in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/gameplay-ability-system-for-unreal-engine
+The Gameplay Ability System is a framework for building attributes, abilities, and interactions that an Actor can own and trigger. The system is designed to be adapted to a wide variety of Gameplay-Driven projects such as Role-Playing Games (RPGs), Action-Adventure games, and Multiplayer Online Battle Arenas games (MOBA).
+Abilities, Tasks, Attributes, and Effects
+Gameplay Abilities are C++ or Blueprint children of the UGameplayAbility class. They define what the Ability does in C++ code or Blueprint scripting, in addition to establishing how elements of the Ability should be treated, such as replication and instancing behaviors.
+The logic within a Gameplay Ability will generally call a series of asynchronous building blocks, known as Ability Tasks during the course of the logic that defines the Ability. These tasks are derived from the abstract UAbilityTask class. Ability Tasks are written in C++, and frequently call one of several delegates (in Cpp) or output execution pins (in Blueprints) when they complete their work.
+Gameplay Attributes are float values stored within the FGameplayAttribute structure that influence the game or the Actor in some way; these are typical values like health, strength, jump height, attack speed, and so on.
+Gameplay Effects provide a way to alter Gameplay Attributes instantaneously or over time (commonly known as “buffs” and “debuffs”), such as subtracting magic points when casting a spell, granting a movement speed boost while a “Sprint” Ability is active, or gradually restoring health points over the lifetime of a dose of healing medicine.
+Any Actor that interacts with the Gameplay Ability System must have an Ability System Component. This Component will activate Abilities, store Attributes, update Effects, and handle interactions between Actors.
+System Setup
+The Gameplay Ability System exists as a Plugin, therefore you will need to opt-in to use it. To enable the plugin: - Enable the Gameplay Ability System Plugin in the Edit -> Plugins window. - Add "GameplayAbilities", "GameplayTags", and "GameplayTasks" to PublicDependencyModuleNames in your project’s (ProjectName).Build.cs file:
+PublicDependencyModuleNames.AddRange(new string[] { "GameplayAbilities", "GameplayTags", "GameplayTasks", "Core", "CoreUObject", "Engine", "InputCore", "HeadMountedDisplay" });
+Core Concepts
+What is a Gameplay Ability?
+A Gameplay Ability is an in-game action that an Actor can own and trigger repeatedly. Common examples include spells, special attacks, or effects triggered by items.
+Tracking an Ability’s Owner
+Abilities and their effects must maintain a concept of ownership. When an effect runs a calculation, it needs to know who its owner is so that it can use their attributes, and when an ability does something that would score a point for a player, it needs to know what player owned it so that it can give credit correctly.
+Tracking an Ability’s State
+An ability must be able to track a cycle of states: - When the ability is activated. - When the ability’s execution is currently in-progress. - When the ability is fully completed and no longer active.
+
+DOCUMENT 22: Lyra Starter Game
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/lyra-sample-game-in-unreal-engine
+Lyra is a learning resource designed as a sample game project to help you understand the frameworks of Unreal Engine 5 (UE5). Its architecture is designed to be modular, including a core system and plugins that are updated regularly along with the development of UE5.
+Key Features
+Cross-Platform compatibility and scalability.
+Online Multiplayer and cross-play support for Epic Online Services and Console Online Subsystems.
+Features a choice between three different Game modes: Elimination (Team Deathmatch), Control (Capture the Control point) and Exploder (a top down party game).
+A customized Gameplay Ability System.
+Niagara FX.
+Unreal Motion Graphics (UMG) widget classes and UI Icons.
+Optimized, hand-crafted content including locomotion animation assets, sounds, and a weapon system compatible with any Pawn.
+New UE5 Mannequins, Manny, and Quinn. These Mannequins are playable characters that share the same core skeleton hierarchy as MetaHumans.
+Game Mode Maps
+Lyra Framework Systems
+Lyra makes use of the Gameplay Feature Plugins, this means that the Content folder only contains generic assets and the main lobby, however, the plugins folder contains the different core elements that create the Lyra Starter Game.
+Experiences are defined using a LyraExperienceDefinition class.
+
+DOCUMENT 23: Lighting in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/lighting-the-environment-in-unreal-engine
+A significant part of building any virtual world is determining how it will be lit. The engine provides the tools and lighting options necessary to achieve the results your project’s demand.
+Lighting Features
+Lumen Global Illumination and Reflections — Dynamic global illumination and reflections.
+Virtual Shadow Maps — High-resolution shadow techniques for film-quality assets and large dynamically lit open worlds.
+Lighting Essentials
+Light Types and Their Mobility — The available types of lights and how their mobility settings affect lighting.
+Direct Lighting — Properties and features that lights support.
+Environmental Light with Fog, Clouds, Sky and Atmosphere — Components for immersive environment lighting.
+Global Illumination — Options for global illumination.
+Lumen Global Illumination and Reflections — Dynamic GI and reflections overview.
+Mesh Distance Fields — Overview and available features.
+Hardware Ray Tracing and Path Tracing Features — Real-time ray-traced lighting.
+Shadowing — Available shadowing methods and properties.
+Virtual Shadow Maps — High-resolution shadow techniques.
+Reflections Environment — Systems for capturing and displaying reflections.
+Lighting Tools and Plugins — Tools useful for lighting scenes.
+Contact Shadows — Screen space shadowing for hard contact points.
+Capsule Shadows — Physics capsules for dynamic soft shadowing of Skeletal Meshes.
+
+DOCUMENT 24: Lumen Global Illumination and Reflections
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/lumen-global-illumination-and-reflections-in-unreal-engine
+Lumen is Unreal Engine’s fully dynamic global illumination and reflections system that is designed for next-generation consoles, and it is the default global illumination and reflections system. Lumen renders diffuse interreflection with infinite bounces and indirect specular reflections in large, detailed environments at scales ranging from millimeters to kilometers.
+Getting Started with Lumen
+Newly-created projects have Lumen enabled by default. Existing projects converted from UE4 will not automatically enable Lumen.
+Lumen is enabled from the Project Settings under Rendering > Dynamic Global Illumination and Reflections categories: - Dynamic Global Illumination: Lumen - Reflection Method: Lumen
+When enabled, Generate Mesh Distance Fields will be enabled if not already. Requires engine restart.
+Lumen replaces SSGI and DFAO. Lumen Reflections replace Screen Space Reflections.
+Lumen Lighting Features
+Lumen Global Illumination
+Lumen solves diffuse indirect lighting with infinite diffuse bounces.
+Lumen with Sky Lighting
+Sky lighting is solved as part of Lumen’s Final Gather process. Includes sky shadowing.
+Lumen and Emissive Materials
+Emissive materials propagate light through Lumen’s Final Gather with no additional performance cost.
+Lumen Reflections
+Lumen solves indirect specular (reflections) for the full range of material roughness values. Supports Clear Coat materials and Single Layer Water.
+Lumen Settings
+
+DOCUMENT 25: Lumen Technical Details
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/lumen-technical-details-in-unreal-engine
+Lumen uses multiple ray-tracing methods to solve Global Illumination and Reflections. Screen Traces are done first, followed by a more reliable method. Lumen supports two different ray tracing methods: Hardware Ray Tracing and Software Ray Tracing through signed distance fields.
+Surface Cache
+Lumen generates an automatic parameterization of the nearby scene’s surface called the Surface Cache. It is used to quickly look up lighting at ray hit points in the scene.
+Cards can be visualized with the console command:
+r.Lumen.Visualize.CardPlacement 1
+By default, Lumen only places 12 Cards on a mesh, but you can increase that amount by setting Max Lumen Mesh Cards in the Build Settings of the Static Mesh Editor.
+Areas that don’t have Surface Cache coverage are colored pink in the Surface Cache View Mode.
+Large Worlds
+Lumen Scene operates on the world around the camera, enabling large worlds and streaming. Lumen relies on Nanite’s LOD and Multi-View rasterization for fast scene captures.
+When Lumen is using Software Ray Tracing, Lumen Scene only covers 200 meters from the camera position, but can be increased up to 800 m with the Lumen Scene View Distance setting in the Post Process Volume.
+Far Field
+Lumen Hardware Ray Tracing implements Far Field traces, which extend Lumen Global Illumination and Reflections to one kilometer distance from the camera by default.
+Far Field traces are enabled by the console variable r.LumenScene.FarField=1 in the DefaultEngine.ini configuration file, and requires the use of World Partition’s HLOD.
+Lumen Ray Tracing
+Hardware Ray Tracing
+Hardware Ray Tracing supports a larger range of geometry types than Software Ray Tracing, in particular it supports tracing against skinned meshes.
+To use high quality hit lighting, the following must be enabled: - Support Hardware Ray Tracing: Enabled - Use Hardware Ray Tracing when available: Enabled - Ray Lighting Mode: Hit Lighting for Reflections
+General Limitations
+Lumen Global Illumination cannot be used with Static Lighting in lightmaps.
+Lumen is not compatible with Forward Shading.
+Platform Support
+Lumen does not support previous-generation consoles (PS4, Xbox One).
+Lumen is developed for next-generation consoles (PS5, Xbox Series S/X) and high-end PCs.
+Software Ray Tracing Requirements: Video cards using DirectX 12 with support for Shader Model 6 (SM6). Requires an NVIDIA GeForce GTX-1070 or higher card.
+Lumen Android Support: Supported on Android Vulkan with the Mobile Renderer.
+VR Support: Lumen does not currently support Virtual Reality (VR) systems.
+Hardware Ray Tracing Requirements: Windows 10 with DirectX 12, or Linux with Vulkan. Video cards must be NVIDIA RTX-2000 series or higher, or AMD RX-6000 series or higher.
+
+DOCUMENT 26: Hardware Ray Tracing in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/hardware-ray-tracing-in-unreal-engine
+Enabling Hardware Ray Tracing
+When Support Hardware Ray Tracing is enabled, you may be prompted to enable Support Compute Skin Cache from a pop-up message if it’s not already enabled.
+Ray Tracing Project Settings
+Ray Lighting Mode options: - Surface Cache: Lighting calculated using Lumen’s cards for best performance. - Hit Lighting for Reflections: Lighting calculated at ray’s hit point for highest quality.
+Features of Hardware Ray Tracing
+Hardware Ray Traced Shadows
+Ray Traced Shadows simulates soft area shadowing for objects in the environment. These shadows can be more accurate than traditional shadow maps or Virtual Shadow Maps because they can have hard contact shadows with softer shadows the farther the shadow caster is from the receiving surface.
+Ray Traced Ambient Occlusion
+Ray Traced Ambient Occlusion (RTAO) accurately shadows areas blocking ambient lighting. Available when Lumen Global Illumination is disabled.
+Hardware Ray Traced Reflections with Lumen
+Ray-traced reflections are built into Lumen’s reflection system and are used when enabled in the project settings. Ray-traced reflections support a larger range of geometry types than Lumen’s software ray tracing mode.
+
+DOCUMENT 27: Shadowing in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/shadowing-in-unreal-engine
+Shadows make objects feel grounded in the world. They give the viewer a sense of depth and space. Shadowing is supported by all available types of lights and determined by a light’s mobility.
+Supported Shadowing Methods
+The type of shadowing used by a light is determined by what its Mobility is set to: Static, Stationary, or Movable.
+
+DOCUMENT 28: Exposure and Eye Adaptation in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/auto-exposure-in-unreal-engine
+The engine automatically controls exposure — also called eye adaptation — which adjusts how bright, or dark, the scene becomes for the current view based on current scene luminance. This effect recreates the experience of human eyes adjusting to different lighting conditions.
+Key Concepts and Features
+Exposure Change Speed and Movement
+The rate at which exposure compensation adapts to the current scene is done in logarithmic steps that perceptually move up and down the curve at the same rate of speed.
+When getting close to the Target exposure value, there is a set transition distance where the curve switches from linear to exponential movement. By default, this transition happens at 1.5 f-stops from the Target value.
+Speed Up and Speed Down Parameters
+The Speed Up parameter should use higher values when mimicking eye adaptation behavior. This allows for quicker transitions when moving from dark areas to brightly lit ones.
+The Speed Down parameter should use lower values. This allows for slower transitions when moving from brightly lit areas to darker ones.
+Auto Exposure Histogram Settings
+Post Process Volume Exposure Tutorial
+To set exposure: 1. In the Outliner, select PPV_Global. 2. In the Details panel, under Exposure, check MIN EV100 and set it to -10. 3. Check MAX EV100 and set it to 20. 4. Select PPV_Room3, check MIN EV100 and set it to -1.0.
+To blend the global volume with the bound volume using Blend Radius: 1. Select PPV_Room3. 2. Under Post Process Volume Settings, set Blend Radius to 1500.
+
+DOCUMENT 29: Building Lighting with Lightmass
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/lightmass-basics-in-unreal-engine
+Lightmass creates lightmaps with complex light interactions like area shadowing and diffuse interreflection. It is used to precompute portions of the lighting contribution of lights with stationary and static mobility.
+Lightmass Importance Volume
+Many maps have meshes out to the edge of the grid in the editor, but the actual playable area that needs high quality lighting is much smaller. The Lightmass Importance Volume controls the area that Lightmass emits photons in, allowing you to concentrate it only on the area that needs detailed indirect lighting. Areas outside the importance volume get only one bounce of indirect lighting at a lower quality.
+Building
+Click the Build in the Main menu panel and select Build Lighting Only.
+A dialog will appear at the bottom right of the screen.
+Click Keep when it finishes.
+Enabling Baked Lighting in UE5
+In order for light baking to work, you need to: 1. Enable Static Lighting in Project Settings > Engine - Rendering > Allow Static Lighting. 2. Disable Lumen by setting Dynamic Global Illumination Method to None. 3. Disable or omit World Partition (if using 5.4 or earlier). 4. Set Force No Precomputed Lighting to false in World Settings > Lightmass.
+CPU Lightmass Global Illumination Settings
+GPU Lightmass Global Illumination
+GPU Lightmass has its own panel accessible through the Level Editor’s toolbar under Build > GPU Lightmass.
+GPU Lightmass Baking Modes
+Full Bake — Renders full lightmap resolution for every object. Results not visible until build completes.
+Bake What You See (BWYS) — Only builds lighting for what is visible within the viewport. Enables interactivity during light building.
+Using GPU Lightmass Speed Modes
+Realtime On: GPU Lightmass uses slow mode due to rendering overhead.
+Realtime Off: Significantly increases the speed of lighting builds.
+
+DOCUMENT 30: Virtual Shadow Maps in Unreal Engine
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/virtual-shadow-maps-in-unreal-engine
+Virtual Shadow Maps (VSMs) is the new shadow mapping method used to deliver consistent, high-resolution shadowing that works with film-quality assets and large, dynamically lit open worlds using Unreal Engine 5’s Nanite, Lumen, and World Partition features.
+Goals of Virtual Shadow Maps
+Significantly increase shadow resolution to match highly detailed Nanite geometry
+Plausible soft shadows with reasonable, controllable performance costs
+Provide a simple solution that works by default with limited amounts of adjustment needed
+Replace the many Stationary Light shadowing techniques with a single, unified path
+Conceptually, virtual shadow maps are just very high-resolution shadow maps. In their current implementation, they have a virtual resolution of 16k x 16k pixels. Clipmaps are used to increase resolution further for Directional Lights. Pages are 128x128 each. Pages are allocated and rendered only as needed to shade on-screen pixels.
+Soft Shadows with Shadow Map Ray Tracing
+Local lights have no Source Radius by default, compared to Directional Lights which start with a low Source Angle. When either are set with an appropriate value, SMRT produces real-time soft shadowing with contact hardening.
+Both local and Directional Lights use eight rays by default when scalability for Shadows is set to Epic.
+Use console variables r.Shadow.Virtual.SMRT.RayCountLocal and r.Shadow.Virtual.SMRT.RayCountDirectional to adjust the number of rays.
+Clipmaps for Directional Light
+Directional Lights use a clipmap structure of expanding ranges around the camera, with each clipmap level having its own 16K VSM. Each clipmap level is the same resolution but covers twice the radius of the previous one.
+By default, clipmap levels 6 through 22 are allocated. This means the most detailed clipmap covers 64 cm from the camera, and the broadest covers about 40 kilometers.
+Supported Platforms
+Virtual Shadow Maps are currently supported on PlayStation 5, Xbox Series S|X, and PCs with graphics cards meeting these specifications, using the latest drivers with DirectX 12: - NVIDIA: Maxwell-generation cards or newer - AMD: GCN-generation cards or newer - All newer versions of Windows 10 (newer than version 1909.1350) and Windows 11 - Apple Silicon M2 or newer. - Linux with a NVIDIA GeForce 2080 or newer.
+
+DOCUMENT 31: Materials Overview
+Source URL: https://dev.epicgames.com/documentation/en-us/unreal-engine/essential-material-concepts
+Materials in Unreal Engine define the surface properties of the objects in your scene. Materials tell the engine exactly how a surface should interact with the light in your scene. Materials define every aspect of a surface, including color, reflectivity, roughness, transparency, and so on.
+Shading Pipeline Overview
+In the Unreal Editor you do not need to write HLSL code to create shaders. Instead, you will create assets called Materials in a visual scripting interface called the Material Editor.
+The Main Material Node
+Data flows from left to right in the Material Graph, and the Main Material Node is the end-point of every Material network.
+Compile and Apply
+Changes to a Material cannot be seen in the level until the Material is compiled. To compile a Material, click the Apply or Save button in the toolbar at the top of the Material Editor.
+Material Instancing is one strategy to improve iteration time and avoid lengthy compilation delays.
+Material Expression Nodes and Networks
+Materials are constructed via a network of visual scripting nodes (called Material Expressions) within the Material Editor. Each node contains a snippet of HLSL code, designated to perform a specific task.
+Working with Colors and Numbers
+Color in digital imagery is broken into 4 primary channels:
+Materials use floating point values to store color data, ranging from 0.0 to 1.0.
+Textures
+In the case of Materials, textures are simply images that provide some sort of pixel-based data. A single material may make use of several textures that are all sampled and applied for different purposes.
+Workflow Efficiency Concepts
+Material Instances and Parameterization
+Material Instances provide a way to quickly create multiple variations from a single parent Material. You can customize Material Instances without recompiling the parent Material.
+Material Functions
+Material Functions enable you to package parts of a Material graph into a reusable asset that you can share to a common library and easily insert into other Materials.
+
+DOCUMENT 32: Material Editor Reference
+Source URL: https://dev.epicgames.com/documentation/en-us/unreal-engine/material-editor-reference
+The Material Editor is a node-based graph interface that enables you to create shaders that can be applied to your geometry.
+Opening the Material Editor
+The Material Editor can be opened by double-clicking any Material asset or through the right-click context menu of a Material asset in the Content Browser.
+Comments
+Using Comments are a great way to document what your Material is doing: - Add text to the individual node using the Desc property - Use a comment box to encapsulate a larger section of your material graph
+Live Preview, Live Nodes, and Live Update
+Live Preview — Updates automatically in the Material Preview window in realtime.
+Live Node — Constant changes that the nodes make playback in realtime inside the graph.
+Live Update — Each node has its shader recompiled whenever a change is made.
+Reroute Nodes
+Reroute nodes enable you to easily organize and clean up your shader network without impacting performance.
+Compiler Errors
+Compiler errors are indicated in two places: - The node throwing the error displays “ERROR!” along its bottom. - The Stats window displays the error causing the Material to fail to compile.
+Material Graph Search
+You can open the search tab by going to Window > Find Results. Searches are performed against:
+Stats Window
+The Stats window displays all of the instructions and other stats about your Material, useful for diagnosing performance issues. Accessible via Window > Stats.
+
+DOCUMENT 33: Material Instances
+Source URL: https://dev.epicgames.com/documentation/en-us/unreal-engine/material-instance-editor-user-guide
+The Material Instance Editor is used for modifying parameters for Material Instances.
+Opening the Material Instance Editor
+The Material Instance Editor can be opened by double-clicking any Material Instance asset or through the right-click context menu in the Content Browser.
+Material Instance Editor Interface
+Toolbar — Save your asset, locate it in the Content Browser, and display rendering statistics.
+Viewport Display Options — Change the mesh that is used in the viewport.
+Details Pane — Properties of the Material Instance.
+Parent List — A list of the chain of parents for the current Material Instance.
+Viewport — Previews the current Material Instance.
+Details Pane
+Each parameter that exists in the Parent Material is listed in the Parameter Groups array. By default, none of the parent’s parameter’s values are overridden.
+To enable a parameter, Left-click on the grayed out box next to the parameter name. When you do this, the box will no longer be grayed out and you will be able to adjust the parameter.
+Parent List
+Since Material Instances can have other Material Instances as their parent, the parent list displays the chain of parents all the way up to the root Material.
+Overriding Material Instance Parameters
+The checkboxes to the left side of each parameter name specify whether or not an overridden value should be used. Only checked values are stored for memory conservation reasons.
+Overriding Parent Material Settings
+You can override certain Parent Material properties within a Material Instance by going to the Material Property Overrides section and enabling the property you want to override.
+
+DOCUMENT 34: Layered Materials and Material Layers
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/layered-materials-in-unreal-engine
+Unreal Engine provides two main ways to layer your Materials and create complex blends between unique surface types.
+Layering Materials with Material Functions
+This approach works as an extension of the Material Functions system. Each Material type you wish to use as a layer is fully defined within its own Material Function using the Material Attributes expressions. You then create a base Material which contains all the logic needed to blend between your various layers.
+Material Layers
+The Material Layers system makes it easier to edit layered Materials by providing a user-interface tab in the Material Instance Editor. This Layer Parameters tab allows artists intuitively swap layers in and out of a Material Instance, change the order of the layer stack, and modify the way layers are blended without ever editing the node graph in the base Material.
+Creating Layered Materials
+Simple Chrome
+The network for this Material Layer uses T_ExampleLayers_Metal_1_BC.png for the Base Color and Roughness, and T_ExampleLayers_Metal01_N.png for the normal map.
+Base Color — A Linear Interpolate blends between base chrome color and dark gray.
+Metallic — Set to 1 since we are creating a metal.
+Roughness — Lerping between 0.2 and 0.4.
+Customizable Normal — Multiplies each channel by a value supplied from a Function Input.
+Simple Snow
+This layer uses the T_Cave_Ice_Tiling_D.png and T_Cave_Ice_Noise_N.png textures.
+Base Color — Uses the FuzzyShading Material Function for fibrous surfaces like snow.
+Metallic — Set to 0.
+Roughness — Lerps between 0.6 and 0.3.
+Normal — Multiplies the normal map by (1,1,2) to reduce the effect.
+
+DOCUMENT 35: Subsurface Scattering
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/using-subsurface-scattering-in-your-materials
+Subsurface scattering is the term used to describe the lighting phenomenon where light scatters as it passes through a translucent / semi translucent surface.
+Enabling the Subsurface Shading Model
+Create a new Material in the Content Browser.
+Open the Material and change the Shading Model from Default Lit to Subsurface.
+Setting up a Subsurface Material
+Add the following nodes: - Vector Parameter x 2 (Base_Color, Subsurface_Color) - Scalar Parameter x 2 (Roughness, Subsurface_Amount)
+Technical Details
+Materials have a new subsurface shading model (MLM_Subsurface) which is intended for materials like wax or jade which appear opaque, but lighting scatters inside them.
+The two components of subsurface lighting are a wrap-around N dot H term and a light backscattering term, which shows up when the light is on the other side of an SSS object.
+Material Input Channels
+The SubsurfaceColor input channel defines the color inside the material which affects SSS lighting.
+The Opacity channel controls how dense the material is when it scatters light.
+Be sure to set the Opacity for any subsurface materials to a reasonable value, e.g. 0.1.
+
+DOCUMENT 36: Material Shading Models
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-material-properties
+Shading Models determine how Material inputs (e.g. Emissive, Diffuse, Specular, Normal) are combined to make the final color.
+Shading Model Reference
+From Material Expression Shading Model
+When the From Material Expression Shading Model is enabled, you can blend between Shading Models on a per-pixel basis using alpha masks, or with conditional logic like Switch Expressions and If statements.
+Single Layer Water Shading Model
+The Single Layer Water shading model uses a custom render pass to achieve its transparent result while using a Blend Mode that is either Opaque or Masked.
+Four inputs: Scattering Coefficients, Absorption Coefficients, PhaseG, and Color Scale Behind Water.
+
+DOCUMENT 37: Post Process Volume
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/post-process-effects-in-unreal-engine
+Post process effects non-destructively change the look and feel of a level. You can picture these effects like applying a filter to a camera, or holding a color gel in front of the lens.
+Post process effects can be applied in realtime, without altering assets within a level.
+The Anatomy of Post Process Volumes
+Post process effects can be applied to a level by using placeable post process volumes. Volumes define the area that an effect applies to. These volumes are invisible to players during runtime and can be bound or unbound.
+Unbound volumes apply effects globally to the entire level.
+Bound volumes apply effects locally to the area within their perimeter.
+Volumes can layer hierarchically. Global volumes layer over smaller, bound volumes inside a level.
+Experiment with Post Processing Presets
+Exposure
+Exposure controls the upper and lower limits of brightness in a level.
+In the Outliner, select PPV_Global.
+Under Exposure, check MIN EV100 and set it to -10.
+Check MAX EV100 and set it to 20.
+Select PPV_Room3, check MIN EV100 and set it to -1.0.
+Lens Flare
+In the Outliner, select PPV_Room3.
+Expand Lens > Lens Flares.
+Check Intensity and set it to 0.5.
+Check BokehSize and set it to 5.
+Color Grading and Tonemapper Reference
+Film Properties
+
+DOCUMENT 38: Color Grading and Filmic Tonemapper
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/color-grading-and-filmic-tonemapper
+Within the Unreal Engine, the term Color Grading covers the Tone Mapping function (HDR to LDR transformation) that is used with High Dynamic Range (HDR) display output and further the color correction (LDR color to screen color transformation) processing of the image.
+Tone Mapping
+Academy Color Encoding System (ACES) Filmic Tonemapper
+The Filmic tonemapper matches the industry standard set by the Academy Color Encoding System (ACES) for television and film. This ensures that consistent color is preserved across multiple formats and displays.
+Two places you’ll immediately notice a difference is with Bloom and Exposure Levels.
+Film Settings
+Slope: Adjusts the steepness of the S-curve. Default: 0.88
+Toe: Adjusts the dark color in the tonemapper. Default: 0.55
+Shoulder: Adjusts the bright color in the tonemapper. Default: 0.26
+Black Clip: Sets where black starts to cut off. Default: 0
+White Clip: Sets where white starts to cut off. Default: 0.04
+Color Correction
+Color Correction Properties
+Settings
+Shadows, Mid-tones, Highlights
+Each has: Saturation, Contrast, Gamma, Gain, Offset.
+Misc
+Workflow for Good Color Correction
+The Film controls should be set for a project-wide look.
+Start by using the Global color correction properties.
+Do not use Gain to adjust exposure; use Exposure Bias instead.
+Use Offset in minor amounts to make shadowed areas lighter.
+Use Color Grading properties for consistency across all displays.
+
+DOCUMENT 39: Nanite Virtualized Geometry
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/nanite-virtualized-geometry-in-unreal-engine
+Nanite is Unreal Engine’s virtualized geometry system which uses an internal mesh format and rendering technology to render pixel scale detail and high object counts. It intelligently does work on only the detail that can be perceived and no more.
+Differences Between a Nanite Mesh and Static Mesh
+Nanite meshes are triangle meshes at their core, only with a lot of level of detail and compression applied.
+Requires a flag to be set on the mesh itself during import.
+Supports multiple UVs and vertex colors.
+How does Nanite work?
+During import, meshes are analyzed and broken down into hierarchical clusters of triangle groups.
+During rendering, clusters are swapped on the fly at varying levels of detail based on the camera view.
+Data is streamed in on demand so that only visible detail needs to reside in memory.
+Nanite runs in its own rendering pass that completely bypasses traditional draw calls.
+Features of Nanite
+Nanite Static Mesh
+Uses no LODs, scaling dynamically the number of polygons based on screen resolution. Fully supports Lumen, Virtual Shadow Maps.
+Nanite Skeletal Mesh
+One draw call for an entire mesh.
+Shadowing from Virtual Shadow Maps.
+No geometry LODs. Uses animation LODs.
+Instancing with animation banks.
+Nanite with Landscapes
+Enabled for landscape terrain to improve performance, especially with Virtual Shadows.
+Nanite Foliage
+A set of integral systems using Nanite’s virtualized geometry rendering to achieve dense, highly detailed foliage at scale.
+Nanite Splines
+Nanite-enabled meshes support splines by default for Landscape Splines and Blueprint Splines.
+Nanite Static Displacement Mapping
+Adds detail to Nanite-enabled meshes through an offline adaptive tessellator using displacement maps.
+Nanite Tessellation
+Dynamic programmable displacement that allows for Nanite meshes to be modified at runtime using a displacement map or procedural material.
+Supported Features
+Materials
+Nanite supports materials with Blend Mode set to Opaque and Masked.
+Rendering - Not Supported
+View-specific filtering using Minimum Screen Radius
+Forward Rendering
+Stereo rendering for Virtual Reality
+Multisampling Anti-Aliasing (MSAA)
+Lighting Channels
+Ray-tracing against Nanite meshes (uses Fallback Mesh)
+Supported Platforms
+Nanite supports current console and desktop platforms with graphics cards using DirectX 12 with Shader Model 6 (SM6).
+
+DOCUMENT 40: Temporal Super Resolution
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/temporal-super-resolution-in-unreal-engine
+Temporal Super Resolution (TSR) in Unreal Engine 5 is Epic Games’ advanced temporal upscaling technology designed to deliver high-quality visuals at lower rendering costs. It works by combining data from multiple frames over time and filtering motion vectors, depth, and color history to reconstruct a higher-resolution image from a lower-resolution render.
+TSR Anti-Aliasing Scalability Levels
+Console Variables
+Supported Rendering Paths
+
+DOCUMENT 41: Virtual Texturing
+Source URL: https://docs.unrealengine.com/5.4/en-US/virtual-texturing-in-unreal-engine/
+Virtual Texture support for your project enables you to create and use large-sized textures for a lower and more consistent memory footprint at runtime.
+Virtual Texturing Methods
+Unreal Engine supports two virtual texturing methods: Runtime Virtual Texturing (RVT) and Streaming Virtual Texturing (SVT).
+Runtime Virtual Textures
+Supports larger texture resolutions.
+Texel data cached in memory on demand.
+Texel data generated by the GPU at runtime.
+Well suited for texture data that can be rendered on demand, such as procedural textures or composited layered materials.
+Streaming Virtual Textures
+Supports larger texture resolutions.
+Texel data cached in memory on demand.
+Texel data cooked and loaded from disk.
+Well suited for texture data that takes time to generate, such as lightmaps or large, detailed artist created textures.
+Virtual Texture Lightmaps
+Enable virtual texture support for lightmaps from the Project Settings by going to Engine > Rendering and setting Enable virtual texture lightmaps.
+
+DOCUMENT 42: Forward vs Deferred Rendering
+Source URL: https://docs.unrealengine.com/5.4/en-US/deferred-rendering-in-unreal-engine/
+Forward Shading Renderer
+By default, Unreal Engine uses a Deferred Renderer. Forward Rendering provides a faster baseline, with faster rendering passes, which may lead to better performance on VR platforms.
+Enabling Forward Shading
+In Project Settings > Rendering > Forward Shading, enable Forward Shading.
+Restart the editor.
+Enabling Multisample Anti-Aliasing
+In Project Settings > Rendering > Default Settings, set Anti-Aliasing Method to MSAA.
+The forward renderer supports both MSAA and TAA. In VR, MSAA is a better choice due to constant sub-pixel movement causing blurriness with TAA.
+Use r.MSAACount to control MSAA samples. r.MSAACount 1 disables MSAA. r.MSAACount 0 falls back to TAA.
+Supported Features (Forward Renderer)
+Full support for Stationary Lights, including Dynamic Shadows from Movable objects
+Multiple Reflection Captures blended together with parallax correction
+Planar Reflections of a partial scene
+DBuffer Decals
+Precomputed Lighting and Sky Lights
+Any number of unshadowed Movable Lights
+Capsule Shadows
+Alpha-to-coverage for Masked Materials
+Instanced Stereo Compatible
+Up to 4 overlapping Shadow Casting Movable Lights
+Light Functions on shadow casting lights
+Not Supported (Forward Renderer)
+Screen Space Techniques (SSR, SSAO, Contact Shadows)
+Dynamically Shadowed Translucency
+Translucency receiving environment shadows from a Stationary Light
+MSAA on D-Buffer Decals and Motion Blur
+Mobile Rendering and Shading Modes
+UE provides both forward and deferred shading modes for mobile devices.
+
+DOCUMENT 43: Level Designer Quick Start
+Source URL: https://docs.unrealengine.com/5.4/en-US/level-designer-quick-start-in-unreal-engine/
+At the end of this guide, you’ll have a room built in Unreal Engine 5. You will learn: - How to navigate viewports - How to create a new level - How to place and edit actors in levels - How to build and run levels
+1. Required Setup
+After Installing Unreal Engine and launching the Unreal Editor, the Project Browser appears.
+Under New Project Categories, select Games, then click Next.
+Select the Blank template, then click Next.
+Select Blueprint and With Starter Content settings, enter a Folder location and Name, then click Create Project.
+2. Navigating the Viewport
+Standard Controls (Perspective)
+WASD Fly Controls
+Hold RMB to use WASD game-style controls: - W/S — Forward/Backward - A/D — Left/Right - E/Q — Up/Down - Z/C — Zoom out/in
+Orbit, Dolly, and Track (Maya-style)
+3. Create a New Level
+Click File Menu > New Level….
+Select Empty Level.
+4. Placing Actors in the Level
+Two most common ways of adding Actors to the level: through Select Mode and through the Content Browser.
+In the Place Actors panel, click the Geometry category and select the Box.
+Left-click and drag the Box into the Level Viewport.
+Placing Additional Actors
+Directional Light — from the Lights tab.
+Volumetric Cloud — from the Visual Effects tab.
+Player Start — from the Basic tab.
+Lightmass Importance Volume — from the Volumes tab.
+5. Editing Placed Actors
+Select the Directional Light.
+Change Mobility to Movable.
+Rotate the Directional Light and the sky will change color from night to sunrise, daytime, and sunset.
+6. Running the Build Process
+Click the down-arrow next to Build and choose Production under Lighting Quality.
+Click Build to begin the build process.
+Click Play to play in the editor.
+
+DOCUMENT 44: Procedural Content Generation (PCG)
+Source URL: https://docs.unrealengine.com/5.4/en-US/procedural-content-generation-in-unreal-engine/
+The Procedural Content Generation Framework (PCG) is a toolset for creating your own procedural content and tools inside Unreal Engine. PCG provides technical artists, designers, and programmers with the ability to build fast, iterative tools and content of any complexity, ranging from Asset utilities to entire worlds.
+Important Concepts and Terms
+Points: Locations in 3D space generated by the PCG graph, often used to spawn meshes.
+Point Density: Value used by a variety of graph nodes, representing the probability of the point to exist at that position.
+Required Setup
+Enable the Procedural Content Generation Framework plugin. The Procedural Content Generation Framework Geometry Script Interop plugin is required to sample points on Static Meshes.
+The Procedural Node Graph
+Using a format similar to the Material Editor, spatial data flows into the graph from a PCG Component and is used to generate points. The points are filtered and modified through a series of nodes, with the output being updated in real time.
+Create the PCG Graph Asset
+Right click in the Content Browser, navigate to Create Advanced Asset > PCG, and select PCG Graph.
+Choose a name for the new Asset.
+PCG Nodes
+Attributes and Metadata
+Static Attributes: Fixed attributes always present, starting with $, such as $Position.
+Dynamic Attributes: Created at runtime, stored as part of the Metadata.
+Graph Parameters
+Similar to parameters in the Material editor, PCG Graph Parameters are user created overridable values.
+PCG Component
+The Procedural Node Graph can sample your Level through the PCG Component. This component holds an instance of your Procedural Node Graph and manages the generation of procedural content, both in the Editor and at runtime.
+Create a Simple Forest Volume
+Create a new Level using the Basic level template.
+Delete the Floor and add a new Landscape.
+Add a PCG Volume to your level.
+Create a PCG Graph asset named PCG_ForestGen.
+Add a Get Landscape Data node and a Surface Sampler node.
+Add a Transform Points node for rotation and scale variation.
+Add a Static Mesh Spawner node and select a tree mesh.
+
+DOCUMENT 45: Foliage Tool
+Source URL: https://docs.unrealengine.com/5.4/en-US/foliage-tool-in-unreal-engine/
+Open World Tools
+Unreal Engine 5 is a powerful engine able to render massive open worlds full of complex flora and fauna. The Open World Tools can be used to procedurally fill large spaces with Static Mesh assets to create outdoor spaces that feel natural and alive.
+Foliage Mode
+Foliage Mode is used to render Static Mesh or Actor Foliage on the surfaces of other geometry for creating ground cover effects.
+Procedural Foliage Tool
+The Procedural Foliage tool can be used to procedurally fill large spaces with Static Mesh assets.
+Grass Quick Start
+Learn how to add Grass textures to a landscape.
+
+DOCUMENT 46: Geometry Editing (Modeling Mode)
+Source URL: https://docs.unrealengine.com/5.4/en-US/geometry-editing-in-unreal-engine/
+Modeling Mode provides various tools for creating and editing geometry. These tools are organized into specific categories.
+Tool Categories
+Select
+Edit element selections.
+Xform (Transform)
+Deform
+Model
+Mesh
+Voxel
+Bake
+UVs
+
+DOCUMENT 47: World Partition
+Source URL: https://docs.unrealengine.com/5.4/en-US/world-partition-in-unreal-engine/
+World Partition is an automatic data management and distance-based level streaming system that provides a complete solution for large world management. The system stores your world in a single persistent level separated into grid cells, and provides an automatic streaming system to load and unload those cells based on distance from a streaming source.
+Enabling World Partition
+Creating a new project from a template in the Games category.
+Creating a new Level using the Open World template.
+Converting existing levels using Tools > Convert Level or the WorldPartitionConvertCommandlet.
+Using World Partition
+World Partition creates worlds stored in a single persistent level, using configurable Runtime Grids to divide space into streamable grid cells. These grid cells are loaded and unloaded at runtime by streaming sources (such as the player).
+Actors in World Partition
+Actors can be placed anywhere and are automatically assigned to a grid cell based on their Is Spatially Loaded setting.
+Streaming Sources
+By default, the local player is automatically set as a streaming source. The World Partition Streaming Source Component can be added to any Actor to make it a streaming source.
+Runtime Grid Settings
+Configure in World Settings under the World Partition section. Each grid can have different cell sizes and loading ranges.
+World Partition Builder Commandlets
+World Partition HLOD Builder
+World Partition Minimap Builder
+World Partition Rename Duplicate Builder
+World Partition Resave Actors Builder
+World Partition Foliage Builder
+World Partition Navigation Data Builder
+World Partition Smart Object Collection Builder
+World Partition PCG Builder
+
+DOCUMENT 48: Data Layers
+Source URL: https://docs.unrealengine.com/5.4/en-US/data-layers-in-unreal-engine/
+Data Layers are split into two types of assets: Data Layer Assets and Data Layer Instances.
+Data Layer Assets
+Data Layer Assets exist at the project level and are not world specific. They contain: - Data Layer Name - Data Layer Type - Debug Color
+Data Layer Type
+Editor Data Layers: Used to keep assets organized. Can load/unload from memory and toggle visibility.
+Runtime Data Layers: Can be manipulated at runtime using Blueprints or C++.
+Data Layers Outliner
+Right-clicking in the Data Layer Outliner opens the context menu:
+Managing Files
+Each Data Layer has a display label and an internal unique identifier. Unreal Engine stores this information in a list of Data Layers in the WorldDataLayer file.
+Debugging and Runtime Overrides
+
+DOCUMENT 49: Skeletal Mesh Animation System
+Source URL: https://docs.unrealengine.com/5.4/en-US/animation-system-overview-in-unreal-engine/
+Character animations in Unreal Engine are built on the foundation of a Skeletal Mesh, a rigged mesh that can be manipulated to create animations. Animation Blueprints can be augmented to Skeletal Meshes to apply logic that governs animation behavior.
+Animation Editors
+Skeleton Editor: An in depth look at the Skeleton Editor mode.
+Skeletal Mesh Editor: An in depth look at the Skeletal Mesh Editor mode.
+Animation Sequence Editor: An in depth look at the Animation Sequence Editor.
+Animation Blueprints
+In Unreal Engine, Animation Blueprints are a powerful and versatile system that provides you with the ability to visually script your animation behavior.
+Animation Blueprint Editor: Overview of the Animation Blueprint Editor.
+Graphing in Animation Blueprints: Edit, blend, and manipulate poses.
+State Machines: Create logic-based branching animation.
+Animation Node Reference: Descriptions of various animation nodes.
+Animation Slots: Insert entry-points to play animation from.
+Sync Groups: Synchronize cycles of animations with different lengths.
+Animation Blueprint Linking: Modularize your Animation Blueprint logic.
+Skeletal Mesh Assets
+Animation Sequences can be played on a Skeletal Mesh’s Skeleton asset. You can play animations by assigning a Character Blueprint’s Mesh component’s Animation Mode property to Use Animation Asset and then selecting an Animation Sequence asset.
+Animating Compatible Skeletal Meshes
+Multiple Skeletal Meshes assets can be linked when they share the same or very similar skeleton structures.
+Non-Skeleton Animation
+You can animate the mesh of Skeletal Mesh assets using deformer animation techniques such as Morph Targets.
+
+DOCUMENT 50: Animation Blueprints
+Source URL: https://docs.unrealengine.com/5.4/en-US/animation-blueprints-in-unreal-engine/
+Animation Blueprints are specialized Blueprints that control the animation of a Skeletal Mesh during simulation or gameplay. Graphs are edited inside of the Animation Blueprint Editor.
+Animation Blueprint Creation
+Method 1: 1. In the Content Browser, click Add (+), then select Animation > Animation Blueprint. 2. Specify which Skeleton to target and click Create.
+Method 2: 1. Right-click on a Skeletal Mesh Asset in the Content Browser and select Create > Anim Blueprint.
+Assigning to Characters
+To assign your Animation Blueprint, select your Skeletal Mesh and set: - Animation Mode to Use Animation Blueprint. - Anim Class to your Animation Blueprint asset.
+Working with Animation Blueprints
+
+DOCUMENT 51: Control Rig in Unreal Engine
+Source URL: https://docs.unrealengine.com/5.4/en-US/control-rig-in-unreal-engine/
+Rig and Animate characters in real-time using Control Rig.
+Starting Out
+Control Rig Quick Start
+Learn the basic fundamentals of Control Rig in Unreal Engine.
+Creating Rigs
+Control Rigs are the primary assets you will be using to create your rigs.
+Rigging with Control Rig
+Start rigging by creating a Control Rig Asset and learning about its various features.
+Control Rig Editor
+Learn about the various tools and areas in the Control Rig Editor.
+Modular Control Rigs
+Use Modular Rigging tools to quickly rig characters in Unreal Engine.
+Controls, Bones, and Nulls
+Learn about the primary Rig Elements you can use for constructing Control Rigs.
+Full-Body IK
+Build Full Body IK systems for your character.
+Spline Rigging
+Utilize Splines in your Control Rig to achieve easier procedural animation on long joint chains.
+Control Rig Component
+Use Control Rig in Blueprints using the Control Rig Component.
+Control Rig Function Libraries
+Construct and reference public Control Rig functions to speed up your rigging workflows.
+Creating Animation
+Animating with Control Rig
+Start animating your Control rig using various tools and workflows.
+Animation Mode
+Enable Animation Mode to provide an animator-friendly workspace and tools.
+FK Control Rig
+Quickly edit animation without needing Control Rig Assets using FK Control Rig.
+Constraints
+Attach the position, orientation, or scale of an object to other objects using constraints.
+Space Switching
+Dynamically re-parent your Controls when animating with Control Rig.
+
+DOCUMENT 52: IK Rig Editor
+Source URL: https://docs.unrealengine.com/5.4/en-US/ik-rig-in-unreal-engine/
+The IK Rig editor is where you set up IK Rigs and retargeting for characters.
+Editor and Feature Overview
+The IK Rig editor contains: - The Reset button — resets IK Goals to their default position. - Hierarchy — displays your Bones, IK Goals, and settings. - Solver Stack — displays the IK Solvers being used. - Viewport — select Bones and manipulate IK Goals to preview behavior. - IK Rig Output Log — displays debug information, warnings and errors. - Details panel — properties for your selected item. - Asset Browser — list of Animation Sequences to preview. - IK Retargeting — specify Bone chains for use with an IK Retargeter asset.
+IK Goals
+IK Goals are the manipulation and effector points for your IK chains. To create IK Goals, select the ending Bones in the IK chain, then click Add (+) in the Hierarchy panel and select New IK Goal.
+IK Goal Properties
+Solvers
+Different IK behaviors can be added to your IK Rig, which are called Solvers. Using Solvers, you can create a wide variety of IK effects, from simple three-bone chains to full-body multi-limb IK systems.
+IK Rig Example Setup
+A common use-case for IK is controlling foot alignment to uneven terrain.
+Create Solvers
+Click Add New Solver in the Solver Stack panel, then add: 1. Set Transform 2. Limb IK 3. Limb IK again
+Create Goals
+Select the pelvis and feet bones, right-click them, and select New IK Goal.
+Connect Goals to Solvers
+Select both the Solver and the IK Goal, right-click the goal, and select Connect Goal to Selected Solver.
+Set Solver Root
+Select both the Solver and the Bone, right-click the Bone, and select Set Root Bone on Selected Solver.
+
+DOCUMENT 53: Motion Warping
+Source URL: https://docs.unrealengine.com/5.4/en-US/motion-warping-in-unreal-engine/
+Motion Warping is a feature where you can dynamically adjust a character’s root motion to align to targets.
+Prerequisites
+You must enable the Motion Warping plugin.
+Motion Warping Overview
+Animation Montage, where you create motion warping windows with Anim Notify States.
+Blueprint Logic, where you set up the logic to assign the warp target and play the Montage.
+Animation Montage
+To create a new Motion Warping region, right-click on one of the Notifies tracks and select Add Notify State… > Motion Warping.
+Details
+Blueprint Nodes
+
+DOCUMENT 54: Full Body IK
+Source URL: https://docs.unrealengine.com/5.4/en-US/ik-rig-solvers-in-unreal-engine/
+Full Body IK (FBIK) is a fully-featured multi-goal IK solver that supports Bone limits, stiffness, and preferred angles.
+Setup
+A root Bone and at least one IK Goal must be connected for Full Body IK to function. Unlike Limb IK, multiple goals may be added.
+Usage
+To create a Bone setting, select the Full Body IK Solver, then right-click a Bone and select Add Settings to Selected Bone.
+Bone Settings
+Settings
+Goal Settings
+
+DOCUMENT 55: Collision in Unreal Engine
+Source URL: https://docs.unrealengine.com/5.4/en-US/collision-in-unreal-engine/
+All about collision, collision responses, and collision presets in Unreal Engine.
+Essentials
+Collision Tutorials
+Content guide to creating and setting up collision geometry.
+Collision Overview
+An overview of how Collision and Collision Responses operate in Unreal Engine.
+Collision Response Reference
+Reference guide to the Collision Presets section.
+Simple versus Complex Collision
+Reference about collision complexity flags and when to use them.
+
+DOCUMENT 56: Physics Bodies
+Source URL: https://docs.unrealengine.com/5.4/en-US/physics-bodies-in-unreal-engine/
+Physics Bodies (Body Instances) are the simplified 3D meshes that Unreal Engine uses for physics simulations. They can be formed of boxes, spheres, capsules, or convex hulls.
+
+DOCUMENT 57: Chaos Physics Overview
+Source URL: https://dev.epicgames.com/documentation/unreal-engine/physics-in-unreal-engine?application_version=5.4
+Chaos Physics is a light-weight physics simulation solution available in Unreal Engine, built from the ground up to meet the needs of next-generation games.
+Major Features
+Destruction — Cinematic-quality levels of destruction in real time.
+Networked Physics — Physics-driven simulations in multiplayer environments.
+Chaos Visual Debugger — Visual debugging tool for Chaos Physics simulations.
+Rigid Body Dynamics — Collision responses, physics constraints, damping and friction.
+Rigid Body Animation Nodes and Physical Animation — Rigid Body simulation for characters at runtime.
+Cloth Physics and Machine Learning Cloth Simulation — Accurate and performant cloth simulation.
+Ragdoll Physics — Rigid bodies connected to Skeletal Meshes simulated in real-time.
+Vehicles — Lightweight system for performing vehicle physics simulations.
+Physics Fields — Directly affect Chaos Physics simulations at runtime in a specified region.
+Fluid Simulation — Suite of tools for simulating fluid effects in real time.
+Hair Physics — Strand-based workflow to render each individual strand of hair.
+Flesh Simulation — High-quality, real-time simulation of deformable (soft) bodies.
+Destruction
+The Chaos Destruction system utilizes Geometry Collections, a type of asset built from one or more Static Meshes. These can be fractured to achieve real-time destruction.
+Features include: - Multiple levels of fracturing - Selective fracturing on parts of the Geometry Collection - Damage Thresholds per cluster - Connection Graphs to manipulate structure collapse - World Support to set parts to Kinematic - Cache System for per-frame transforms and events - Deep integration with Niagara particle system - Physics Fields integration
+Networked Physics
+Unreal Engine comes with three replication modes: - Default — Legacy physics replication mode. - Predictive Interpolation — Designed for server-authoritative Actors. - Resimulation — Designed for server-authoritative Pawns and Actors with client prediction.
+Dataflow Graph System
+The Dataflow Graph system is a node-based procedural asset generation environment inside the Unreal Engine editor. It can be adapted to various physics asset types, such as Chaos Cloth, Chaos Flesh, and Geometry Collection fracturing.
+
+DOCUMENT 58: Chaos Destruction
+Source URL: https://docs.unrealengine.com/5.4/en-US/chaos-destruction-in-unreal-engine/
+Chaos is Unreal Engine’s high-performance physics and destruction system. With Chaos Destruction, users can achieve cinematic-quality visuals in real time in scenes with massive-scale levels of destruction.
+Getting Started
+Destruction Overview — Overview of Unreal Engine’s Destruction system.
+Destruction Quick Start — Quick Start guide for the Destruction system.
+Key Concepts
+Geometry Collections User Guide — Overview of the authoring process for Geometry Collections.
+Fracture Mode Selection Tools User Guide — Overview of the selection tools included in the Fracture Mode.
+Fracturing Geometry Collections User Guide — Overview of the methods of fracturing Geometry Collections.
+Edit Tools User Guide — Overview of the Edit Panel included with the Fracture Mode.
+Cluster Geometry Collections User Guide — Overview of the methods of clustering Geometry Collections.
+Chaos Fields User Guide — Overview of the Physics Fields in Unreal Engine.
+
+DOCUMENT 59: Cloth Simulation
+Source URL: https://docs.unrealengine.com/5.4/en-US/chaos-cloth-in-unreal-engine/
+Chaos Cloth provides accurate and performant cloth simulation for games and real-time experiences.
+Features
+Extensive user controls and physical reactions such as wind.
+Animation Drive system — deforms a cloth Mesh to match its parent’s animated Skeletal Mesh.
+Blueprint-exposed parameters for runtime control.
+Powerful debugging tools including visualization tools and debug console commands.
+Machine Learning Cloth Simulation — higher fidelity simulation using a trained dataset.
+Panel Cloth Editor — new workflow introduced in UE 5.3 for non-destructive cloth authoring.
+Topics
+Machine Learning Cloth Simulation Overview
+Panel Cloth Editor Overview
+Clothing Tool — Cloth creation using in-Editor tools.
+Clothing Tool Properties Reference
+
+DOCUMENT 60: Niagara Visual Effects System
+Source URL: https://docs.unrealengine.com/5.4/en-US/niagara-overview-in-unreal-engine/
+The Niagara VFX System is the primary tool to do visual effects (VFX) inside Unreal Engine 5.
+Getting Started and Tutorials
+Getting Started in Niagara — Collects all the getting started learning materials.
+Niagara Tutorials — Collection of tutorials for creating projects with Niagara.
+Niagara Features
+Collisions in Niagara — Learn all about collisions in Niagara.
+Creating Custom Modules — How to create custom modules.
+Niagara Data Channels — Data Channels feature documentation.
+Niagara Lightweight Emitters — Documentation of Niagara Lightweight Emitters.
+Niagara Fluids in Unreal Engine — Learn about Niagara Fluids.
+Debugging and Optimization in Niagara
+Debugging and Optimization in Niagara — How to debug and optimize your Niagara simulations.
+Reference
+Niagara Reference — Collects all the reference pages for Niagara.
+
+This training corpus contains the full extracted content from Documents 21-60 of the Unreal Engine 5 essential documentation, covering Gameplay Ability System, Lyra, Lighting, Lumen, Materials, Rendering, Nanite, Environment Design, Animation, Physics, Chaos, and Niagara VFX.
