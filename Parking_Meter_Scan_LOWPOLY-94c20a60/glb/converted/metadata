@@ -1,0 +1,117 @@
+{
+	"assetNamespace": "fab",
+	"listing":
+	{
+		"averageRating": 0,
+		"createdAt": "",
+		"description": "<p>Scanned in Polycam and repaired with quad topo in Blender, 4k Color and AO maps, color used as bump.</p>",
+		"isAiForbidden": true,
+		"isAiGenerated": false,
+		"lastUpdatedAt": "",
+		"listingType": "3d-model",
+		"media": "https://media.fab.com/image_previews/gallery_images/d6e80480-8437-446a-9827-ef1a401eadba/408c427d-0403-4936-8432-9c1a147747c2.jpeg",
+		"publishedAt": "2024-10-04T15:40:01.768060Z",
+		"reviewCount": 0,
+		"thumbnail": "https://media.fab.com/image_previews/gallery_images/1f645d5c-b2b0-4acf-b8b3-ee2f08c7914c/2d6379c5-2e49-408d-b471-c9c203c74cea.jpeg",
+		"title": "Parking Meter Scan LOWPOLY",
+		"uid": "94c20a60-75ef-49e8-9926-b4215d247044",
+		"updatedAt": "",
+		"user":
+		{
+			"coverImageUrl": "https://cdn1.epicgames.com/fab/seller/o-t8q3jvrhpdrepep7nu9gz9dsdzzhqr/backgroundImage/blob-1920x540-3eac7f9ba893f3b38d7f4ca504c18878.jpg",
+			"profileImageUrl": "https://cdn1.epicgames.com/fab/seller/o-t8q3jvrhpdrepep7nu9gz9dsdzzhqr/profileImage/blob-500x500-89b14b3afab425a346d7fd0874752544.jpg",
+			"sellerName": "EFX",
+			"uid": "90b43c35-e4b2-4ee1-b818-2394b312b5bc"
+		},
+		"tags": [
+			{
+				"name": "Photogrammetry",
+				"slug": "photogrammetry",
+				"uid": "39435048-f16b-4977-b62b-82ff5ca8c38e"
+			},
+			{
+				"name": "Lowpoly",
+				"slug": "lowpoly",
+				"uid": "451806dc-649e-43b7-9c2e-a54485de14b6"
+			},
+			{
+				"name": "Photorealistic",
+				"slug": "photorealistic",
+				"uid": "7485c72b-1f18-499f-8c65-0fdf1e2a21d0"
+			},
+			{
+				"name": "Parking",
+				"slug": "parking",
+				"uid": "ca1ba0e5-cd03-4743-a4ea-66733367cc6c"
+			},
+			{
+				"name": "Meter",
+				"slug": "meter",
+				"uid": "dbe07104-874f-489e-9176-9e1bacbfb0be"
+			},
+			{
+				"name": "Graffiti",
+				"slug": "graffiti",
+				"uid": "df22c582-1dc3-4123-9df0-79f04e18f2d0"
+			},
+			{
+				"name": "City",
+				"slug": "city",
+				"uid": "f57a177e-d2a9-4a6c-96e2-818ae6681e77"
+			}
+		],
+		"category":
+		{
+			"name": "Vehicles & Transportation",
+			"path": "vehicles-transportation",
+			"slug": "vehicles-transportation",
+			"uid": "0bb33d40-c52f-4f88-86df-eeff7fcf7ba9"
+		},
+		"assetFormats": [
+			{
+				"assetFormatType":
+				{
+					"name": "FBX",
+					"groupName": "3D Exchange Formats",
+					"code": "fbx",
+					"icon": "cube",
+					"extensions": [
+						"fbx"
+					]
+				}
+			},
+			{
+				"assetFormatType":
+				{
+					"name": "Converted Files",
+					"groupName": "",
+					"code": "converted-files",
+					"icon": "cube",
+					"extensions": [
+						"gltf",
+						"glb",
+						"usdz"
+					]
+				}
+			}
+		],
+		"_PluginMetas":
+		{
+			"apiDataVersion": "0.0.1",
+			"entitlementUid": "8cdcbc13-0999-4e5b-a1f7-898579e03c96",
+			"cacheSize": 0,
+			"downloaded": []
+		}
+	},
+	"target": "diskExport",
+	"quality": "",
+	"format": "glb",
+	"fileId": "39c80b6a-11d7-4c51-a3fa-ecdea257f95e",
+	"platformIncluded": "",
+	"distributionPointBaseUrls": [],
+	"distributionMethod": "",
+	"entitlementUid": "8cdcbc13-0999-4e5b-a1f7-898579e03c96",
+	"invertedNormal": false,
+	"isConverted": true,
+	"isQuixel": false
+}
